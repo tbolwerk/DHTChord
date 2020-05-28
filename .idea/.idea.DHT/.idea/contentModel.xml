@@ -13,12 +13,15 @@
         <e p="bin" t="ExcludeRecursive" />
         <e p="DHT.csproj" t="IncludeRecursive" />
         <e p="DistributedChordNetwork" t="Include">
+          <e p="CheckPredecessorEventArgs.cs" t="Include" />
+          <e p="CheckPredecessorResponseEventArgs.cs" t="Include" />
           <e p="DhtCommand.cs" t="Include" />
           <e p="DhtProtocolCommandDto.cs" t="Include" />
-          <e p="DhtRelayNetMQAdapter.cs" t="Include" />
+          <e p="DhtRelayNetMqAdapter.cs" t="Include" />
           <e p="DhtRelayServiceAdapter.cs" t="Include" />
           <e p="FindSuccessorEventArgs.cs" t="Include" />
           <e p="FingerTable.cs" t="Include" />
+          <e p="FingerTableEntry.cs" t="Include" />
           <e p="FoundSuccessorEventArgs.cs" t="Include" />
           <e p="IDhtRelayServiceAdapter.cs" t="Include" />
           <e p="IFingerTable.cs" t="Include" />
@@ -26,8 +29,11 @@
           <e p="Node.cs" t="Include" />
           <e p="NodeDto.cs" t="Include" />
           <e p="NotifyEventArgs.cs" t="Include" />
+          <e p="Scheduler.cs" t="Include" />
+          <e p="SchedulerTask.cs" t="Include" />
           <e p="StabilizeEventArgs.cs" t="Include" />
           <e p="StabilizeResponseEventArgs.cs" t="Include" />
+          <e p="TimeOutScheduler.cs" t="Include" />
         </e>
         <e p="DistributedHashtable.cs" t="Include" />
         <e p="Formatting" t="Include">
@@ -44,12 +50,18 @@
           </e>
         </e>
         <e p="Program.cs" t="Include" />
+        <e p="Properties" t="Include">
+          <e p="launchSettings.json" t="Include" />
+        </e>
+        <e p="run.sh" t="Include" />
+        <e p="stop.sh" t="Include" />
       </e>
       <e p="DHT.sln" t="IncludeFlat" />
       <e p="DHTTests" t="IncludeRecursive">
         <e p="bin" t="ExcludeRecursive" />
         <e p="DhtRelayServiceAdapterTests.cs" t="Include" />
         <e p="DHTTests.csproj" t="IncludeRecursive" />
+        <e p="FingertableTests.cs" t="Include" />
         <e p="NodeTests.cs" t="Include" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
@@ -61,7 +73,7 @@
       </e>
       <e p="packages" t="ExcludeRecursive" />
     </e>
-    <e p="$USER_HOME$/Library/Caches/Rider2019.3/extResources" t="IncludeRecursive" />
-    <e p="$USER_HOME$/Library/Caches/Rider2019.3/resharper-host/local/Transient/ReSharperHost/v193/SolutionCaches/_DHT.181174982.00" t="ExcludeRecursive" />
+    <e p="$USER_HOME$/Library/Caches/JetBrains/Rider2020.1/extResources" t="IncludeRecursive" />
+    <e p="$USER_HOME$/Library/Caches/JetBrains/Rider2020.1/resharper-host/local/Transient/ReSharperHost/v201/SolutionCaches/_DHT.662897689.00" t="ExcludeRecursive" />
   </component>
 </project>

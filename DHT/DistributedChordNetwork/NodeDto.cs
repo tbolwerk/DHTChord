@@ -11,8 +11,8 @@ namespace DHT
         public int Id { get; set; }
         public string IpAddress { get; set; }
         public int Port { get; set; }
-        public NodeDto Predecessor { get; set; }
-        public NodeDto Successor { get; set; }
+        public virtual NodeDto Predecessor { get; set; }
+        public virtual NodeDto Successor { get; set; }
 
         public override string ToString()
         {

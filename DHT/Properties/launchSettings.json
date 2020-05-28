@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "DHT": {
+      "commandName": "Project",
+      "commandLineArgs": "1 localhost 8001 2 localhost 8000"
+    }
+  }
+}

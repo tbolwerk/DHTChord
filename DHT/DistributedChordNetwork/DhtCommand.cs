@@ -6,6 +6,8 @@ namespace DHT
         NOTIFY,
         FOUND_SUCCESSOR,
         STABILIZE,
-        STABILIZE_RESPONSE
+        STABILIZE_RESPONSE,
+        CHECK_PREDECESSOR,
+        CHECK_PREDECESSOR_RESPONSE
     }
 }

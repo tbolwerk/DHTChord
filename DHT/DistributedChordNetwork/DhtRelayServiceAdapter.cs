@@ -8,7 +8,12 @@ namespace DHT
     public class DhtRelayServiceAdapter : IDhtRelayServiceAdapter
     {
         private readonly IRelay _relay;
-        public Task<DhtProtocolCommandDto> ClientAsync(NodeDto connectingNode, DhtProtocolCommandDto protocolCommandDto)
+        public Task ClientAsync(NodeDto connectingNode, DhtProtocolCommandDto protocolCommandDto)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Client(NodeDto connectingNode, DhtProtocolCommandDto protocolCommandDto)
         {
             throw new NotImplementedException();
         }
@@ -18,6 +23,10 @@ namespace DHT
         public event EventHandler FoundSuccessorHandler;
         public event EventHandler StabilizeHandler;
         public event EventHandler StabilizeResponseHandler;
+        public event EventHandler CheckPredecessorResponseHandler;
+
+        public event EventHandler CheckPredecessorHandler;
+
         public void Start()
         {
             throw new NotImplementedException();
@@ -30,7 +39,12 @@ namespace DHT
         }
 
 
-        public async Task<DhtProtocolCommandDto> ListeningForRequests()
+        void IDhtRelayServiceAdapter.Notify(NodeDto connectingNode, NodeDto node)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<DhtProtocolCommandDto> ServerAsync()
         {
             DhtProtocolCommandDto protocolCommandDto = null;
             while (protocolCommandDto == null)
@@ -58,7 +72,7 @@ namespace DHT
         }
 
 
-        public async Task<NodeDto> SendRPCCommand(NodeDto connectingNode, DhtProtocolCommandDto protocolCommandDto)
+        public async Task SendRpcCommand(NodeDto connectingNode, DhtProtocolCommandDto protocolCommandDto)
         {
             _relay.connect(connectingNode.IpAddress, connectingNode.Port);
             if (_relay.connected)
@@ -70,9 +84,8 @@ namespace DHT
                 throw new Exception("Cannot connect with " + connectingNode.IpAddress);
             }
 
-            DhtProtocolCommandDto dhtProtocolCommandDto = await ListeningForRequests();
+            DhtProtocolCommandDto dhtProtocolCommandDto = await ServerAsync();
             _relay.close();
-            return dhtProtocolCommandDto.NodeDto;
         }
 
         public async Task<NodeDto> GetSuccessor(NodeDto node)
@@ -88,13 +101,18 @@ namespace DHT
                 throw new Exception("Cannot connect with successor");
             }
 
-            DhtProtocolCommandDto dhtProtocolCommandDto = await ListeningForRequests();
+            DhtProtocolCommandDto dhtProtocolCommandDto = await ServerAsync();
 
             _relay.close();
             return dhtProtocolCommandDto.NodeDto;
         }
 
-        public async Task<NodeDto> Notify(NodeDto connectingNode, NodeDto node)
+        void IDhtRelayServiceAdapter.SendRpcCommand(NodeDto connectingNode, DhtProtocolCommandDto protocolCommandDto)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task Notify(NodeDto connectingNode, NodeDto node)
         {
             _relay.connect(node.IpAddress, node.Port);
 
@@ -107,11 +125,10 @@ namespace DHT
                 throw new Exception("Cannot notify, no connection");
             }
 
-            DhtProtocolCommandDto dhtProtocolCommandDto = await ListeningForRequests();
+            DhtProtocolCommandDto dhtProtocolCommandDto = await ServerAsync();
 
             _relay.close();
 
-            return dhtProtocolCommandDto.NodeDto;
         }
 
         protected virtual void OnNotify(EventArgs e)

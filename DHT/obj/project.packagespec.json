@@ -1,10 +1,10 @@
 ﻿{
   "version": "1.0.0",
   "restore": {
-    "projectUniqueName": "/Users/twanbolwerk/Documents/dev/project/confidential-messaging/NetwerkApplicatie/Main/DHT/DHT/DHT.csproj",
+    "projectUniqueName": "/Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DHT.csproj",
     "projectName": "DHT",
-    "projectPath": "/Users/twanbolwerk/Documents/dev/project/confidential-messaging/NetwerkApplicatie/Main/DHT/DHT/DHT.csproj",
-    "outputPath": "/Users/twanbolwerk/Documents/dev/project/confidential-messaging/NetwerkApplicatie/Main/DHT/DHT/obj/",
+    "projectPath": "/Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DHT.csproj",
+    "outputPath": "/Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/obj/",
     "projectStyle": "PackageReference",
     "fallbackFolders": [
       "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"

@@ -11,23 +11,20 @@ namespace DHT
 
         public DistributedHashtable(int id, string ipAddress, int port, IDhtRelayServiceAdapter relay)
         {
-            var fingerTable = new FingerTable(null);
+            var fingerTable = new FingerTable(128, id);
             var relayAdapter = relay;
             this._node = new Node(relayAdapter, fingerTable) {Id = id, IpAddress = ipAddress, Port = port};
         }
 
         public void Start()
         {
-
             _node.Start();
-         
-            
         }
 
-        public Task Join(int id, string ipAddress, int port)
+        public void Join(int id, string ipAddress, int port)
         {
             var bootstrap = new NodeDto {Id = id, IpAddress = ipAddress, Port = port};
-            return _node.Join(bootstrap);
+             _node.Join(bootstrap);
         }
 
         public void Create()

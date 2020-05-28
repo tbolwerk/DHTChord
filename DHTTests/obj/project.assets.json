@@ -5232,17 +5232,17 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/twanbolwerk/Documents/dev/project/confidential-messaging/NetwerkApplicatie/Main/DHT/DHTTests/DHTTests.csproj",
+      "projectUniqueName": "/Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHTTests/DHTTests.csproj",
       "projectName": "DHTTests",
-      "projectPath": "/Users/twanbolwerk/Documents/dev/project/confidential-messaging/NetwerkApplicatie/Main/DHT/DHTTests/DHTTests.csproj",
+      "projectPath": "/Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHTTests/DHTTests.csproj",
       "packagesPath": "/Users/twanbolwerk/.nuget/packages/",
-      "outputPath": "/Users/twanbolwerk/Documents/dev/project/confidential-messaging/NetwerkApplicatie/Main/DHT/DHTTests/obj/",
+      "outputPath": "/Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHTTests/obj/",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "/Users/twanbolwerk/.config/NuGet/NuGet.Config"
+        "/Users/twanbolwerk/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
@@ -5253,8 +5253,8 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "/Users/twanbolwerk/Documents/dev/project/confidential-messaging/NetwerkApplicatie/Main/DHT/DHT/DHT.csproj": {
-              "projectPath": "/Users/twanbolwerk/Documents/dev/project/confidential-messaging/NetwerkApplicatie/Main/DHT/DHT/DHT.csproj"
+            "/Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DHT.csproj": {
+              "projectPath": "/Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DHT.csproj"
             }
           }
         }

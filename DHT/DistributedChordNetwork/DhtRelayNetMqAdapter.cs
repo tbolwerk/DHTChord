@@ -8,7 +8,7 @@ using NetMQ.Sockets;
 
 namespace DHT
 {
-    public class DhtRelayNetMqAdapter : IDhtRelayServiceAdapter
+    public sealed class DhtRelayNetMqAdapter : IDhtRelayServiceAdapter
     {
         private readonly string _connectionUrl;
 
@@ -17,43 +17,40 @@ namespace DHT
             _connectionUrl = connectionUrl;
         }
 
-        public async Task<NodeDto> SendRPCCommand(NodeDto connectingNode, DhtProtocolCommandDto protocolCommandDto)
+        public void SendRpcCommand(NodeDto connectingNode, DhtProtocolCommandDto protocolCommandDto)
         {
-            var response = await ClientAsync(connectingNode, protocolCommandDto);
-
-            return response.NodeDto;
+            Client(connectingNode, protocolCommandDto);
         }
 
-        public Task<NodeDto> GetSuccessor(NodeDto node)
-        {
-            throw new NotImplementedException();
-        }
 
-        public async Task<DhtProtocolCommandDto> ClientAsync(NodeDto connectingNode,
+        public void Client(NodeDto connectingNode,
             DhtProtocolCommandDto protocolCommandDto)
         {
-            DhtProtocolCommandDto response = null;
-
-            using (var client = new RequestSocket())
+            try
             {
-                client.Connect("tcp://" + connectingNode.IpAddress + ":" + connectingNode.Port);
-                client.SendFrame(JsonCustomFormatter.SerializeObject(protocolCommandDto, 2));
-                var responseString = await client.ReceiveFrameStringAsync();
-                response = JsonSerializer.Deserialize<DhtProtocolCommandDto>(responseString.Item1);
+                if (connectingNode == null) throw new NullReferenceException("Connecting node is null");
+                using (var client = new RequestSocket())
+                {
+                    var address = "tcp://" + connectingNode.IpAddress + ":" + connectingNode.Port;
+                    client.Connect(address);
+                    client.TrySendFrame(JsonCustomFormatter.SerializeObject(protocolCommandDto, 2));
+                }
             }
-
-            return response;
+            catch (NetMQException e)
+            {
+                Console.WriteLine(e.ErrorCode);
+                Console.WriteLine(e.StackTrace);
+                Console.WriteLine(e.Message);
+            }
         }
 
-        public async Task<NodeDto> Notify(NodeDto connectingNode, NodeDto node)
+        public void Notify(NodeDto connectingNode, NodeDto node)
         {
-            var response = await ClientAsync(connectingNode,
-                new DhtProtocolCommandDto {Command = DhtCommand.NOTIFY, NodeDto = node});
-
-            return response.NodeDto;
+            Client(connectingNode,
+                new DhtProtocolCommandDto {Command = DhtCommand.NOTIFY, NodeDto = node, Key = node.Id});
         }
 
-        public Task<DhtProtocolCommandDto> ListeningForRequests()
+        public Task<DhtProtocolCommandDto> ServerAsync()
         {
             using (var server = new ResponseSocket())
             {
@@ -61,67 +58,79 @@ namespace DHT
 
                 while (true)
                 {
-                    var responseMessage = server.ReceiveFrameString();
-
-
-                    var requestDto = JsonSerializer.Deserialize<DhtProtocolCommandDto>(responseMessage);
-                    if (requestDto.Command == DhtCommand.STABILIZE_RESPONSE)
+                    if (server.TryReceiveFrameString(out string responseMessage))
                     {
-                        StabilizeResponseEventArgs eventArgs = new StabilizeResponseEventArgs
+                        var dhtProtocolCommandDto = JsonSerializer.Deserialize<DhtProtocolCommandDto>(responseMessage);
+
+                        switch (dhtProtocolCommandDto.Command)
                         {
-                            PredecessorOfSuccessor = requestDto.NodeDto
-                        };
-                        OnStabilizeResponseHandler(eventArgs);
-                    }
-                    
-                    if (requestDto.Command == DhtCommand.STABILIZE)
-                    {
-                        StabilizeEventArgs eventArgs = new StabilizeEventArgs
-                        {
-                            DestinationNode = requestDto.NodeDto
-                        };
-                        OnStabilizeHandler(eventArgs);
-                    }
+                            case DhtCommand.NOTIFY:
+                                NotifyEventArgs notifyEventArgs =
+                                    new NotifyEventArgs {NodeDto = dhtProtocolCommandDto.NodeDto};
+                                OnNotify(notifyEventArgs);
+                                break;
+                            case DhtCommand.STABILIZE:
+                                StabilizeEventArgs stabilizeEventArgs =
+                                    new StabilizeEventArgs {DestinationNode = dhtProtocolCommandDto.NodeDto};
+                                OnStabilizeHandler(stabilizeEventArgs);
+                                break;
+                            case DhtCommand.FIND_SUCCESSOR:
+                                FindSuccessorEventArgs findSuccessorEventArgs = new FindSuccessorEventArgs
+                                {
+                                    Key = dhtProtocolCommandDto.Key, DestinationNode = dhtProtocolCommandDto.NodeDto
+                                };
+                                OnFindSuccessor(findSuccessorEventArgs);
+                                break;
+                            case DhtCommand.FOUND_SUCCESSOR:
+                                FoundSuccessorEventArgs foundSuccessorEventArgs = new FoundSuccessorEventArgs
+                                {
+                                    SuccessorNode = dhtProtocolCommandDto.NodeDto, Key = dhtProtocolCommandDto.Key
+                                };
+                                OnFoundSuccessor(foundSuccessorEventArgs);
+                                break;
+                            case DhtCommand.CHECK_PREDECESSOR:
+                                CheckPredecessorEventArgs checkPredecessorEventArgs = new CheckPredecessorEventArgs
+                                {
+                                    DestinationNode = dhtProtocolCommandDto.NodeDto
+                                };
+                                OnCheckPredecessorHandler(checkPredecessorEventArgs);
+                                break;
+                            case DhtCommand.STABILIZE_RESPONSE:
+                                StabilizeResponseEventArgs stabilizeResponseEventArgs = new StabilizeResponseEventArgs
+                                {
+                                    PredecessorOfSuccessor = dhtProtocolCommandDto.NodeDto
+                                };
+                                OnStabilizeResponseHandler(stabilizeResponseEventArgs);
+                                break;
+                            case DhtCommand.CHECK_PREDECESSOR_RESPONSE:
+                                CheckPredecessorResponseEventArgs checkPredecessorResponseEventArgs =
+                                    new CheckPredecessorResponseEventArgs {Predecessor = dhtProtocolCommandDto.NodeDto};
+                                OnCheckPredecessorResponseHandler(checkPredecessorResponseEventArgs);
+                                break;
+                            default:
+                                break;
+                        }
 
-                    if (requestDto.Command == DhtCommand.FOUND_SUCCESSOR)
-                    {
-                        FoundSuccessorEventArgs eventArgs = new FoundSuccessorEventArgs
-                            {SuccessorNode = requestDto.NodeDto, Key = requestDto.Key};
-
-                        OnFoundSuccessor(eventArgs);
+                        server.SendFrameEmpty();
                     }
-
-                    if (requestDto.Command == DhtCommand.FIND_SUCCESSOR)
-                    {
-                        FindSuccessorEventArgs eventArgs = new FindSuccessorEventArgs
-                            {Key = requestDto.Key, DestinationNode = requestDto.NodeDto};
-                        OnFindSuccessor(eventArgs);
-                    }
-
-                    if (requestDto.Command == DhtCommand.NOTIFY)
-                    {
-                        NotifyEventArgs eventArgs = new NotifyEventArgs {NodeDto = requestDto.NodeDto};
-                        OnNotify(eventArgs);
-                    }
-
-                    server.SendFrame("World");
                 }
             }
         }
 
-        protected virtual void OnNotify(EventArgs e)
+
+        private void OnNotify(EventArgs e)
         {
             EventHandler handler = NotifyHandler;
             handler?.Invoke(this, e);
         }
 
-        protected virtual void OnFindSuccessor(EventArgs e)
+        private void OnFindSuccessor(EventArgs e)
         {
             EventHandler handler = FindSuccessorHandler;
             handler?.Invoke(this, e);
         }
 
-        protected virtual void OnFoundSuccessor(EventArgs e)
+        private void OnFoundSuccessor(EventArgs e)
         {
             EventHandler handler = FoundSuccessorHandler;
             handler?.Invoke(this, e);
@@ -132,21 +141,37 @@ namespace DHT
         public event EventHandler FoundSuccessorHandler;
         public event EventHandler StabilizeHandler;
         public event EventHandler StabilizeResponseHandler;
+        public event EventHandler CheckPredecessorHandler;
+        public event EventHandler CheckPredecessorResponseHandler;
+
         public void Start()
         {
-            using var runtime = new NetMQRuntime();
-            runtime.Run(ListeningForRequests());
+            NetMQConfig.MaxSockets = 4048;
+            using NetMQRuntime runtime = new NetMQRuntime();
+            runtime.Run(ServerAsync());
         }
 
-        protected virtual void OnStabilizeHandler(EventArgs e)
+        private void OnStabilizeHandler(EventArgs e)
         {
             EventHandler handler = StabilizeHandler;
             handler?.Invoke(this, e);
         }
 
-        protected virtual void OnStabilizeResponseHandler(EventArgs e)
+        private void OnStabilizeResponseHandler(EventArgs e)
         {
             EventHandler handler = StabilizeResponseHandler;
+            handler?.Invoke(this, e);
+        }
+
+        private void OnCheckPredecessorHandler(EventArgs e)
+        {
+            EventHandler handler = CheckPredecessorHandler;
+            handler?.Invoke(this, e);
+        }
+
+        private void OnCheckPredecessorResponseHandler(EventArgs e)
+        {
+            EventHandler handler = CheckPredecessorResponseHandler;
             handler?.Invoke(this, e);
         }
     }
