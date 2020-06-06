@@ -5,15 +5,17 @@ namespace DHT
     public interface IFingerTable
     {
         FingerTableEntry[] FingerTableEntries { get; }
-        public void AddEntry(NodeDto node, int id);
-        public void CreateFingerTable(int id);
-        public NodeDto ClosestPrecedingNode(int id);
-        public void FixFingers(int id, NodeDto connectionNode, Node destinationNode,
+        public void AddEntry(NodeDto node, uint id);
+        public void CreateFingerTable(uint id);
+        public NodeDto ClosestPrecedingNode(uint id);
+        public void FixFingers(uint id, NodeDto connectionNode, Node destinationNode,
             IDhtRelayServiceAdapter relayServiceAdapter);
 
-        public bool Include(int id);
+        public bool Include(uint id);
 
-        void AddEntries(NodeDto successor,  int id);
+        void AddEntries(NodeDto successor, uint id);
+        public Node? Node { get; set; }
+
         string ToString();
     }
 }

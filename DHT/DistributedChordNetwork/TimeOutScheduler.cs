@@ -1,71 +1,40 @@
 using System;
-using System.Threading.Tasks;
-using System.Timers;
-
 namespace DHT
 {
-    public class TimeOutScheduler
+    public class TimeOutScheduler : ITimeOutScheduler
     {
-        public event EventHandler TimeOutHandler;
-        public event EventHandler RetryHandler;
-        private readonly int _maxAttempts;
-        private Timer _timer;
-        private int _retry;
-        private double timeOutInSeconds;
+        private readonly ITimeOutTimerFactory _timerFactory;
 
-        public TimeOutScheduler(double timeOutInSeconds, int maxAttempts)
+        public TimeOutScheduler(ITimeOutTimerFactory timerFactory)
         {
-            this.timeOutInSeconds = timeOutInSeconds;
-            _maxAttempts = maxAttempts;
-            _timer = new Timer(timeOutInSeconds);
-            _retry = 0;
-            _timer.Elapsed += OnTimeElapsed;
-            _timer.AutoReset = false;
+            _timerFactory = timerFactory;
         }
 
-        private void OnTimeElapsed(object sender, ElapsedEventArgs e)
+        public void AddTimeOutTimer(object origin, int maxAttempts, double timeOutInSeconds, Action onRetry,
+            Action onTimeOut)
         {
-            if (_retry < _maxAttempts)
-            {
-                _retry += 1;
-                OnRetryHandler();
-                Stop();
-                Start();
-            }
-            else
-            {
-                OnTimeOutHandler();
-            }
+            _timerFactory.Create(origin, timeOutInSeconds, maxAttempts, onRetry, onTimeOut);
         }
 
-
-        public void Start()
+        public void StartTimer(object origin)
         {
-
-            if (!_timer.Enabled)
-            {
-                _timer.Start();
-            }
+            var timer = _timerFactory.Get(origin);
+            timer?.Start();
         }
 
-        public void Stop()
+        public void StopTimer(object origin)
         {
-            _timer.Interval += timeOutInSeconds;
-            _timer.Stop();
+            var timer = _timerFactory.Get(origin);
+            timer?.Stop();
         }
+    }
 
-        protected virtual void OnTimeOutHandler()
-        {
-            Console.WriteLine("Timeout handler");
-            _retry = 0;
-            TimeOutHandler?.Invoke(this, EventArgs.Empty);
-        }
+    public interface ITimeOutScheduler
+    {
+        public void AddTimeOutTimer(object origin, int maxAttempts, double timeOutInSeconds, Action onRetry,
+            Action onTimeOut);
 
-        protected virtual void OnRetryHandler()
-        {
-            Console.WriteLine("Retry handler");
-
-            RetryHandler?.Invoke(this, EventArgs.Empty);
-        }
+        public void StartTimer(object origin);
+        public void StopTimer(object origin);
     }
 }

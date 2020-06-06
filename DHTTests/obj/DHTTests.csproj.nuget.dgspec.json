@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHTTests/DHTTests.csproj": {}
+    "/Users/twanbolwerk/Documents/dev/project/DistributedHashtableChord/DHTTests/DHTTests.csproj": {}
   },
   "projects": {
-    "/Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DHT.csproj": {
+    "/Users/twanbolwerk/Documents/dev/project/DistributedHashtableChord/DHT/DHT.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DHT.csproj",
+        "projectUniqueName": "/Users/twanbolwerk/Documents/dev/project/DistributedHashtableChord/DHT/DHT.csproj",
         "projectName": "DHT",
-        "projectPath": "/Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DHT.csproj",
+        "projectPath": "/Users/twanbolwerk/Documents/dev/project/DistributedHashtableChord/DHT/DHT.csproj",
         "packagesPath": "/Users/twanbolwerk/.nuget/packages/",
-        "outputPath": "/Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/obj/",
+        "outputPath": "/Users/twanbolwerk/Documents/dev/project/DistributedHashtableChord/DHT/obj/",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
@@ -39,6 +39,46 @@
       "frameworks": {
         "netcoreapp3.1": {
           "dependencies": {
+            "Microsoft.Extensions.Configuration": {
+              "target": "Package",
+              "version": "[3.1.4, )"
+            },
+            "Microsoft.Extensions.Configuration.Binder": {
+              "target": "Package",
+              "version": "[3.1.4, )"
+            },
+            "Microsoft.Extensions.Configuration.FileExtensions": {
+              "target": "Package",
+              "version": "[3.1.4, )"
+            },
+            "Microsoft.Extensions.Configuration.Json": {
+              "target": "Package",
+              "version": "[3.1.4, )"
+            },
+            "Microsoft.Extensions.DependencyInjection": {
+              "target": "Package",
+              "version": "[3.1.4, )"
+            },
+            "Microsoft.Extensions.DependencyInjection.Abstractions": {
+              "target": "Package",
+              "version": "[3.1.4, )"
+            },
+            "Microsoft.Extensions.Logging": {
+              "target": "Package",
+              "version": "[3.1.4, )"
+            },
+            "Microsoft.Extensions.Logging.Console": {
+              "target": "Package",
+              "version": "[3.1.4, )"
+            },
+            "Microsoft.Extensions.Logging.EventLog": {
+              "target": "Package",
+              "version": "[3.1.4, )"
+            },
+            "Microsoft.Extensions.Options": {
+              "target": "Package",
+              "version": "[3.1.4, )"
+            },
             "NetMQ": {
               "target": "Package",
               "version": "[4.0.1.2-pre, )"
@@ -46,6 +86,14 @@
             "Newtonsoft.Json": {
               "target": "Package",
               "version": "[9.0.1, )"
+            },
+            "Serilog.AspNetCore": {
+              "target": "Package",
+              "version": "[3.2.0, )"
+            },
+            "Serilog.Sinks.File": {
+              "target": "Package",
+              "version": "[4.1.0, )"
             }
           },
           "imports": [
@@ -67,14 +115,14 @@
         }
       }
     },
-    "/Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHTTests/DHTTests.csproj": {
+    "/Users/twanbolwerk/Documents/dev/project/DistributedHashtableChord/DHTTests/DHTTests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHTTests/DHTTests.csproj",
+        "projectUniqueName": "/Users/twanbolwerk/Documents/dev/project/DistributedHashtableChord/DHTTests/DHTTests.csproj",
         "projectName": "DHTTests",
-        "projectPath": "/Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHTTests/DHTTests.csproj",
+        "projectPath": "/Users/twanbolwerk/Documents/dev/project/DistributedHashtableChord/DHTTests/DHTTests.csproj",
         "packagesPath": "/Users/twanbolwerk/.nuget/packages/",
-        "outputPath": "/Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHTTests/obj/",
+        "outputPath": "/Users/twanbolwerk/Documents/dev/project/DistributedHashtableChord/DHTTests/obj/",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
@@ -91,8 +139,8 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "/Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DHT.csproj": {
-                "projectPath": "/Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DHT.csproj"
+              "/Users/twanbolwerk/Documents/dev/project/DistributedHashtableChord/DHT/DHT.csproj": {
+                "projectPath": "/Users/twanbolwerk/Documents/dev/project/DistributedHashtableChord/DHT/DHT.csproj"
               }
             }
           }

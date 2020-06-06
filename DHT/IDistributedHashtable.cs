@@ -4,8 +4,10 @@ namespace DHT
 {
     public interface IDistributedHashtable
     {
-        void Join(int id, string ipAddress, int port);
+        void Join(uint id, string ipAddress, int port);
+        string Get(string key);
+        void Put(string key, string value);
         void Create();
-        void Start();
+        void Run(string[] args);
     }
 }

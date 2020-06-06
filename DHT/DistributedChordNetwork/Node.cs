@@ -1,28 +1,35 @@
 using System;
-using System.Threading.Tasks;
-using System.Timers;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using Microsoft.Extensions.Options;
 
 namespace DHT
 {
     public class Node : NodeDto
     {
-        private NodeDto BootStrapNode { get; set; }
+        public NodeDto BootStrapNode { get; set; }
+        private readonly IOptions<DhtSettings> _options;
         private readonly IFingerTable _fingerTable;
-        private readonly IDhtRelayServiceAdapter _relayServiceAdapter;
+        private readonly IDhtActions _dhtActions;
+        private readonly ITimeOutScheduler _timeOutScheduler;
+        private readonly ISchedule _scheduler;
 
+        const string ORIGIN_SUCCESSOR = "successor";
+        const string ORIGIN_PREDECESSOR = "predecessor";
 
-        private readonly TimeOutScheduler _timeOutSuccessor;
-        private readonly TimeOutScheduler _timeOutPredecessor;
         private NodeDto _successor;
         private NodeDto _predecessor;
 
-        public override NodeDto Successor
+        private readonly Dictionary<uint, string> Dictionary = new Dictionary<uint, string>(); // Key: Public key, Value: IP address
+
+        public override NodeDto? Successor
         {
             get => _successor;
             set
             {
                 _successor = value;
-                _timeOutSuccessor.Stop();
+                _timeOutScheduler.StopTimer(ORIGIN_SUCCESSOR);
             }
         }
 
@@ -32,133 +39,138 @@ namespace DHT
             set
             {
                 _predecessor = value;
-                _timeOutPredecessor.Stop();
+                _timeOutScheduler.StopTimer(ORIGIN_PREDECESSOR);
             }
         }
 
-        public Node(IDhtRelayServiceAdapter relayServiceAdapter, IFingerTable fingerTable)
+        public Node(IOptions<DhtSettings> options, INetworkAdapter networkAdapter, IFingerTable fingerTable,
+            IDhtActions dhtActions,
+            ITimeOutScheduler timeOutScheduler,
+            ISchedule scheduler, IStabilize stabilize, ICheckPredecessor checkPredecessor)
         {
+            _options = options;
             _fingerTable = fingerTable;
-            _relayServiceAdapter = relayServiceAdapter;
-            _relayServiceAdapter.NotifyHandler += NotifyHandler;
-            _relayServiceAdapter.FindSuccessorHandler += FindSuccessorHandler;
-            _relayServiceAdapter.FoundSuccessorHandler += FoundSuccessorHandler;
-            _relayServiceAdapter.StabilizeHandler += StabilizeHandler;
-            _relayServiceAdapter.StabilizeResponseHandler += StabilizeResponseHandler;
-            _relayServiceAdapter.CheckPredecessorHandler += CheckPredecessorHandler;
-            _relayServiceAdapter.CheckPredecessorResponseHandler += CheckPredecessorResponseHandler;
+            _dhtActions = dhtActions;
+            _timeOutScheduler = timeOutScheduler;
+            _scheduler = scheduler;
+            networkAdapter.NotifyHandler += NotifyHandler;
+            networkAdapter.FindSuccessorHandler += FindSuccessorHandler;
+            networkAdapter.FoundSuccessorHandler += FoundSuccessorHandler;
+            networkAdapter.StabilizeReplicasResponseHandler += StabilizeReplicasJoinResponseHandler;
+            networkAdapter.StabilizeReplicasHandler += StabilizeReplicasJoinHandler;
+            networkAdapter.StabilizeReplicasLeaveHandler += StabilizeReplicasLeaveHandler;
+            networkAdapter.GetHandler += GetHandler;
+            networkAdapter.GetReponseHandler += GetResponseHandler;
 
-            double timeOut = TimeSpan.FromSeconds(5).TotalMilliseconds;
-            _timeOutSuccessor = new TimeOutScheduler(timeOut, 1); 
-            _timeOutSuccessor.RetryHandler += (sender, args) => Stabilize();
-            _timeOutSuccessor.TimeOutHandler += OnTimeOutStabilizeHandler;
-
-            _timeOutPredecessor = new TimeOutScheduler(timeOut, 0); // 1 less attempt than successor, in order to improve performance
-            _timeOutPredecessor.RetryHandler += (sender, args) => CheckPredecessor();
-            _timeOutPredecessor.TimeOutHandler += TimeOutCheckPredecessorHandler;
-
-            Scheduler scheduler = new Scheduler(1);
-            scheduler.Enqueue(new Timer(TimeSpan.FromSeconds(10).TotalMilliseconds), Stabilize);
-            scheduler.Enqueue(new Timer(TimeSpan.FromSeconds(10).TotalMilliseconds), CheckPredecessor);
-            scheduler.Enqueue(new Timer(TimeSpan.FromSeconds(10).TotalMilliseconds), FixFingers);
-            scheduler.Run();
+            networkAdapter.PutHandler += PutHandler;
+            checkPredecessor.Node = this;
+            stabilize.Node = this;
+            fingerTable.Node = this;
         }
 
-        private void FixFingers()
+        public event EventHandler GetResponseEventHandler;
+        private void GetResponseHandler(object? sender, EventArgs e)
         {
-            for (int i = 1; i < _fingerTable.FingerTableEntries.Length; i++)
+            EventHandler handler = GetResponseEventHandler;
+            handler?.Invoke(sender,e);
+        }
+
+        private void PutHandler(object? sender, EventArgs e)
+        {
+            PutHandlerEventArgs eventArgs = (PutHandlerEventArgs)e;
+            var protocolDto = eventArgs.ProtocolCommandDto;
+            if (IAmTheSuccessorOf(protocolDto.Key))
             {
-                var next = _fingerTable.FingerTableEntries[i - 1].Start;
-                Console.WriteLine("fix fingers called next = " + next);
-                FindSuccessor(next, _fingerTable.FingerTableEntries[i - 1].Successor, this);
+                Put(protocolDto.Key,protocolDto.Value,Successor,protocolDto.NodeDto,protocolDto.CurrentNumberOfReplicas);
+            }
+            else
+            {
+                _dhtActions.ForwardRequest(Successor, protocolDto);
             }
         }
 
-        private void CheckPredecessorResponseHandler(object? sender, EventArgs e)
-        {
-            CheckPredecessorResponseEventArgs eventArgs = (CheckPredecessorResponseEventArgs)e;
-            Predecessor = eventArgs.Predecessor;
-            Console.WriteLine("Check predecessor response handler : " + this);
-        }
 
-        private void CheckPredecessorHandler(object? sender, EventArgs e)
+        private void GetHandler(object? sender, EventArgs e)
         {
-            CheckPredecessorEventArgs eventArgs = (CheckPredecessorEventArgs)e;
-            NodeDto destinationNode = eventArgs.DestinationNode;
-            DhtProtocolCommandDto commandDto = new DhtProtocolCommandDto
+            GetHandlerEventArgs eventArgs = (GetHandlerEventArgs)e;
+            var protocolDto = eventArgs.DhtProtocolCommandDto;
+            string value = GetValueByKey(protocolDto.Key);
+            if (IAmTheSuccessorOf(protocolDto.Key))
             {
-                Command = DhtCommand.CHECK_PREDECESSOR_RESPONSE, NodeDto = this
-            };
-            _relayServiceAdapter.SendRpcCommand(destinationNode, commandDto);
-        }
-
-        private void StabilizeResponseHandler(object? sender, EventArgs e)
-        {
-            Console.WriteLine("Stabilize response handler " + this);
-            StabilizeResponseEventArgs eventArgs = (StabilizeResponseEventArgs)e;
-            var predecessorOfSuccessor = eventArgs.PredecessorOfSuccessor;
-            Successor = Successor;
-            if (predecessorOfSuccessor.Id != this.Id)
+                _dhtActions.GetResponse(Successor, protocolDto.NodeDto, protocolDto.Key, value);
+            }
+            else
             {
-                Console.WriteLine("predecessorOfSuccessor =  " + predecessorOfSuccessor);
-                Successor = predecessorOfSuccessor;
-                Notify(Successor, this);
+                _dhtActions.ForwardRequest(Successor, protocolDto);
             }
         }
 
-        private void StabilizeHandler(object? sender, EventArgs e)
-        {
-            StabilizeEventArgs eventArgs = (StabilizeEventArgs)e;
-            Console.WriteLine("Stabilize handler is called by " + eventArgs.DestinationNode);
 
-            var stabilizingNode = eventArgs.DestinationNode;
-            if (Predecessor == null) Predecessor = stabilizingNode;
-            if ((Predecessor.Id <= stabilizingNode.Id && IsBootStrapNode) ||
-                (Predecessor.Id <= stabilizingNode.Id && stabilizingNode.Id < Id))
+        private void StabilizeReplicasJoinHandler(object? sender, EventArgs e)
+        {
+            StabilizeReplicasJoinEventArgs stabilizeReplicasJoinEventArgs = (StabilizeReplicasJoinEventArgs)e;
+
+            IEnumerable<KeyValuePair<uint, string>> dictionary = new List<KeyValuePair<uint, string>>();
+
+            dictionary = Dictionary.Where(x => x.Key <= stabilizeReplicasJoinEventArgs.Key).ToArray();
+
+            // TODO: remove after response
+            // foreach (var keyValuePair in dictionary)
+            // {
+            //     if (Dictionary.ContainsKey(keyValuePair.Key))
+            //     {
+            //         Dictionary.Remove(keyValuePair.Key);
+            //     }
+            // }
+
+            _dhtActions.StabilizeReplicasJoinResponse(stabilizeReplicasJoinEventArgs.DestinationNode,
+                stabilizeReplicasJoinEventArgs.Key, dictionary);
+        }
+
+        private void StabilizeReplicasJoinResponseHandler(object? sender, EventArgs e)
+        {
+            StabilizeReplicasJoinResponseEventArgs stabilizeReplicasJoinResponseEventArgs =
+                (StabilizeReplicasJoinResponseEventArgs)e;
+
+            foreach (var keyValuePair in stabilizeReplicasJoinResponseEventArgs.Dictionary)
             {
-                Predecessor = stabilizingNode;
+                Console.WriteLine($"Key: {keyValuePair.Key} Value {keyValuePair.Value} added to {Id}");
+                if (!Dictionary.ContainsKey(keyValuePair.Key))
+                {
+                    Dictionary[keyValuePair.Key] = keyValuePair.Value;
+                }
+            }
+        }
+
+        private void StabilizeReplicasLeaveHandler(object? sender, EventArgs e)
+        {
+            StabilizeReplicasLeaveEventArgs stabilizeReplicasLeaveEventArgs = (StabilizeReplicasLeaveEventArgs)e;
+
+            foreach (var keyValuePair in stabilizeReplicasLeaveEventArgs.Dictionary)
+            {
+                Dictionary[keyValuePair.Key] = keyValuePair.Value;
             }
 
-            var command = new DhtProtocolCommandDto
+            if (stabilizeReplicasLeaveEventArgs.CurrentNumberOfReplicas < 1)
             {
-                Command = DhtCommand.STABILIZE_RESPONSE, NodeDto = Predecessor, Key = Predecessor.Id
-            };
-            Console.WriteLine("My predecessor is : " + Predecessor);
-            _relayServiceAdapter.SendRpcCommand(eventArgs.DestinationNode, command);
-            Console.WriteLine("My predecessor is send to : " + eventArgs.DestinationNode);
+                _dhtActions.StabilizeReplicasLeave(Successor, stabilizeReplicasLeaveEventArgs.DestinationNode, Id,
+                    stabilizeReplicasLeaveEventArgs.Dictionary.ToArray(),
+                    stabilizeReplicasLeaveEventArgs.CurrentNumberOfReplicas);
+            }
         }
 
-
-        private void CheckPredecessor()
-        {
-            if (Predecessor == null) return;
-
-
-            DhtProtocolCommandDto command = new DhtProtocolCommandDto
-            {
-                Command = DhtCommand.CHECK_PREDECESSOR, NodeDto = this
-            };
-            _timeOutPredecessor.Start();
-            Console.WriteLine("Im called CheckPredecessor");
-
-            _relayServiceAdapter.SendRpcCommand(Predecessor, command);
-        }
-
-        private void TimeOutCheckPredecessorHandler(object sender, EventArgs e)
-        {
-            Console.WriteLine("No response from predecessor, so its dead we reset it to null");
-            this.Predecessor = null;
-        }
 
         private void FoundSuccessorHandler(object? sender, EventArgs e)
         {
             //TODO: create own handler for fix fingers
             FoundSuccessorEventArgs eventArgs = (FoundSuccessorEventArgs)e;
+            // Console.WriteLine($"this is my successor found key {eventArgs.Key}");
+
             if (eventArgs.Key == Id) //Found successor for this node
             {
                 Successor = eventArgs.SuccessorNode;
-                Console.WriteLine("Successor found:" + Successor.Id);
-                Task.Run((() => Notify(Successor, this)));
+                // Console.WriteLine("Successor found:" + Successor?.Id);
+                _dhtActions.Notify(Successor, Id, this);
                 _fingerTable.FingerTableEntries[0].Successor = eventArgs.SuccessorNode;
                 _fingerTable.AddEntries(eventArgs.SuccessorNode, eventArgs.Key);
             }
@@ -166,6 +178,7 @@ namespace DHT
             //TODO: evalute this function
             else if (_fingerTable.Include(eventArgs.Key))
             {
+                _fingerTable.FingerTableEntries[0].Successor = Successor;
                 _fingerTable.AddEntries(eventArgs.SuccessorNode, eventArgs.Key);
             }
         }
@@ -199,8 +212,8 @@ namespace DHT
         {
             if (currentPredecessor == null) return true;
             if (IsBootStrapNode && possiblePredecessor.Id > currentPredecessor.Id) return true;
-            if (currentPredecessor.Id > this.Id && possiblePredecessor.Id > this.Id &&
-                possiblePredecessor.Id < currentPredecessor.Id) return true;
+            if (currentPredecessor.Id > this.Id && possiblePredecessor.Id < currentPredecessor.Id &&
+                !IsBootStrapNode) return true;
             return
                 (self.Id > possiblePredecessor.Id && currentPredecessor.Id < possiblePredecessor.Id);
         }
@@ -208,8 +221,8 @@ namespace DHT
         private void NotifyHandler(object? sender, EventArgs e)
         {
             NotifyEventArgs eventArgs = (NotifyEventArgs)e;
-
-            Console.WriteLine($"Node thinks it might be our predecessor {eventArgs.NodeDto.Id}");
+            Console.WriteLine($"Node thinks it might be our {Id} predecessor {eventArgs.NodeDto.Id}");
+            Console.WriteLine(this);
             if (IsThisNodeMyPredecessor(eventArgs.NodeDto, Predecessor, this) && eventArgs.NodeDto != Successor &&
                 this.Id != eventArgs.NodeDto.Id) // Not exactly sure if this works
             {
@@ -218,84 +231,43 @@ namespace DHT
             }
 
             // This can only happen with the bootstrap node
-            if (Successor == this)
+            if (Successor.Id.Equals(Id))
             {
                 Successor = eventArgs.NodeDto;
                 Predecessor = eventArgs.NodeDto;
-                Notify(Successor, this);
+                _dhtActions.Notify(Successor, Id, this);
                 Console.WriteLine("I am a bootstrap node " + Id + "  \n My successor node is " + Successor.Id +
                                   " \n and my predecessor node is " + Predecessor.Id);
-                IsBootStrapNode = true;
+                BootStrapNode = this;
             }
         }
 
-        public bool IsBootStrapNode { get; set; }
+        public bool IsBootStrapNode { get => BootStrapNode.Id.Equals(Id); }
 
-        public void Stabilize()
-        {
-            // TODO: bootstrap node should have the predecessor with largest id.
-            Console.WriteLine("1Stabilize " + this);
-            // Otherwise bootstrap node will call on upon itself and block other messages.
-            if (Successor == this) return;
-            var command = new DhtProtocolCommandDto {Command = DhtCommand.STABILIZE, Key = Id, NodeDto = this};
-            Console.WriteLine("2Stabilize");
-
-            // Task.Run(() => _timeOutSuccessor.Start());
-            Console.WriteLine("3Stabilize");
-            _relayServiceAdapter.SendRpcCommand(Successor, command);
-            _timeOutSuccessor.Start();
-        }
-
-
-        private void OnTimeOutStabilizeHandler(object? sender, EventArgs e)
-        {
-            Console.WriteLine("Stabilize timeout " + this);
-            var nextClosestSuccessor = _fingerTable.ClosestPrecedingNode(Id);
-            //TODO: fix connecting node, should be closest successor node from finger table!
-            if (IsBootStrapNode)
-            {
-                if (nextClosestSuccessor == null || nextClosestSuccessor.Id == Id)
-                {
-                    Successor = Predecessor;
-                }
-                else
-                {
-                    Successor = nextClosestSuccessor;
-                }
-            }
-            else
-            {//TODO: fix next closest preceding successor in order to relaibly fail nodes, otherwise they will go back to their previous successor who might be offline, so fingertable needs to be updates aswell.
-                if (nextClosestSuccessor == null || nextClosestSuccessor.Id == Id ||
-                    nextClosestSuccessor.Id == Successor.Id)
-                {
-                    Successor = BootStrapNode;
-                }
-                else
-                {
-                    Successor = nextClosestSuccessor;
-                }
-            }
-
-            Task.Run(() => Notify(Successor, this));
-        }
-
-        private void Notify(NodeDto connectingNode, NodeDto self)
-        {
-            _relayServiceAdapter.Notify(connectingNode, self);
-        }
 
         public void Join(NodeDto node)
         {
             Predecessor = null;
             BootStrapNode = node;
-            FindSuccessor(Id, node, this);
+            FindSuccessor(Id, BootStrapNode, this);
         }
 
-        private bool IsIdInBetween(int id, int left, int right)
+        public void Get(uint key)
+        {
+            // var closest = _fingerTable.ClosestPrecedingNode(searchKey);
+            _dhtActions.Get(key, Successor, this);
+        }
+
+        public void Put(uint key, string value)
+        {
+            // var closest = _fingerTable.ClosestPrecedingNode(key);
+            Put(key,value,Successor,this,0);
+        }
+
+        private bool IsIdInBetween(uint id, uint left, uint right)
         {
             return id > left && id <= right;
         }
-
 
         /// <summary>
         /// Search for successor containing id. When successor with the id is found, return the result to given node.
@@ -308,53 +280,89 @@ namespace DHT
         /// <param name="connectingNode"></param>
         /// <param name="destinationNode"></param>
         /// <param name="node"></param>
-        public void FindSuccessor(int id, NodeDto connectingNode, NodeDto destinationNode)
+        public void FindSuccessor(uint id, NodeDto connectingNode, NodeDto destinationNode)
         {
             // Am I the Successor? 
-            if ((Predecessor != null && IsIdInBetween(id, Predecessor.Id, this.Id)) ||
-                (IsBootStrapNode && Predecessor?.Id < id))
+            if (IAmTheSuccessorOf(id))
             {
-                var requestDto = new DhtProtocolCommandDto
-                {
-                    Command = DhtCommand.FOUND_SUCCESSOR, NodeDto = this, Key = id
-                };
                 //send found request back
-
-                _relayServiceAdapter.SendRpcCommand(destinationNode, requestDto);
+                _dhtActions.FoundSuccessor(destinationNode, id, this);
             }
             // Is my Successor the successor? 
-            else if ((Successor != null && IsIdInBetween(id, this.Id, Successor.Id)) ||
-                     Successor == this)
+            else if (IsMySuccessorTheSuccessorOf(id))
             {
-                var requestDto = new DhtProtocolCommandDto
-                {
-                    Command = DhtCommand.FOUND_SUCCESSOR, NodeDto = connectingNode, Key = id
-                };
                 //send found request back
-
-                _relayServiceAdapter.SendRpcCommand(destinationNode, requestDto);
+                _dhtActions.FoundSuccessor(destinationNode, id, connectingNode);
             }
             else
             {
-                var requestDto = new DhtProtocolCommandDto
-                {
-                    Command = DhtCommand.FIND_SUCCESSOR, NodeDto = destinationNode, Key = id
-                };
                 //Forward query
 
                 // TODO: Replace Successor with closest preceding node for optimization
-                _relayServiceAdapter.SendRpcCommand(connectingNode, requestDto);
+                _dhtActions.FindSuccessor(connectingNode, id, destinationNode);
             }
+        }
+
+        private bool IsMySuccessorTheSuccessorOf(uint id)
+        {
+            return (Successor != null && IsIdInBetween(id, this.Id, Successor.Id)) ||
+                   (Successor != null && Successor.Id.Equals(Id));
+        }
+
+        private bool IAmTheSuccessorOf(uint id)
+        {
+            return (Predecessor != null && IsIdInBetween(id, Predecessor.Id, this.Id)) ||
+                   (IsBootStrapNode && Predecessor?.Id < id);
+        }
+
+        private void Put(uint key, string value, NodeDto connectingNode, NodeDto destinationNode,
+            int currentNumberOfReplicas)
+        {
+            
+            // If currentNumberOfReplicas < 2, store value at Node (connectingNode)
+            if (currentNumberOfReplicas < _options.Value.Replicas) // TODO: add to config file
+            {
+                // Add value to dictionary
+                Dictionary[key] = value;
+
+                _dhtActions.Put(connectingNode, destinationNode, key, value, currentNumberOfReplicas);
+                Console.WriteLine(this);
+            }
+            // else forward to destinationNode
+            else
+            {
+                _dhtActions.PutResponse(connectingNode, destinationNode, key, value);
+            }
+        }
+
+        private string GetValueByKey(uint id)
+        {
+            string value = null;
+            Dictionary.TryGetValue(id, out value);
+                // value not found
+            return value;
         }
 
         public void Start()
         {
-            _relayServiceAdapter.Start();
+            _scheduler.Run();
+            _dhtActions.Start();
         }
+
 
         public override string ToString()
         {
-            return base.ToString();
+            StringBuilder sb = new StringBuilder();
+            foreach (var keyValuePair in Dictionary)
+            {
+                sb.Append("[");
+                sb.Append($"(Key:{keyValuePair.Key} \t Value:{keyValuePair.Value})\n");
+                sb.Append("]");
+            }
+
+            return
+                $" SuccessorId {_successor?.Id} || MyId {Id} || PredecessorId {_predecessor?.Id} \n MY VALUES ARE: \n{sb.ToString()}";
+            // // return base.ToString();
             // return base.ToString() + " FingerTable: \n " + _fingerTable.ToString();
         }
     }

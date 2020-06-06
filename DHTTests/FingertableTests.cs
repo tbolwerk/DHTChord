@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using DHT;
 using NUnit.Framework;
 
@@ -40,19 +40,19 @@ namespace DHTTests
             IFingerTable fingerTable = new FingerTable(128);
 
             // Create fingertable for node 7
-            fingerTable.CreateFingerTable(7);
+            fingerTable.CreateFingerTable(4);
 
-            fingerTable.AddEntry(new NodeDto { Id = 12 }, 8);
-            fingerTable.AddEntry(new NodeDto { Id = 12 }, 9);
-            fingerTable.AddEntry(new NodeDto { Id = 12 }, 11);
-            fingerTable.AddEntry(new NodeDto { Id = 15 }, 15);
-            fingerTable.AddEntry(new NodeDto { Id = 12 }, 23);
-            fingerTable.AddEntry(new NodeDto { Id = 12 }, 39);
-            fingerTable.AddEntry(new NodeDto { Id = 7 }, 71);
+            fingerTable.AddEntry(new NodeDto { Id = 7 }, 5);
+            fingerTable.AddEntry(new NodeDto { Id = 7 }, 6);
+            fingerTable.AddEntry(new NodeDto { Id = 9 }, 8);
+            fingerTable.AddEntry(new NodeDto { Id = 12 }, 12);
+            fingerTable.AddEntry(new NodeDto { Id = 20 }, 20);
+            fingerTable.AddEntry(new NodeDto { Id = 48 }, 36);
+            fingerTable.AddEntry(new NodeDto { Id = 70 }, 68);
 
             var actual = fingerTable.ClosestPrecedingNode(28);
 
-            var expected = 12;
+            var expected = 20;
             Assert.AreEqual(expected, actual.Id);
         }
 

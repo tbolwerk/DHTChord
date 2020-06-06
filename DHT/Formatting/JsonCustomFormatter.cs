@@ -4,18 +4,18 @@ using Newtonsoft.Json;
 
 namespace DHT.Formatting
 {
-    public class JsonCustomFormatter
+    public  class JsonCustomFormatter
     {
-        public static string SerializeObject(object obj, int maxDepth)
+        public  string SerializeObject(object obj, int maxDepth)
         {
             using (var strWriter = new StringWriter())
             {
                 using (var jsonWriter = new CustomJsonTextWriter(strWriter))
                 {
-                    Func<bool> include = () => jsonWriter.CurrentDepth <= maxDepth;
-                    var resolver = new CustomContractResolver(include);
+                    bool Include() => jsonWriter.CurrentDepth <= maxDepth;
+                    var resolver = new CustomContractResolver(Include);
                     
-                    var serializer = new JsonSerializer {ContractResolver = resolver,ReferenceLoopHandling = ReferenceLoopHandling.Serialize};
+                    var serializer = new JsonSerializer {ContractResolver = resolver,ReferenceLoopHandling = ReferenceLoopHandling.Ignore};
                     serializer.Serialize(jsonWriter, obj);
                 }
                 return strWriter.ToString();

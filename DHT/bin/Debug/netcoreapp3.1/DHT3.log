@@ -1,0 +1,1000 @@
+2020-06-02 11:15:43.001 +02:00 [INF] my key is 47
+2020-06-02 11:48:40.738 +02:00 [INF] my key is 47
+2020-06-02 11:50:08.524 +02:00 [INF] my key is 47
+2020-06-02 21:17:34.143 +02:00 [INF] my key is 47
+2020-06-03 11:43:40.116 +02:00 [INF] my key is 194
+2020-06-03 11:44:20.454 +02:00 [INF] my key is 194
+2020-06-03 11:44:20.473 +02:00 [ERR] RunSynchronously may not be called on a continuation task.
+System.InvalidOperationException: RunSynchronously may not be called on a continuation task.
+   at System.Threading.Tasks.Task.InternalRunSynchronously(TaskScheduler scheduler, Boolean waitForCompletion)
+   at System.Threading.Tasks.Task.RunSynchronously()
+   at DHT.DhtRelayServiceAdapter.Run() in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 72
+2020-06-03 11:44:20.478 +02:00 [ERR] An invalid IP address was specified.
+System.FormatException: An invalid IP address was specified.
+ ---> System.Net.Sockets.SocketException (22): Invalid argument
+   --- End of inner exception stack trace ---
+   at System.Net.IPAddressParser.Parse(ReadOnlySpan`1 ipSpan, Boolean tryParse)
+   at System.Net.IPAddress.Parse(String ipString)
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 45
+2020-06-03 12:40:43.344 +02:00 [INF] my key is 194
+2020-06-03 12:40:48.363 +02:00 [ERR] Connection timed out
+System.Exception: Connection timed out
+   at RelaySocket.MessageSocket.Connect(IPEndPoint endpoint) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/MessageSocket.cs:line 76
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 48
+2020-06-03 12:40:58.342 +02:00 [ERR] Connection timed out
+System.Exception: Connection timed out
+   at RelaySocket.MessageSocket.Connect(IPEndPoint endpoint) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/MessageSocket.cs:line 76
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 48
+2020-06-03 12:41:33.354 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-03 12:41:33.361 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-03 12:41:33.367 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-03 12:41:33.373 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-03 12:41:33.379 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-03 12:41:33.384 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-03 12:41:33.390 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-03 12:41:33.395 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-03 12:41:58.363 +02:00 [ERR] Connection timed out
+System.Exception: Connection timed out
+   at RelaySocket.MessageSocket.Connect(IPEndPoint endpoint) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/MessageSocket.cs:line 76
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 48
+2020-06-03 12:42:33.385 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-03 12:42:33.393 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-03 12:42:33.398 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-03 12:42:33.404 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-03 12:42:33.409 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-03 12:42:33.414 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-03 12:42:33.420 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-03 12:42:33.426 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-03 12:42:58.391 +02:00 [ERR] Connection timed out
+System.Exception: Connection timed out
+   at RelaySocket.MessageSocket.Connect(IPEndPoint endpoint) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/MessageSocket.cs:line 76
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 48
+2020-06-03 12:43:33.407 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-03 12:43:33.413 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-03 12:43:33.418 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-03 12:43:33.423 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-03 12:43:33.428 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-03 12:43:33.436 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-03 12:43:33.441 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-03 12:43:33.446 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-03 12:43:58.410 +02:00 [ERR] Connection timed out
+System.Exception: Connection timed out
+   at RelaySocket.MessageSocket.Connect(IPEndPoint endpoint) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/MessageSocket.cs:line 76
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 48
+2020-06-03 12:44:22.008 +02:00 [INF] my key is 194
+2020-06-03 12:45:12.028 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 46
+2020-06-03 12:45:12.050 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 46
+2020-06-03 12:45:12.057 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 46
+2020-06-03 12:45:12.063 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 46
+2020-06-03 12:45:12.069 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 46
+2020-06-03 12:45:12.075 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 46
+2020-06-03 12:45:12.081 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 46
+2020-06-03 12:45:12.087 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 46
+2020-06-03 13:47:07.047 +02:00 [INF] my key is 194
+2020-06-03 13:47:57.057 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 58
+2020-06-03 13:47:57.076 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 58
+2020-06-03 13:47:57.082 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 58
+2020-06-03 13:47:57.087 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 58
+2020-06-03 13:47:57.092 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 58
+2020-06-03 13:47:57.098 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 58
+2020-06-03 13:47:57.103 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 58
+2020-06-03 13:47:57.108 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 58
+2020-06-03 13:48:22.193 +02:00 [INF] my key is 194
+2020-06-03 13:49:12.204 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 58
+2020-06-03 13:49:12.224 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 58
+2020-06-03 13:49:12.229 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 58
+2020-06-03 13:49:12.234 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 58
+2020-06-03 13:49:12.239 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 58
+2020-06-03 13:49:12.245 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 58
+2020-06-03 13:49:12.250 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 58
+2020-06-03 13:49:12.255 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 58
+2020-06-03 13:49:49.044 +02:00 [INF] my key is 194
+2020-06-03 13:50:32.790 +02:00 [INF] my key is 194
+2020-06-03 13:50:37.806 +02:00 [ERR] Connection timed out
+System.Exception: Connection timed out
+   at RelaySocket.MessageSocket.Connect(IPEndPoint endpoint) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/MessageSocket.cs:line 76
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 59
+2020-06-03 14:05:50.689 +02:00 [INF] my key is 194
+2020-06-03 14:20:56.508 +02:00 [INF] my key is 194
+2020-06-03 14:21:05.196 +02:00 [INF] my key is 194
+2020-06-03 14:30:53.470 +02:00 [INF] my key is 194
+2020-06-03 14:31:43.489 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 46
+2020-06-03 14:31:43.511 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 46
+2020-06-03 14:31:43.517 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 46
+2020-06-03 14:31:43.523 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 46
+2020-06-03 14:31:43.528 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 46
+2020-06-03 14:31:43.535 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 46
+2020-06-03 14:31:43.541 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 46
+2020-06-03 14:31:43.546 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 46
+2020-06-03 14:32:43.513 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 46
+2020-06-03 14:32:43.519 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 46
+2020-06-03 14:32:43.525 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 46
+2020-06-03 14:32:43.529 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 46
+2020-06-03 14:32:43.534 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 46
+2020-06-03 14:32:43.539 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 46
+2020-06-03 14:32:43.543 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 46
+2020-06-03 14:32:43.548 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 46
+2020-06-03 14:43:35.401 +02:00 [INF] my key is 194
+2020-06-03 14:43:40.418 +02:00 [ERR] Connection timed out
+System.Exception: Connection timed out
+   at RelaySocket.MessageSocket.Connect(IPEndPoint endpoint) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/MessageSocket.cs:line 76
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-03 14:43:50.399 +02:00 [ERR] Connection timed out
+System.Exception: Connection timed out
+   at RelaySocket.MessageSocket.Connect(IPEndPoint endpoint) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/MessageSocket.cs:line 76
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-03 14:44:28.142 +02:00 [INF] my key is 194
+2020-06-03 14:44:33.160 +02:00 [ERR] Connection timed out
+System.Exception: Connection timed out
+   at RelaySocket.MessageSocket.Connect(IPEndPoint endpoint) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/MessageSocket.cs:line 76
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-03 14:44:43.137 +02:00 [ERR] Connection timed out
+System.Exception: Connection timed out
+   at RelaySocket.MessageSocket.Connect(IPEndPoint endpoint) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/MessageSocket.cs:line 76
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-03 14:45:15.983 +02:00 [INF] my key is 194
+2020-06-03 15:04:14.747 +02:00 [INF] my key is 194
+2020-06-03 15:14:52.750 +02:00 [INF] my key is 194
+2020-06-03 15:37:39.535 +02:00 [INF] my key is 62
+2020-06-03 15:37:44.551 +02:00 [ERR] Connection timed out
+System.Exception: Connection timed out
+   at RelaySocket.MessageSocket.Connect(IPEndPoint endpoint) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/MessageSocket.cs:line 76
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-03 15:37:54.531 +02:00 [ERR] Connection timed out
+System.Exception: Connection timed out
+   at RelaySocket.MessageSocket.Connect(IPEndPoint endpoint) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/MessageSocket.cs:line 76
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-03 15:38:29.533 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 46
+2020-06-03 15:38:29.540 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 46
+2020-06-03 15:38:29.545 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 46
+2020-06-03 15:38:29.549 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 46
+2020-06-03 15:38:29.554 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 46
+2020-06-03 15:38:29.561 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 46
+2020-06-03 15:38:29.568 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 46
+2020-06-03 15:38:29.574 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 46
+2020-06-03 15:38:54.541 +02:00 [ERR] Connection timed out
+System.Exception: Connection timed out
+   at RelaySocket.MessageSocket.Connect(IPEndPoint endpoint) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/MessageSocket.cs:line 76
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-03 15:39:29.555 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 46
+2020-06-03 15:39:29.563 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 46
+2020-06-03 15:39:29.567 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 46
+2020-06-03 15:39:29.572 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 46
+2020-06-03 15:39:29.577 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 46
+2020-06-03 15:39:29.582 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 46
+2020-06-03 15:39:29.587 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 46
+2020-06-03 15:39:29.592 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 46
+2020-06-03 15:39:54.562 +02:00 [ERR] Connection timed out
+System.Exception: Connection timed out
+   at RelaySocket.MessageSocket.Connect(IPEndPoint endpoint) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/MessageSocket.cs:line 76
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-03 15:41:09.133 +02:00 [INF] my key is 62
+2020-06-03 15:41:59.145 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 46
+2020-06-03 15:41:59.163 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 46
+2020-06-03 15:41:59.168 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 46
+2020-06-03 15:41:59.173 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 46
+2020-06-03 15:41:59.178 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 46
+2020-06-03 15:41:59.182 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 46
+2020-06-03 15:41:59.187 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 46
+2020-06-03 15:41:59.192 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 46
+2020-06-03 15:42:19.096 +02:00 [INF] my key is 62
+2020-06-03 15:43:20.474 +02:00 [INF] my key is 62
+2020-06-03 15:43:41.930 +02:00 [INF] my key is 62
+2020-06-03 15:44:31.945 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 46
+2020-06-03 15:44:31.970 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 46
+2020-06-03 15:44:31.976 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 46
+2020-06-03 15:44:31.982 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 46
+2020-06-03 15:44:31.988 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 46
+2020-06-03 15:44:31.994 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 46
+2020-06-03 15:44:32.000 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 46
+2020-06-03 15:44:32.006 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 46
+2020-06-03 15:45:21.929 +02:00 [INF] my key is 62
+2020-06-03 15:46:11.943 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 46
+2020-06-03 15:46:11.972 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 46
+2020-06-03 15:46:11.978 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 46
+2020-06-03 15:46:11.986 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 46
+2020-06-03 15:46:11.993 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 46
+2020-06-03 15:46:12.000 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 46
+2020-06-03 15:46:12.007 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 46
+2020-06-03 15:46:12.013 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 46
+2020-06-03 15:47:11.963 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 46
+2020-06-03 15:47:11.975 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 46
+2020-06-03 15:47:11.982 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 46
+2020-06-03 15:47:11.989 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 46
+2020-06-03 15:47:11.995 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 46
+2020-06-03 15:47:12.002 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 46
+2020-06-03 15:47:12.009 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 46
+2020-06-03 15:47:12.017 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 46
+2020-06-03 15:48:07.638 +02:00 [INF] my key is 62
+2020-06-03 15:48:57.650 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 46
+2020-06-03 15:48:57.675 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 46
+2020-06-03 15:48:57.682 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 46
+2020-06-03 15:48:57.689 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 46
+2020-06-03 15:48:57.698 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 46
+2020-06-03 15:48:57.707 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 46
+2020-06-03 15:48:57.714 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 46
+2020-06-03 15:48:57.721 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 46
+2020-06-03 15:49:57.656 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 46
+2020-06-03 15:49:57.666 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 46
+2020-06-03 15:49:57.673 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 46
+2020-06-03 15:49:57.680 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 46
+2020-06-03 15:49:57.688 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 46
+2020-06-03 15:49:57.695 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 46
+2020-06-03 15:49:57.701 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 46
+2020-06-03 15:49:57.707 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 46
+2020-06-03 15:50:57.670 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 46
+2020-06-03 15:50:57.678 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 46
+2020-06-03 15:50:57.684 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 46
+2020-06-03 15:50:57.690 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 46
+2020-06-03 15:50:57.696 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 46
+2020-06-03 15:50:57.706 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 46
+2020-06-03 15:50:57.712 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 46
+2020-06-03 15:50:57.718 +02:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 46
+2020-06-03 15:51:18.612 +02:00 [INF] my key is 62
+2020-06-03 15:52:13.633 +02:00 [ERR] Connection timed out
+System.Exception: Connection timed out
+   at RelaySocket.MessageSocket.Connect(IPEndPoint endpoint) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/MessageSocket.cs:line 76
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-03 15:52:18.732 +02:00 [ERR] Connection timed out
+System.Exception: Connection timed out
+   at RelaySocket.MessageSocket.Connect(IPEndPoint endpoint) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/MessageSocket.cs:line 76
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-03 15:52:23.762 +02:00 [ERR] Connection timed out
+System.Exception: Connection timed out
+   at RelaySocket.MessageSocket.Connect(IPEndPoint endpoint) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/MessageSocket.cs:line 76
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-03 15:52:28.861 +02:00 [ERR] Connection timed out
+System.Exception: Connection timed out
+   at RelaySocket.MessageSocket.Connect(IPEndPoint endpoint) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/MessageSocket.cs:line 76
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-03 15:52:33.902 +02:00 [ERR] Connection timed out
+System.Exception: Connection timed out
+   at RelaySocket.MessageSocket.Connect(IPEndPoint endpoint) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/MessageSocket.cs:line 76
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-03 15:52:38.956 +02:00 [ERR] Connection timed out
+System.Exception: Connection timed out
+   at RelaySocket.MessageSocket.Connect(IPEndPoint endpoint) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/MessageSocket.cs:line 76
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-03 15:52:44.016 +02:00 [ERR] Connection timed out
+System.Exception: Connection timed out
+   at RelaySocket.MessageSocket.Connect(IPEndPoint endpoint) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/MessageSocket.cs:line 76
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-03 15:52:49.040 +02:00 [ERR] Connection timed out
+System.Exception: Connection timed out
+   at RelaySocket.MessageSocket.Connect(IPEndPoint endpoint) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/MessageSocket.cs:line 76
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-03 15:52:54.081 +02:00 [ERR] Connection timed out
+System.Exception: Connection timed out
+   at RelaySocket.MessageSocket.Connect(IPEndPoint endpoint) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/MessageSocket.cs:line 76
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-03 15:52:59.105 +02:00 [ERR] Connection timed out
+System.Exception: Connection timed out
+   at RelaySocket.MessageSocket.Connect(IPEndPoint endpoint) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/MessageSocket.cs:line 76
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-03 15:53:04.160 +02:00 [ERR] Connection timed out
+System.Exception: Connection timed out
+   at RelaySocket.MessageSocket.Connect(IPEndPoint endpoint) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/MessageSocket.cs:line 76
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-03 15:53:13.641 +02:00 [ERR] Connection timed out
+System.Exception: Connection timed out
+   at RelaySocket.MessageSocket.Connect(IPEndPoint endpoint) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/MessageSocket.cs:line 76
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-03 15:53:18.667 +02:00 [ERR] Connection timed out
+System.Exception: Connection timed out
+   at RelaySocket.MessageSocket.Connect(IPEndPoint endpoint) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/MessageSocket.cs:line 76
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-03 15:53:23.699 +02:00 [ERR] Connection timed out
+System.Exception: Connection timed out
+   at RelaySocket.MessageSocket.Connect(IPEndPoint endpoint) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/MessageSocket.cs:line 76
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-03 15:53:28.726 +02:00 [ERR] Connection timed out
+System.Exception: Connection timed out
+   at RelaySocket.MessageSocket.Connect(IPEndPoint endpoint) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/MessageSocket.cs:line 76
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-03 15:53:33.736 +02:00 [ERR] Connection timed out
+System.Exception: Connection timed out
+   at RelaySocket.MessageSocket.Connect(IPEndPoint endpoint) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/MessageSocket.cs:line 76
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-03 15:53:38.768 +02:00 [ERR] Connection timed out
+System.Exception: Connection timed out
+   at RelaySocket.MessageSocket.Connect(IPEndPoint endpoint) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/MessageSocket.cs:line 76
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-03 15:53:43.788 +02:00 [ERR] Connection timed out
+System.Exception: Connection timed out
+   at RelaySocket.MessageSocket.Connect(IPEndPoint endpoint) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/MessageSocket.cs:line 76
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-03 15:53:48.813 +02:00 [ERR] Connection timed out
+System.Exception: Connection timed out
+   at RelaySocket.MessageSocket.Connect(IPEndPoint endpoint) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/MessageSocket.cs:line 76
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-03 15:53:53.847 +02:00 [ERR] Connection timed out
+System.Exception: Connection timed out
+   at RelaySocket.MessageSocket.Connect(IPEndPoint endpoint) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/MessageSocket.cs:line 76
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-03 15:54:16.731 +02:00 [INF] my key is 62
+2020-06-03 15:55:11.744 +02:00 [ERR] Connection timed out
+System.Exception: Connection timed out
+   at RelaySocket.MessageSocket.Connect(IPEndPoint endpoint) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/MessageSocket.cs:line 76
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-03 15:55:16.825 +02:00 [ERR] Connection timed out
+System.Exception: Connection timed out
+   at RelaySocket.MessageSocket.Connect(IPEndPoint endpoint) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/MessageSocket.cs:line 76
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-03 15:55:21.861 +02:00 [ERR] Connection timed out
+System.Exception: Connection timed out
+   at RelaySocket.MessageSocket.Connect(IPEndPoint endpoint) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/MessageSocket.cs:line 76
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-03 15:55:26.922 +02:00 [ERR] Connection timed out
+System.Exception: Connection timed out
+   at RelaySocket.MessageSocket.Connect(IPEndPoint endpoint) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/MessageSocket.cs:line 76
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-03 15:55:31.999 +02:00 [ERR] Connection timed out
+System.Exception: Connection timed out
+   at RelaySocket.MessageSocket.Connect(IPEndPoint endpoint) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/MessageSocket.cs:line 76
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-03 15:55:37.034 +02:00 [ERR] Connection timed out
+System.Exception: Connection timed out
+   at RelaySocket.MessageSocket.Connect(IPEndPoint endpoint) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/MessageSocket.cs:line 76
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-03 15:55:42.097 +02:00 [ERR] Connection timed out
+System.Exception: Connection timed out
+   at RelaySocket.MessageSocket.Connect(IPEndPoint endpoint) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/MessageSocket.cs:line 76
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-03 15:55:47.139 +02:00 [ERR] Connection timed out
+System.Exception: Connection timed out
+   at RelaySocket.MessageSocket.Connect(IPEndPoint endpoint) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/MessageSocket.cs:line 76
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-03 15:55:52.166 +02:00 [ERR] Connection timed out
+System.Exception: Connection timed out
+   at RelaySocket.MessageSocket.Connect(IPEndPoint endpoint) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/MessageSocket.cs:line 76
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-03 15:56:18.111 +02:00 [INF] my key is 62
+2020-06-03 15:56:48.758 +02:00 [INF] my key is 62
+2020-06-03 15:58:03.834 +02:00 [ERR] Connection timed out
+System.Exception: Connection timed out
+   at RelaySocket.MessageSocket.Connect(IPEndPoint endpoint) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/MessageSocket.cs:line 76
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-03 15:58:43.820 +02:00 [ERR] Connection timed out
+System.Exception: Connection timed out
+   at RelaySocket.MessageSocket.Connect(IPEndPoint endpoint) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/MessageSocket.cs:line 76
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-03 15:58:48.837 +02:00 [ERR] Connection timed out
+System.Exception: Connection timed out
+   at RelaySocket.MessageSocket.Connect(IPEndPoint endpoint) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/MessageSocket.cs:line 76
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-03 15:58:53.853 +02:00 [ERR] Connection timed out
+System.Exception: Connection timed out
+   at RelaySocket.MessageSocket.Connect(IPEndPoint endpoint) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/MessageSocket.cs:line 76
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-03 15:58:58.894 +02:00 [ERR] Connection timed out
+System.Exception: Connection timed out
+   at RelaySocket.MessageSocket.Connect(IPEndPoint endpoint) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/MessageSocket.cs:line 76
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-03 15:59:03.931 +02:00 [ERR] Connection timed out
+System.Exception: Connection timed out
+   at RelaySocket.MessageSocket.Connect(IPEndPoint endpoint) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/MessageSocket.cs:line 76
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-03 15:59:09.004 +02:00 [ERR] Connection timed out
+System.Exception: Connection timed out
+   at RelaySocket.MessageSocket.Connect(IPEndPoint endpoint) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/MessageSocket.cs:line 76
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-03 15:59:14.026 +02:00 [ERR] Connection timed out
+System.Exception: Connection timed out
+   at RelaySocket.MessageSocket.Connect(IPEndPoint endpoint) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/MessageSocket.cs:line 76
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-03 15:59:19.059 +02:00 [ERR] Connection timed out
+System.Exception: Connection timed out
+   at RelaySocket.MessageSocket.Connect(IPEndPoint endpoint) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/MessageSocket.cs:line 76
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-03 15:59:24.129 +02:00 [ERR] Connection timed out
+System.Exception: Connection timed out
+   at RelaySocket.MessageSocket.Connect(IPEndPoint endpoint) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/MessageSocket.cs:line 76
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-03 15:59:29.137 +02:00 [ERR] Connection timed out
+System.Exception: Connection timed out
+   at RelaySocket.MessageSocket.Connect(IPEndPoint endpoint) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/MessageSocket.cs:line 76
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-03 15:59:34.146 +02:00 [ERR] Connection timed out
+System.Exception: Connection timed out
+   at RelaySocket.MessageSocket.Connect(IPEndPoint endpoint) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/MessageSocket.cs:line 76
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-03 15:59:43.869 +02:00 [ERR] Connection timed out
+System.Exception: Connection timed out
+   at RelaySocket.MessageSocket.Connect(IPEndPoint endpoint) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/MessageSocket.cs:line 76
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-03 15:59:48.883 +02:00 [ERR] Connection timed out
+System.Exception: Connection timed out
+   at RelaySocket.MessageSocket.Connect(IPEndPoint endpoint) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/MessageSocket.cs:line 76
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-03 15:59:53.936 +02:00 [ERR] Connection timed out
+System.Exception: Connection timed out
+   at RelaySocket.MessageSocket.Connect(IPEndPoint endpoint) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/MessageSocket.cs:line 76
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-03 15:59:58.944 +02:00 [ERR] Connection timed out
+System.Exception: Connection timed out
+   at RelaySocket.MessageSocket.Connect(IPEndPoint endpoint) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/MessageSocket.cs:line 76
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-03 16:00:04.003 +02:00 [ERR] Connection timed out
+System.Exception: Connection timed out
+   at RelaySocket.MessageSocket.Connect(IPEndPoint endpoint) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/MessageSocket.cs:line 76
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-03 16:00:09.030 +02:00 [ERR] Connection timed out
+System.Exception: Connection timed out
+   at RelaySocket.MessageSocket.Connect(IPEndPoint endpoint) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/MessageSocket.cs:line 76
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-03 16:00:14.037 +02:00 [ERR] Connection timed out
+System.Exception: Connection timed out
+   at RelaySocket.MessageSocket.Connect(IPEndPoint endpoint) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/MessageSocket.cs:line 76
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-03 16:00:19.186 +02:00 [ERR] Connection timed out
+System.Exception: Connection timed out
+   at RelaySocket.MessageSocket.Connect(IPEndPoint endpoint) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/MessageSocket.cs:line 76
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-03 16:00:55.297 +02:00 [INF] my key is 62
+2020-06-03 16:02:38.274 +02:00 [INF] my key is 62
+2020-06-04 08:14:56.954 +02:00 [INF] my key is 62
+2020-06-04 08:16:11.987 +02:00 [ERR] Connection timed out
+System.Exception: Connection timed out
+   at RelaySocket.MessageSocket.Connect(IPEndPoint endpoint) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/MessageSocket.cs:line 76
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-04 08:16:51.996 +02:00 [ERR] Connection timed out
+System.Exception: Connection timed out
+   at RelaySocket.MessageSocket.Connect(IPEndPoint endpoint) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/MessageSocket.cs:line 76
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-04 08:16:57.030 +02:00 [ERR] Connection timed out
+System.Exception: Connection timed out
+   at RelaySocket.MessageSocket.Connect(IPEndPoint endpoint) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/MessageSocket.cs:line 76
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-04 08:17:02.090 +02:00 [ERR] Connection timed out
+System.Exception: Connection timed out
+   at RelaySocket.MessageSocket.Connect(IPEndPoint endpoint) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/MessageSocket.cs:line 76
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-04 08:17:07.117 +02:00 [ERR] Connection timed out
+System.Exception: Connection timed out
+   at RelaySocket.MessageSocket.Connect(IPEndPoint endpoint) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/MessageSocket.cs:line 76
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-04 08:17:12.171 +02:00 [ERR] Connection timed out
+System.Exception: Connection timed out
+   at RelaySocket.MessageSocket.Connect(IPEndPoint endpoint) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/MessageSocket.cs:line 76
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-04 08:17:17.201 +02:00 [ERR] Connection timed out
+System.Exception: Connection timed out
+   at RelaySocket.MessageSocket.Connect(IPEndPoint endpoint) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/MessageSocket.cs:line 76
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-04 08:17:22.237 +02:00 [ERR] Connection timed out
+System.Exception: Connection timed out
+   at RelaySocket.MessageSocket.Connect(IPEndPoint endpoint) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/MessageSocket.cs:line 76
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-04 08:17:27.246 +02:00 [ERR] Connection timed out
+System.Exception: Connection timed out
+   at RelaySocket.MessageSocket.Connect(IPEndPoint endpoint) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/MessageSocket.cs:line 76
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-04 08:17:32.279 +02:00 [ERR] Connection timed out
+System.Exception: Connection timed out
+   at RelaySocket.MessageSocket.Connect(IPEndPoint endpoint) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/MessageSocket.cs:line 76
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-04 08:17:37.294 +02:00 [ERR] Connection timed out
+System.Exception: Connection timed out
+   at RelaySocket.MessageSocket.Connect(IPEndPoint endpoint) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/MessageSocket.cs:line 76
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-04 08:17:42.323 +02:00 [ERR] Connection timed out
+System.Exception: Connection timed out
+   at RelaySocket.MessageSocket.Connect(IPEndPoint endpoint) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/MessageSocket.cs:line 76
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-04 08:17:52.027 +02:00 [ERR] Connection timed out
+System.Exception: Connection timed out
+   at RelaySocket.MessageSocket.Connect(IPEndPoint endpoint) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/MessageSocket.cs:line 76
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-04 08:17:57.033 +02:00 [ERR] Connection timed out
+System.Exception: Connection timed out
+   at RelaySocket.MessageSocket.Connect(IPEndPoint endpoint) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/MessageSocket.cs:line 76
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-04 08:18:02.075 +02:00 [ERR] Connection timed out
+System.Exception: Connection timed out
+   at RelaySocket.MessageSocket.Connect(IPEndPoint endpoint) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/MessageSocket.cs:line 76
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-04 08:18:07.103 +02:00 [ERR] Connection timed out
+System.Exception: Connection timed out
+   at RelaySocket.MessageSocket.Connect(IPEndPoint endpoint) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/MessageSocket.cs:line 76
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-04 08:18:12.133 +02:00 [ERR] Connection timed out
+System.Exception: Connection timed out
+   at RelaySocket.MessageSocket.Connect(IPEndPoint endpoint) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/MessageSocket.cs:line 76
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-04 08:18:17.152 +02:00 [ERR] Connection timed out
+System.Exception: Connection timed out
+   at RelaySocket.MessageSocket.Connect(IPEndPoint endpoint) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/MessageSocket.cs:line 76
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-04 08:25:47.878 +02:00 [INF] my key is 62
+2020-06-04 08:33:03.021 +02:00 [ERR] Connection timed out
+System.Exception: Connection timed out
+   at RelaySocket.MessageSocket.Connect(IPEndPoint endpoint) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/MessageSocket.cs:line 76
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-04 08:33:08.430 +02:00 [ERR] Connection timed out
+System.Exception: Connection timed out
+   at RelaySocket.MessageSocket.Connect(IPEndPoint endpoint) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/MessageSocket.cs:line 76
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-04 08:33:23.146 +02:00 [ERR] Connection timed out
+System.Exception: Connection timed out
+   at RelaySocket.MessageSocket.Connect(IPEndPoint endpoint) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/MessageSocket.cs:line 76
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-04 08:33:43.186 +02:00 [ERR] Connection timed out
+System.Exception: Connection timed out
+   at RelaySocket.MessageSocket.Connect(IPEndPoint endpoint) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/MessageSocket.cs:line 76
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-04 08:33:48.317 +02:00 [ERR] Connection timed out
+System.Exception: Connection timed out
+   at RelaySocket.MessageSocket.Connect(IPEndPoint endpoint) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/MessageSocket.cs:line 76
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-04 08:34:03.260 +02:00 [ERR] Connection timed out
+System.Exception: Connection timed out
+   at RelaySocket.MessageSocket.Connect(IPEndPoint endpoint) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/MessageSocket.cs:line 76
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-04 08:34:26.984 +02:00 [ERR] Connection timed out
+System.Exception: Connection timed out
+   at RelaySocket.MessageSocket.Connect(IPEndPoint endpoint) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/MessageSocket.cs:line 76
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-04 08:34:43.253 +02:00 [ERR] Connection timed out
+System.Exception: Connection timed out
+   at RelaySocket.MessageSocket.Connect(IPEndPoint endpoint) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/MessageSocket.cs:line 76
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-04 08:34:48.398 +02:00 [ERR] Connection timed out
+System.Exception: Connection timed out
+   at RelaySocket.MessageSocket.Connect(IPEndPoint endpoint) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/MessageSocket.cs:line 76
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-04 08:35:06.969 +02:00 [ERR] Connection timed out
+System.Exception: Connection timed out
+   at RelaySocket.MessageSocket.Connect(IPEndPoint endpoint) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/MessageSocket.cs:line 76
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-04 08:35:23.259 +02:00 [ERR] Connection timed out
+System.Exception: Connection timed out
+   at RelaySocket.MessageSocket.Connect(IPEndPoint endpoint) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/MessageSocket.cs:line 76
+   at DHT.DhtRelayServiceAdapter.Connect(NodeDto connectingNode) in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/DhtRelayServiceAdapter.cs:line 47
+2020-06-04 09:03:52.514 +02:00 [INF] my key is 62
+2020-06-04 09:17:51.089 +02:00 [INF] my key is 276
+2020-06-04 14:53:59.414 +02:00 [INF] my key is 62
+2020-06-04 14:55:06.589 +02:00 [INF] my key is 62
+2020-06-04 15:03:07.843 +02:00 [INF] my key is 62
+2020-06-04 15:06:49.240 +02:00 [INF] my key is 62
+2020-06-04 15:07:27.253 +02:00 [ERR] []
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.NetworkAdapter.Send() in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/NetworkAdapter.cs:line 31
+2020-06-04 15:07:38.246 +02:00 [ERR] []
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.NetworkAdapter.Send() in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/NetworkAdapter.cs:line 31
+2020-06-04 15:07:51.283 +02:00 [ERR] [{"Target":{"<>4__this":{},"connectingNode":null,"protocolCommandDto":{}},"Method":{"Name":"<EnqueueRpcCall>g__Action|0","DeclaringType":"DHT.DhtActions+<>c__DisplayClass11_0, DHT, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null","ReflectedType":"DHT.DhtActions+<>c__DisplayClass11_0, DHT, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null","MemberType":8,"MetadataToken":100663615,"Module":{},"IsSecurityCritical":true,"IsSecuritySafeCritical":false,"IsSecurityTransparent":false,"MethodHandle":{},"Attributes":131,"CallingConvention":33,"ReturnType":"System.Void, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e","ReturnTypeCustomAttributes":{},"ReturnParameter":{},"IsCollectible":false,"IsGenericMethod":false,"IsGenericMethodDefinition":false,"ContainsGenericParameters":false,"MethodImplementationFlags":0,"IsAbstract":false,"IsConstructor":false,"IsFinal":false,"IsHideBySig":true,"IsSpecialName":false,"IsStatic":false,"IsVirtual":false,"IsAssembly":true,"IsFamily":false,"IsFamilyAndAssembly":false,"IsFamilyOrAssembly":false,"IsPrivate":false,"IsPublic":false,"IsConstructedGenericMethod":false,"CustomAttributes":[]},{"Target":{"<>4__this":{},"connectingNode":null,"protocolCommandDto":{}},"Method":{"Name":"<EnqueueRpcCall>g__Action|0","DeclaringType":"DHT.DhtActions+<>c__DisplayClass11_0, DHT, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null","ReflectedType":"DHT.DhtActions+<>c__DisplayClass11_0, DHT, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null","MemberType":8,"MetadataToken":100663615,"Module":{},"IsSecurityCritical":true,"IsSecuritySafeCritical":false,"IsSecurityTransparent":false,"MethodHandle":{},"Attributes":131,"CallingConvention":33,"ReturnType":"System.Void, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e","ReturnTypeCustomAttributes":{},"ReturnParameter":{},"IsCollectible":false,"IsGenericMethod":false,"IsGenericMethodDefinition":false,"ContainsGenericParameters":false,"MethodImplementationFlags":0,"IsAbstract":false,"IsConstructor":false,"IsFinal":false,"IsHideBySig":true,"IsSpecialName":false,"IsStatic":false,"IsVirtual":false,"IsAssembly":true,"IsFamily":false,"IsFamilyAndAssembly":false,"IsFamilyOrAssembly":false,"IsPrivate":false,"IsPublic":false,"IsConstructedGenericMethod":false,"CustomAttributes":[]},{"Target":{"<>4__this":{},"connectingNode":null,"protocolCommandDto":{}},"Method":{"Name":"<EnqueueRpcCall>g__Action|0","DeclaringType":"DHT.DhtActions+<>c__DisplayClass11_0, DHT, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null","ReflectedType":"DHT.DhtActions+<>c__DisplayClass11_0, DHT, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null","MemberType":8,"MetadataToken":100663615,"Module":{},"IsSecurityCritical":true,"IsSecuritySafeCritical":false,"IsSecurityTransparent":false,"MethodHandle":{},"Attributes":131,"CallingConvention":33,"ReturnType":"System.Void, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e","ReturnTypeCustomAttributes":{},"ReturnParameter":{},"IsCollectible":false,"IsGenericMethod":false,"IsGenericMethodDefinition":false,"ContainsGenericParameters":false,"MethodImplementationFlags":0,"IsAbstract":false,"IsConstructor":false,"IsFinal":false,"IsHideBySig":true,"IsSpecialName":false,"IsStatic":false,"IsVirtual":false,"IsAssembly":true,"IsFamily":false,"IsFamilyAndAssembly":false,"IsFamilyOrAssembly":false,"IsPrivate":false,"IsPublic":false,"IsConstructedGenericMethod":false,"CustomAttributes":[]},{"Target":{"<>4__this":{},"connectingNode":null,"protocolCommandDto":{}},"Method":{"Name":"<EnqueueRpcCall>g__Action|0","DeclaringType":"DHT.DhtActions+<>c__DisplayClass11_0, DHT, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null","ReflectedType":"DHT.DhtActions+<>c__DisplayClass11_0, DHT, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null","MemberType":8,"MetadataToken":100663615,"Module":{},"IsSecurityCritical":true,"IsSecuritySafeCritical":false,"IsSecurityTransparent":false,"MethodHandle":{},"Attributes":131,"CallingConvention":33,"ReturnType":"System.Void, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e","ReturnTypeCustomAttributes":{},"ReturnParameter":{},"IsCollectible":false,"IsGenericMethod":false,"IsGenericMethodDefinition":false,"ContainsGenericParameters":false,"MethodImplementationFlags":0,"IsAbstract":false,"IsConstructor":false,"IsFinal":false,"IsHideBySig":true,"IsSpecialName":false,"IsStatic":false,"IsVirtual":false,"IsAssembly":true,"IsFamily":false,"IsFamilyAndAssembly":false,"IsFamilyOrAssembly":false,"IsPrivate":false,"IsPublic":false,"IsConstructedGenericMethod":false,"CustomAttributes":[]},{"Target":{"<>4__this":{},"connectingNode":null,"protocolCommandDto":{}},"Method":{"Name":"<EnqueueRpcCall>g__Action|0","DeclaringType":"DHT.DhtActions+<>c__DisplayClass11_0, DHT, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null","ReflectedType":"DHT.DhtActions+<>c__DisplayClass11_0, DHT, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null","MemberType":8,"MetadataToken":100663615,"Module":{},"IsSecurityCritical":true,"IsSecuritySafeCritical":false,"IsSecurityTransparent":false,"MethodHandle":{},"Attributes":131,"CallingConvention":33,"ReturnType":"System.Void, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e","ReturnTypeCustomAttributes":{},"ReturnParameter":{},"IsCollectible":false,"IsGenericMethod":false,"IsGenericMethodDefinition":false,"ContainsGenericParameters":false,"MethodImplementationFlags":0,"IsAbstract":false,"IsConstructor":false,"IsFinal":false,"IsHideBySig":true,"IsSpecialName":false,"IsStatic":false,"IsVirtual":false,"IsAssembly":true,"IsFamily":false,"IsFamilyAndAssembly":false,"IsFamilyOrAssembly":false,"IsPrivate":false,"IsPublic":false,"IsConstructedGenericMethod":false,"CustomAttributes":[]},{"Target":{"<>4__this":{},"connectingNode":null,"protocolCommandDto":{}},"Method":{"Name":"<EnqueueRpcCall>g__Action|0","DeclaringType":"DHT.DhtActions+<>c__DisplayClass11_0, DHT, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null","ReflectedType":"DHT.DhtActions+<>c__DisplayClass11_0, DHT, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null","MemberType":8,"MetadataToken":100663615,"Module":{},"IsSecurityCritical":true,"IsSecuritySafeCritical":false,"IsSecurityTransparent":false,"MethodHandle":{},"Attributes":131,"CallingConvention":33,"ReturnType":"System.Void, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e","ReturnTypeCustomAttributes":{},"ReturnParameter":{},"IsCollectible":false,"IsGenericMethod":false,"IsGenericMethodDefinition":false,"ContainsGenericParameters":false,"MethodImplementationFlags":0,"IsAbstract":false,"IsConstructor":false,"IsFinal":false,"IsHideBySig":true,"IsSpecialName":false,"IsStatic":false,"IsVirtual":false,"IsAssembly":true,"IsFamily":false,"IsFamilyAndAssembly":false,"IsFamilyOrAssembly":false,"IsPrivate":false,"IsPublic":false,"IsConstructedGenericMethod":false,"CustomAttributes":[]},{"Target":{"<>4__this":{},"connectingNode":null,"protocolCommandDto":{}},"Method":{"Name":"<EnqueueRpcCall>g__Action|0","DeclaringType":"DHT.DhtActions+<>c__DisplayClass11_0, DHT, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null","ReflectedType":"DHT.DhtActions+<>c__DisplayClass11_0, DHT, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null","MemberType":8,"MetadataToken":100663615,"Module":{},"IsSecurityCritical":true,"IsSecuritySafeCritical":false,"IsSecurityTransparent":false,"MethodHandle":{},"Attributes":131,"CallingConvention":33,"ReturnType":"System.Void, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e","ReturnTypeCustomAttributes":{},"ReturnParameter":{},"IsCollectible":false,"IsGenericMethod":false,"IsGenericMethodDefinition":false,"ContainsGenericParameters":false,"MethodImplementationFlags":0,"IsAbstract":false,"IsConstructor":false,"IsFinal":false,"IsHideBySig":true,"IsSpecialName":false,"IsStatic":false,"IsVirtual":false,"IsAssembly":true,"IsFamily":false,"IsFamilyAndAssembly":false,"IsFamilyOrAssembly":false,"IsPrivate":false,"IsPublic":false,"IsConstructedGenericMethod":false,"CustomAttributes":[]}]
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.NetworkAdapter.Send() in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/NetworkAdapter.cs:line 31
+2020-06-04 15:08:15.299 +02:00 [ERR] [{"Target":{"<>4__this":{},"connectingNode":null,"protocolCommandDto":{}},"Method":{"Name":"<EnqueueRpcCall>g__Action|0","DeclaringType":"DHT.DhtActions+<>c__DisplayClass11_0, DHT, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null","ReflectedType":"DHT.DhtActions+<>c__DisplayClass11_0, DHT, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null","MemberType":8,"MetadataToken":100663615,"Module":{},"IsSecurityCritical":true,"IsSecuritySafeCritical":false,"IsSecurityTransparent":false,"MethodHandle":{},"Attributes":131,"CallingConvention":33,"ReturnType":"System.Void, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e","ReturnTypeCustomAttributes":{},"ReturnParameter":{},"IsCollectible":false,"IsGenericMethod":false,"IsGenericMethodDefinition":false,"ContainsGenericParameters":false,"MethodImplementationFlags":0,"IsAbstract":false,"IsConstructor":false,"IsFinal":false,"IsHideBySig":true,"IsSpecialName":false,"IsStatic":false,"IsVirtual":false,"IsAssembly":true,"IsFamily":false,"IsFamilyAndAssembly":false,"IsFamilyOrAssembly":false,"IsPrivate":false,"IsPublic":false,"IsConstructedGenericMethod":false,"CustomAttributes":[]},{"Target":{"<>4__this":{},"connectingNode":null,"protocolCommandDto":{}},"Method":{"Name":"<EnqueueRpcCall>g__Action|0","DeclaringType":"DHT.DhtActions+<>c__DisplayClass11_0, DHT, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null","ReflectedType":"DHT.DhtActions+<>c__DisplayClass11_0, DHT, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null","MemberType":8,"MetadataToken":100663615,"Module":{},"IsSecurityCritical":true,"IsSecuritySafeCritical":false,"IsSecurityTransparent":false,"MethodHandle":{},"Attributes":131,"CallingConvention":33,"ReturnType":"System.Void, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e","ReturnTypeCustomAttributes":{},"ReturnParameter":{},"IsCollectible":false,"IsGenericMethod":false,"IsGenericMethodDefinition":false,"ContainsGenericParameters":false,"MethodImplementationFlags":0,"IsAbstract":false,"IsConstructor":false,"IsFinal":false,"IsHideBySig":true,"IsSpecialName":false,"IsStatic":false,"IsVirtual":false,"IsAssembly":true,"IsFamily":false,"IsFamilyAndAssembly":false,"IsFamilyOrAssembly":false,"IsPrivate":false,"IsPublic":false,"IsConstructedGenericMethod":false,"CustomAttributes":[]},{"Target":{"<>4__this":{},"connectingNode":null,"protocolCommandDto":{}},"Method":{"Name":"<EnqueueRpcCall>g__Action|0","DeclaringType":"DHT.DhtActions+<>c__DisplayClass11_0, DHT, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null","ReflectedType":"DHT.DhtActions+<>c__DisplayClass11_0, DHT, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null","MemberType":8,"MetadataToken":100663615,"Module":{},"IsSecurityCritical":true,"IsSecuritySafeCritical":false,"IsSecurityTransparent":false,"MethodHandle":{},"Attributes":131,"CallingConvention":33,"ReturnType":"System.Void, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e","ReturnTypeCustomAttributes":{},"ReturnParameter":{},"IsCollectible":false,"IsGenericMethod":false,"IsGenericMethodDefinition":false,"ContainsGenericParameters":false,"MethodImplementationFlags":0,"IsAbstract":false,"IsConstructor":false,"IsFinal":false,"IsHideBySig":true,"IsSpecialName":false,"IsStatic":false,"IsVirtual":false,"IsAssembly":true,"IsFamily":false,"IsFamilyAndAssembly":false,"IsFamilyOrAssembly":false,"IsPrivate":false,"IsPublic":false,"IsConstructedGenericMethod":false,"CustomAttributes":[]},{"Target":{"<>4__this":{},"connectingNode":null,"protocolCommandDto":{}},"Method":{"Name":"<EnqueueRpcCall>g__Action|0","DeclaringType":"DHT.DhtActions+<>c__DisplayClass11_0, DHT, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null","ReflectedType":"DHT.DhtActions+<>c__DisplayClass11_0, DHT, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null","MemberType":8,"MetadataToken":100663615,"Module":{},"IsSecurityCritical":true,"IsSecuritySafeCritical":false,"IsSecurityTransparent":false,"MethodHandle":{},"Attributes":131,"CallingConvention":33,"ReturnType":"System.Void, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e","ReturnTypeCustomAttributes":{},"ReturnParameter":{},"IsCollectible":false,"IsGenericMethod":false,"IsGenericMethodDefinition":false,"ContainsGenericParameters":false,"MethodImplementationFlags":0,"IsAbstract":false,"IsConstructor":false,"IsFinal":false,"IsHideBySig":true,"IsSpecialName":false,"IsStatic":false,"IsVirtual":false,"IsAssembly":true,"IsFamily":false,"IsFamilyAndAssembly":false,"IsFamilyOrAssembly":false,"IsPrivate":false,"IsPublic":false,"IsConstructedGenericMethod":false,"CustomAttributes":[]},{"Target":{"<>4__this":{},"connectingNode":null,"protocolCommandDto":{}},"Method":{"Name":"<EnqueueRpcCall>g__Action|0","DeclaringType":"DHT.DhtActions+<>c__DisplayClass11_0, DHT, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null","ReflectedType":"DHT.DhtActions+<>c__DisplayClass11_0, DHT, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null","MemberType":8,"MetadataToken":100663615,"Module":{},"IsSecurityCritical":true,"IsSecuritySafeCritical":false,"IsSecurityTransparent":false,"MethodHandle":{},"Attributes":131,"CallingConvention":33,"ReturnType":"System.Void, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e","ReturnTypeCustomAttributes":{},"ReturnParameter":{},"IsCollectible":false,"IsGenericMethod":false,"IsGenericMethodDefinition":false,"ContainsGenericParameters":false,"MethodImplementationFlags":0,"IsAbstract":false,"IsConstructor":false,"IsFinal":false,"IsHideBySig":true,"IsSpecialName":false,"IsStatic":false,"IsVirtual":false,"IsAssembly":true,"IsFamily":false,"IsFamilyAndAssembly":false,"IsFamilyOrAssembly":false,"IsPrivate":false,"IsPublic":false,"IsConstructedGenericMethod":false,"CustomAttributes":[]},{"Target":{"<>4__this":{},"connectingNode":null,"protocolCommandDto":{}},"Method":{"Name":"<EnqueueRpcCall>g__Action|0","DeclaringType":"DHT.DhtActions+<>c__DisplayClass11_0, DHT, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null","ReflectedType":"DHT.DhtActions+<>c__DisplayClass11_0, DHT, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null","MemberType":8,"MetadataToken":100663615,"Module":{},"IsSecurityCritical":true,"IsSecuritySafeCritical":false,"IsSecurityTransparent":false,"MethodHandle":{},"Attributes":131,"CallingConvention":33,"ReturnType":"System.Void, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e","ReturnTypeCustomAttributes":{},"ReturnParameter":{},"IsCollectible":false,"IsGenericMethod":false,"IsGenericMethodDefinition":false,"ContainsGenericParameters":false,"MethodImplementationFlags":0,"IsAbstract":false,"IsConstructor":false,"IsFinal":false,"IsHideBySig":true,"IsSpecialName":false,"IsStatic":false,"IsVirtual":false,"IsAssembly":true,"IsFamily":false,"IsFamilyAndAssembly":false,"IsFamilyOrAssembly":false,"IsPrivate":false,"IsPublic":false,"IsConstructedGenericMethod":false,"CustomAttributes":[]},{"Target":{"<>4__this":{},"connectingNode":null,"protocolCommandDto":{}},"Method":{"Name":"<EnqueueRpcCall>g__Action|0","DeclaringType":"DHT.DhtActions+<>c__DisplayClass11_0, DHT, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null","ReflectedType":"DHT.DhtActions+<>c__DisplayClass11_0, DHT, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null","MemberType":8,"MetadataToken":100663615,"Module":{},"IsSecurityCritical":true,"IsSecuritySafeCritical":false,"IsSecurityTransparent":false,"MethodHandle":{},"Attributes":131,"CallingConvention":33,"ReturnType":"System.Void, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e","ReturnTypeCustomAttributes":{},"ReturnParameter":{},"IsCollectible":false,"IsGenericMethod":false,"IsGenericMethodDefinition":false,"ContainsGenericParameters":false,"MethodImplementationFlags":0,"IsAbstract":false,"IsConstructor":false,"IsFinal":false,"IsHideBySig":true,"IsSpecialName":false,"IsStatic":false,"IsVirtual":false,"IsAssembly":true,"IsFamily":false,"IsFamilyAndAssembly":false,"IsFamilyOrAssembly":false,"IsPrivate":false,"IsPublic":false,"IsConstructedGenericMethod":false,"CustomAttributes":[]}]
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.NetworkAdapter.Send() in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/NetworkAdapter.cs:line 31
+2020-06-04 15:29:12.024 +02:00 [INF] my key is 62
+2020-06-04 15:30:50.235 +02:00 [INF] my key is 62
+2020-06-04 15:32:59.570 +02:00 [INF] my key is 62
+2020-06-04 15:35:26.361 +02:00 [INF] my key is 62
+2020-06-04 15:44:50.952 +02:00 [INF] my key is 62
+2020-06-04 15:45:23.994 +02:00 [ERR] []
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.NetworkAdapter.Send() in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/NetworkAdapter.cs:line 31
+2020-06-04 15:45:28.006 +02:00 [ERR] []
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.NetworkAdapter.Send() in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/NetworkAdapter.cs:line 31
+2020-06-04 15:45:29.964 +02:00 [ERR] []
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.NetworkAdapter.Send() in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/NetworkAdapter.cs:line 31
+2020-06-04 15:45:35.973 +02:00 [ERR] []
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.NetworkAdapter.Send() in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/NetworkAdapter.cs:line 31
+2020-06-04 15:45:38.198 +02:00 [ERR] []
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.NetworkAdapter.Send() in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/NetworkAdapter.cs:line 31
+2020-06-04 15:45:38.203 +02:00 [ERR] []
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.NetworkAdapter.Send() in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/NetworkAdapter.cs:line 31
+2020-06-04 15:45:38.208 +02:00 [ERR] []
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.NetworkAdapter.Send() in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/NetworkAdapter.cs:line 31
+2020-06-04 15:45:40.042 +02:00 [ERR] []
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.NetworkAdapter.Send() in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/NetworkAdapter.cs:line 31
+2020-06-04 15:45:46.017 +02:00 [ERR] []
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.NetworkAdapter.Send() in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/NetworkAdapter.cs:line 31
+2020-06-04 15:45:47.982 +02:00 [ERR] []
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.NetworkAdapter.Send() in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/NetworkAdapter.cs:line 31
+2020-06-04 15:45:53.991 +02:00 [ERR] []
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.NetworkAdapter.Send() in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/NetworkAdapter.cs:line 31
+2020-06-04 15:45:56.222 +02:00 [ERR] []
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.NetworkAdapter.Send() in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/NetworkAdapter.cs:line 31
+2020-06-04 15:45:56.226 +02:00 [ERR] []
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.NetworkAdapter.Send() in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/NetworkAdapter.cs:line 31
+2020-06-04 15:45:56.235 +02:00 [ERR] []
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.NetworkAdapter.Send() in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/NetworkAdapter.cs:line 31
+2020-06-04 15:45:58.059 +02:00 [ERR] []
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.NetworkAdapter.Send() in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/NetworkAdapter.cs:line 31
+2020-06-04 15:46:05.997 +02:00 [ERR] []
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.NetworkAdapter.Send() in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/NetworkAdapter.cs:line 31
+2020-06-04 15:46:12.001 +02:00 [ERR] []
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.NetworkAdapter.Send() in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/NetworkAdapter.cs:line 31
+2020-06-04 15:46:16.049 +02:00 [ERR] []
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.NetworkAdapter.Send() in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/NetworkAdapter.cs:line 31
+2020-06-04 15:46:16.054 +02:00 [ERR] []
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.NetworkAdapter.Send() in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/NetworkAdapter.cs:line 31
+2020-06-04 15:46:16.058 +02:00 [ERR] []
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.NetworkAdapter.Send() in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/NetworkAdapter.cs:line 31
+2020-06-04 15:46:16.063 +02:00 [ERR] []
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.NetworkAdapter.Send() in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/NetworkAdapter.cs:line 31
+2020-06-04 15:46:24.011 +02:00 [ERR] []
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.NetworkAdapter.Send() in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/NetworkAdapter.cs:line 31
+2020-06-04 15:46:34.076 +02:00 [ERR] []
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.NetworkAdapter.Send() in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/NetworkAdapter.cs:line 31
+2020-06-04 15:46:34.081 +02:00 [ERR] []
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.NetworkAdapter.Send() in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/NetworkAdapter.cs:line 31
+2020-06-04 15:46:34.086 +02:00 [ERR] []
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.NetworkAdapter.Send() in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/NetworkAdapter.cs:line 31
+2020-06-04 15:46:36.051 +02:00 [ERR] [{"Target":{"<>4__this":{},"connectingNode":{},"protocolCommandDto":{}},"Method":{"Name":"<EnqueueRpcCall>g__Action|0","DeclaringType":"DHT.DhtActions+<>c__DisplayClass11_0, DHT, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null","ReflectedType":"DHT.DhtActions+<>c__DisplayClass11_0, DHT, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null","MemberType":8,"MetadataToken":100663615,"Module":{},"IsSecurityCritical":true,"IsSecuritySafeCritical":false,"IsSecurityTransparent":false,"MethodHandle":{},"Attributes":131,"CallingConvention":33,"ReturnType":"System.Void, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e","ReturnTypeCustomAttributes":{},"ReturnParameter":{},"IsCollectible":false,"IsGenericMethod":false,"IsGenericMethodDefinition":false,"ContainsGenericParameters":false,"MethodImplementationFlags":0,"IsAbstract":false,"IsConstructor":false,"IsFinal":false,"IsHideBySig":true,"IsSpecialName":false,"IsStatic":false,"IsVirtual":false,"IsAssembly":true,"IsFamily":false,"IsFamilyAndAssembly":false,"IsFamilyOrAssembly":false,"IsPrivate":false,"IsPublic":false,"IsConstructedGenericMethod":false,"CustomAttributes":[]},{"Target":{"<>4__this":{},"connectingNode":{},"protocolCommandDto":{}},"Method":{"Name":"<EnqueueRpcCall>g__Action|0","DeclaringType":"DHT.DhtActions+<>c__DisplayClass11_0, DHT, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null","ReflectedType":"DHT.DhtActions+<>c__DisplayClass11_0, DHT, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null","MemberType":8,"MetadataToken":100663615,"Module":{},"IsSecurityCritical":true,"IsSecuritySafeCritical":false,"IsSecurityTransparent":false,"MethodHandle":{},"Attributes":131,"CallingConvention":33,"ReturnType":"System.Void, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e","ReturnTypeCustomAttributes":{},"ReturnParameter":{},"IsCollectible":false,"IsGenericMethod":false,"IsGenericMethodDefinition":false,"ContainsGenericParameters":false,"MethodImplementationFlags":0,"IsAbstract":false,"IsConstructor":false,"IsFinal":false,"IsHideBySig":true,"IsSpecialName":false,"IsStatic":false,"IsVirtual":false,"IsAssembly":true,"IsFamily":false,"IsFamilyAndAssembly":false,"IsFamilyOrAssembly":false,"IsPrivate":false,"IsPublic":false,"IsConstructedGenericMethod":false,"CustomAttributes":[]},{"Target":{"<>4__this":{},"connectingNode":{},"protocolCommandDto":{}},"Method":{"Name":"<EnqueueRpcCall>g__Action|0","DeclaringType":"DHT.DhtActions+<>c__DisplayClass11_0, DHT, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null","ReflectedType":"DHT.DhtActions+<>c__DisplayClass11_0, DHT, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null","MemberType":8,"MetadataToken":100663615,"Module":{},"IsSecurityCritical":true,"IsSecuritySafeCritical":false,"IsSecurityTransparent":false,"MethodHandle":{},"Attributes":131,"CallingConvention":33,"ReturnType":"System.Void, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e","ReturnTypeCustomAttributes":{},"ReturnParameter":{},"IsCollectible":false,"IsGenericMethod":false,"IsGenericMethodDefinition":false,"ContainsGenericParameters":false,"MethodImplementationFlags":0,"IsAbstract":false,"IsConstructor":false,"IsFinal":false,"IsHideBySig":true,"IsSpecialName":false,"IsStatic":false,"IsVirtual":false,"IsAssembly":true,"IsFamily":false,"IsFamilyAndAssembly":false,"IsFamilyOrAssembly":false,"IsPrivate":false,"IsPublic":false,"IsConstructedGenericMethod":false,"CustomAttributes":[]},{"Target":{"<>4__this":{},"connectingNode":{},"protocolCommandDto":{}},"Method":{"Name":"<EnqueueRpcCall>g__Action|0","DeclaringType":"DHT.DhtActions+<>c__DisplayClass11_0, DHT, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null","ReflectedType":"DHT.DhtActions+<>c__DisplayClass11_0, DHT, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null","MemberType":8,"MetadataToken":100663615,"Module":{},"IsSecurityCritical":true,"IsSecuritySafeCritical":false,"IsSecurityTransparent":false,"MethodHandle":{},"Attributes":131,"CallingConvention":33,"ReturnType":"System.Void, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e","ReturnTypeCustomAttributes":{},"ReturnParameter":{},"IsCollectible":false,"IsGenericMethod":false,"IsGenericMethodDefinition":false,"ContainsGenericParameters":false,"MethodImplementationFlags":0,"IsAbstract":false,"IsConstructor":false,"IsFinal":false,"IsHideBySig":true,"IsSpecialName":false,"IsStatic":false,"IsVirtual":false,"IsAssembly":true,"IsFamily":false,"IsFamilyAndAssembly":false,"IsFamilyOrAssembly":false,"IsPrivate":false,"IsPublic":false,"IsConstructedGenericMethod":false,"CustomAttributes":[]},{"Target":{"<>4__this":{},"connectingNode":{},"protocolCommandDto":{}},"Method":{"Name":"<EnqueueRpcCall>g__Action|0","DeclaringType":"DHT.DhtActions+<>c__DisplayClass11_0, DHT, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null","ReflectedType":"DHT.DhtActions+<>c__DisplayClass11_0, DHT, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null","MemberType":8,"MetadataToken":100663615,"Module":{},"IsSecurityCritical":true,"IsSecuritySafeCritical":false,"IsSecurityTransparent":false,"MethodHandle":{},"Attributes":131,"CallingConvention":33,"ReturnType":"System.Void, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e","ReturnTypeCustomAttributes":{},"ReturnParameter":{},"IsCollectible":false,"IsGenericMethod":false,"IsGenericMethodDefinition":false,"ContainsGenericParameters":false,"MethodImplementationFlags":0,"IsAbstract":false,"IsConstructor":false,"IsFinal":false,"IsHideBySig":true,"IsSpecialName":false,"IsStatic":false,"IsVirtual":false,"IsAssembly":true,"IsFamily":false,"IsFamilyAndAssembly":false,"IsFamilyOrAssembly":false,"IsPrivate":false,"IsPublic":false,"IsConstructedGenericMethod":false,"CustomAttributes":[]},{"Target":{"<>4__this":{},"connectingNode":{},"protocolCommandDto":{}},"Method":{"Name":"<EnqueueRpcCall>g__Action|0","DeclaringType":"DHT.DhtActions+<>c__DisplayClass11_0, DHT, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null","ReflectedType":"DHT.DhtActions+<>c__DisplayClass11_0, DHT, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null","MemberType":8,"MetadataToken":100663615,"Module":{},"IsSecurityCritical":true,"IsSecuritySafeCritical":false,"IsSecurityTransparent":false,"MethodHandle":{},"Attributes":131,"CallingConvention":33,"ReturnType":"System.Void, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e","ReturnTypeCustomAttributes":{},"ReturnParameter":{},"IsCollectible":false,"IsGenericMethod":false,"IsGenericMethodDefinition":false,"ContainsGenericParameters":false,"MethodImplementationFlags":0,"IsAbstract":false,"IsConstructor":false,"IsFinal":false,"IsHideBySig":true,"IsSpecialName":false,"IsStatic":false,"IsVirtual":false,"IsAssembly":true,"IsFamily":false,"IsFamilyAndAssembly":false,"IsFamilyOrAssembly":false,"IsPrivate":false,"IsPublic":false,"IsConstructedGenericMethod":false,"CustomAttributes":[]},{"Target":{"<>4__this":{},"connectingNode":{},"protocolCommandDto":{}},"Method":{"Name":"<EnqueueRpcCall>g__Action|0","DeclaringType":"DHT.DhtActions+<>c__DisplayClass11_0, DHT, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null","ReflectedType":"DHT.DhtActions+<>c__DisplayClass11_0, DHT, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null","MemberType":8,"MetadataToken":100663615,"Module":{},"IsSecurityCritical":true,"IsSecuritySafeCritical":false,"IsSecurityTransparent":false,"MethodHandle":{},"Attributes":131,"CallingConvention":33,"ReturnType":"System.Void, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e","ReturnTypeCustomAttributes":{},"ReturnParameter":{},"IsCollectible":false,"IsGenericMethod":false,"IsGenericMethodDefinition":false,"ContainsGenericParameters":false,"MethodImplementationFlags":0,"IsAbstract":false,"IsConstructor":false,"IsFinal":false,"IsHideBySig":true,"IsSpecialName":false,"IsStatic":false,"IsVirtual":false,"IsAssembly":true,"IsFamily":false,"IsFamilyAndAssembly":false,"IsFamilyOrAssembly":false,"IsPrivate":false,"IsPublic":false,"IsConstructedGenericMethod":false,"CustomAttributes":[]}]
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.NetworkAdapter.Send() in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/NetworkAdapter.cs:line 31
+2020-06-04 15:46:49.888 +02:00 [INF] my key is 62
+2020-06-04 15:53:32.688 +02:00 [INF] my key is 62
+2020-06-04 15:57:44.775 +02:00 [INF] my key is 62
+2020-06-04 15:58:26.393 +02:00 [ERR] [{"Target":{"<>4__this":{},"connectingNode":{},"protocolCommandDto":{}},"Method":{"Name":"<EnqueueRpcCall>g__Action|0","DeclaringType":"DHT.DhtActions+<>c__DisplayClass11_0, DHT, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null","ReflectedType":"DHT.DhtActions+<>c__DisplayClass11_0, DHT, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null","MemberType":8,"MetadataToken":100663615,"Module":{},"IsSecurityCritical":true,"IsSecuritySafeCritical":false,"IsSecurityTransparent":false,"MethodHandle":{},"Attributes":131,"CallingConvention":33,"ReturnType":"System.Void, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e","ReturnTypeCustomAttributes":{},"ReturnParameter":{},"IsCollectible":false,"IsGenericMethod":false,"IsGenericMethodDefinition":false,"ContainsGenericParameters":false,"MethodImplementationFlags":0,"IsAbstract":false,"IsConstructor":false,"IsFinal":false,"IsHideBySig":true,"IsSpecialName":false,"IsStatic":false,"IsVirtual":false,"IsAssembly":true,"IsFamily":false,"IsFamilyAndAssembly":false,"IsFamilyOrAssembly":false,"IsPrivate":false,"IsPublic":false,"IsConstructedGenericMethod":false,"CustomAttributes":[]}]
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.NetworkAdapter.Send() in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/NetworkAdapter.cs:line 31
+2020-06-04 16:00:44.295 +02:00 [INF] my key is 62
+2020-06-04 16:17:38.437 +02:00 [INF] my key is 62
+2020-06-04 16:21:35.521 +02:00 [INF] my key is 62
+2020-06-04 16:28:18.337 +02:00 [INF] my key is 62
+2020-06-04 16:29:31.622 +02:00 [INF] my key is 62
+2020-06-04 17:12:56.343 +02:00 [INF] my key is 62
+2020-06-04 17:24:53.161 +02:00 [INF] my key is 62
+2020-06-04 17:30:14.495 +02:00 [ERR] []
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.NetworkAdapter.Send() in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/NetworkAdapter.cs:line 31
+2020-06-04 17:30:20.450 +02:00 [ERR] []
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.NetworkAdapter.Send() in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/NetworkAdapter.cs:line 31
+2020-06-04 17:30:22.136 +02:00 [ERR] []
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.NetworkAdapter.Send() in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/NetworkAdapter.cs:line 31
+2020-06-04 17:30:24.971 +02:00 [ERR] []
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.NetworkAdapter.Send() in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/NetworkAdapter.cs:line 31
+2020-06-04 17:30:26.456 +02:00 [ERR] []
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.NetworkAdapter.Send() in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/NetworkAdapter.cs:line 31
+2020-06-04 17:30:30.960 +02:00 [ERR] []
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.NetworkAdapter.Send() in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/NetworkAdapter.cs:line 31
+2020-06-04 17:30:38.467 +02:00 [ERR] []
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.NetworkAdapter.Send() in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/NetworkAdapter.cs:line 31
+2020-06-04 17:30:40.154 +02:00 [ERR] []
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.NetworkAdapter.Send() in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/NetworkAdapter.cs:line 31
+2020-06-04 17:30:42.993 +02:00 [ERR] []
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.NetworkAdapter.Send() in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/NetworkAdapter.cs:line 31
+2020-06-04 17:30:44.474 +02:00 [ERR] []
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.NetworkAdapter.Send() in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/NetworkAdapter.cs:line 31
+2020-06-04 17:30:48.976 +02:00 [ERR] []
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.NetworkAdapter.Send() in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/NetworkAdapter.cs:line 31
+2020-06-04 17:30:56.490 +02:00 [ERR] []
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.NetworkAdapter.Send() in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/NetworkAdapter.cs:line 31
+2020-06-04 17:30:58.168 +02:00 [ERR] []
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.NetworkAdapter.Send() in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/NetworkAdapter.cs:line 31
+2020-06-04 17:31:01.009 +02:00 [ERR] []
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.NetworkAdapter.Send() in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/NetworkAdapter.cs:line 31
+2020-06-04 17:31:02.499 +02:00 [ERR] []
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.NetworkAdapter.Send() in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/NetworkAdapter.cs:line 31
+2020-06-04 17:31:06.991 +02:00 [ERR] []
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DHT.NetworkAdapter.Send() in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/NetworkAdapter.cs:line 31
+2020-06-04 17:33:39.775 +02:00 [INF] my key is 62
+2020-06-04 17:36:31.140 +02:00 [INF] my key is 62
+2020-06-04 23:21:17.525 +02:00 [INF] my key is 62
+2020-06-05 14:16:58.535 +02:00 [INF] my key is 62
+2020-06-05 14:34:15.764 +02:00 [INF] my key is 62
+2020-06-05 17:01:35.177 +02:00 [INF] my key is 62
+2020-06-05 17:05:05.839 +02:00 [INF] my key is 62
+2020-06-05 17:07:59.255 +02:00 [INF] my key is 62
+2020-06-05 17:09:12.345 +02:00 [INF] my key is 62
+2020-06-05 17:09:48.125 +02:00 [INF] my key is 62
+2020-06-05 17:11:25.458 +02:00 [INF] my key is 62
+2020-06-05 17:14:15.038 +02:00 [INF] my key is 62
+2020-06-05 18:27:49.150 +02:00 [INF] my key is 67
+2020-06-05 21:51:05.424 +02:00 [INF] my key is 67

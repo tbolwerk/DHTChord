@@ -6,9 +6,9 @@ namespace DHT
 {
     public class FingerTableEntry
     {
-        public int Start { get; set; }
-        public int IntervalBegin { get; set; }
-        public int IntervalEnd { get; set; } 
+        public uint Start { get; set; }
+        public uint IntervalBegin { get; set; }
+        public uint IntervalEnd { get; set; } 
         public NodeDto Successor { get; set; }
 
         public FingerTableEntry()
@@ -16,7 +16,7 @@ namespace DHT
 
         }
 
-        public void SetInterval(int intervalBegin, int intervalEnd)
+        public void SetInterval(uint intervalBegin, uint intervalEnd)
         {
             IntervalBegin = intervalBegin;
             IntervalEnd = intervalEnd;

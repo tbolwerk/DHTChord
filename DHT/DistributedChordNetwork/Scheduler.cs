@@ -2,22 +2,18 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Timers;
+using Microsoft.Extensions.Options;
 
 namespace DHT
 {
-    public class Scheduler
+    public class Scheduler : ISchedule
     {
-        private int _interval = 0;
+        private int _interval;
         private readonly Queue<SchedulerTask> _tasks;
 
-        public Scheduler()
+        public Scheduler(IOptions<DhtSettings> options)
         {
-            _tasks = new Queue<SchedulerTask>();
-        }
-
-        public Scheduler(int interval)
-        {
-            _interval = interval;
+            _interval = options.Value.IntervalBetweenPeriodicCallsInSeconds;
             _tasks = new Queue<SchedulerTask>();
         }
 
@@ -49,5 +45,11 @@ namespace DHT
         {
             _tasks.Enqueue(new SchedulerTask {Timer = timer, Action = action});
         }
+    }
+
+    public interface ISchedule
+    {
+        void Enqueue(Timer timer, Action action);
+        void Run();
     }
 }

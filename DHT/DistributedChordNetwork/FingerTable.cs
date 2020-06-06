@@ -2,7 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Timers;
 using DHT.Formatting;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 
 namespace DHT
 {
@@ -10,24 +13,30 @@ namespace DHT
     {
         public FingerTableEntry[] FingerTableEntries { get; }
 
-        private readonly int _numberOfFingerTableEntries;
-        private readonly int _numDHT;
+        private readonly uint _numberOfFingerTableEntries;
+        private readonly uint _numDHT;
+        public Node? Node { get; set; }
 
-        public FingerTable(int maxNumNodes)
+        public FingerTable(IOptions<DhtSettings> options, ISchedule scheduler)
         {
-            _numberOfFingerTableEntries = (int)Math.Ceiling(Math.Log(maxNumNodes - 1) / Math.Log(2));
-            _numDHT = (int)Math.Pow(2, _numberOfFingerTableEntries);
+            var maxNumNodes = options.Value.MaxNumberOfNodes;
+            _numberOfFingerTableEntries = (uint)Math.Ceiling(Math.Log(maxNumNodes - 1) / Math.Log(2));
+            _numDHT = (uint)Math.Pow(2, _numberOfFingerTableEntries);
             FingerTableEntries = new FingerTableEntry[_numberOfFingerTableEntries];
+
+            scheduler.Enqueue(new Timer(TimeSpan.FromSeconds(options.Value.FixFingersCallInSeconds).TotalMilliseconds),
+                FixFingers);
         }
 
-        public FingerTable(int maxNumNodes, int id)
+        public void FixFingers()
         {
-            _numberOfFingerTableEntries = (int)Math.Ceiling(Math.Log(maxNumNodes - 1) / Math.Log(2));
-            _numDHT = (int)Math.Pow(2, _numberOfFingerTableEntries);
-            FingerTableEntries = new FingerTableEntry[_numberOfFingerTableEntries];
-            CreateFingerTable(id);
+            for (int i = 1; i < FingerTableEntries.Length; i++)
+            {
+                var next = FingerTableEntries[i].Start;
+                // Console.WriteLine("fix fingers called next = " + next);
+                Node?.FindSuccessor(next, FingerTableEntries[i - 1].Successor, Node);
+            }
         }
-
 
         /// <summary>
         /// Add entry to the fingertable. The parameter 'node' is added to the fingerTable entry by its id (start) value.
@@ -35,7 +44,7 @@ namespace DHT
         /// <param name="node"></param>
         /// <param name="id"></param>
         /// <returns>"void"</returns>
-        public void AddEntry(NodeDto node, int id)
+        public void AddEntry(NodeDto node, uint id)
         {
             for (int i = 0; i < _numberOfFingerTableEntries; i++)
             {
@@ -53,19 +62,19 @@ namespace DHT
         /// <param name="node"></param>
         /// <param name="id"></param>
         /// <returns>"void"</returns>
-        public void CreateFingerTable(int id)
+        public void CreateFingerTable(uint id)
         {
             if (id < 0 || id > _numDHT)
             {
                 throw new ArgumentOutOfRangeException(nameof(id), $"ID index out of range: {id}");
             }
 
-            for (int i = 0; i < _numberOfFingerTableEntries; i++)
+            for (uint i = 0; i < _numberOfFingerTableEntries; i++)
             {
-                FingerTableEntries[i] = new FingerTableEntry {Start = ((id + (int)Math.Pow(2, i)) % _numDHT)};
+                FingerTableEntries[i] = new FingerTableEntry {Start = (uint)((id + (uint)Math.Pow(2, i)) % _numDHT)};
             }
 
-            for (int i = 0; i < _numberOfFingerTableEntries - 1; i++)
+            for (uint i = 0; i < _numberOfFingerTableEntries - 1; i++)
             {
                 FingerTableEntries[i].SetInterval(FingerTableEntries[i].Start, FingerTableEntries[i + 1].Start);
             }
@@ -78,23 +87,34 @@ namespace DHT
         /// Find closest preceding node for specific node id.
         /// <param name="id"></param>
         /// <returns>"void"</returns>
-        public NodeDto ClosestPrecedingNode(int id)
+        public NodeDto ClosestPrecedingNode(uint id)
         {
             if (id < 0 || id > _numDHT)
             {
                 throw new ArgumentOutOfRangeException(nameof(id), $"ID index out of range: {id}");
             }
 
-            for (int i = _numberOfFingerTableEntries - 1; i >= 0; i--)
+            if (FingerTableEntriesHasBeenInitialized())
             {
-                if (id >= FingerTableEntries[i].IntervalBegin && id < FingerTableEntries[i].IntervalEnd &&
-                    FingerTableEntries[i].Successor != null)
+                for (uint i = _numberOfFingerTableEntries - 1; i >= 0; i--)
                 {
-                    return FingerTableEntries[i].Successor;
+                    if (id >= FingerTableEntries[i].IntervalBegin && id < FingerTableEntries[i].IntervalEnd &&
+                        FingerTableEntries[i].Successor != null)
+                    {
+                        return FingerTableEntries[i].Successor;
+                    }
                 }
+
+                return FingerTableEntries[_numberOfFingerTableEntries - 1].Successor;
             }
 
-            return FingerTableEntries[_numberOfFingerTableEntries - 1].Successor;
+            // If fingertable entries are NOT initialized, return null 
+            return null;
+        }
+
+        private bool FingerTableEntriesHasBeenInitialized()
+        {
+            return FingerTableEntries.All(entry => entry.Successor != null);
         }
 
         /// <summary>
@@ -104,33 +124,31 @@ namespace DHT
         /// <param name="destinationNode"></param>
         /// <param name="relayServiceAdapter"></param>
         /// <returns>"void"</returns>
-        public void FixFingers(int id, NodeDto connectionNode, Node destinationNode,
+        public void FixFingers(uint id, NodeDto connectionNode, Node destinationNode,
             IDhtRelayServiceAdapter relayServiceAdapter)
         {
             FingerTableEntries[0].Successor = connectionNode;
 
             for (int i = 1; i < _numberOfFingerTableEntries; i++)
             {
-                 destinationNode.FindSuccessor(FingerTableEntries[i].Start, connectionNode, destinationNode);
-            }     
+                destinationNode.FindSuccessor(FingerTableEntries[i].Start, connectionNode, destinationNode);
+            }
         }
 
-        public bool Include(int id)
+        public bool Include(uint id)
         {
             return FingerTableEntries.FirstOrDefault(x => x.Start.Equals(id)) != null;
         }
 
-        public void AddEntries(NodeDto successor, int id)
+        public void AddEntries(NodeDto successor, uint id)
         {
-            
-            for (int i = 1; i < _numberOfFingerTableEntries; i++)
+            for (int i = 0; i < _numberOfFingerTableEntries; i++)
             {
                 if (FingerTableEntries[i].Successor == null)
-                { 
+                {
                     FingerTableEntries[i].Successor = successor;
-                }else
-
-                if (FingerTableEntries[i].Start == id)
+                }
+                else if (FingerTableEntries[i].Start == id)
                 {
                     FingerTableEntries[i].Successor = successor;
                     return;
@@ -140,7 +158,7 @@ namespace DHT
 
         public override string ToString()
         {
-             return JsonCustomFormatter.SerializeObject(this, 3);
+            return FingerTableEntries.ToArray().ToString();
         }
     }
 }
