@@ -8261,3 +8261,4 @@ System.NullReferenceException: Object reference not set to an instance of an obj
 System.NullReferenceException: Object reference not set to an instance of an object.
    at DHT.NetworkAdapter.Send() in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/NetworkAdapter.cs:line 38
 2020-06-06 12:51:54.390 +02:00 [INF] my key is 337
+2020-06-06 12:52:48.016 +02:00 [INF] my key is 337

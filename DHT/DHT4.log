@@ -6635,3 +6635,4 @@ System.NullReferenceException: Object reference not set to an instance of an obj
    at DHT.NetworkAdapter.Send() in /Users/twanbolwerk/Documents/dev/project/confidential-messaging/Mobile/NetwerkApplicatie/Main/DHT/DHT/DistributedChordNetwork/NetworkAdapter.cs:line 38
 2020-06-06 10:11:39.913 +02:00 [INF] my key is 305
 2020-06-06 12:51:54.447 +02:00 [INF] my key is 305
+2020-06-06 12:52:47.999 +02:00 [INF] my key is 305

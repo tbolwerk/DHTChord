@@ -6658,3 +6658,4 @@ System.NullReferenceException: Object reference not set to an instance of an obj
 2020-06-06 12:51:57.491 +02:00 [ERR] System.Action[]
 System.NullReferenceException: Object reference not set to an instance of an object.
    at DHT.NetworkAdapter.Send() in /Users/twanbolwerk/Documents/dev/project/DistributedHashtableChord/DHT/DistributedChordNetwork/NetworkAdapter.cs:line 38
+2020-06-06 12:52:47.969 +02:00 [INF] my key is 67
