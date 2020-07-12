@@ -1,7 +1,5 @@
-using System;
-using System.Threading.Tasks;
 
-namespace DHT
+namespace DHT.DistributedChordNetwork.Networking
 {
     public interface IDhtRelayServiceAdapter
     {

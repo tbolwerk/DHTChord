@@ -1,10 +1,9 @@
-using System.Collections.Generic;
+using RelayService.DataAccessService.RoutingDataAccess.DHT.DistributedChordNetwork;
 
-namespace DHT
+namespace DHT.DistributedChordNetwork
 {
-    public interface IDhtActions : IDHTNetworkResponseAction, IDHTNetworkRequestAction
+    public interface IDhtActions : IDhtNetworkResponseAction, IDhtNetworkRequestAction
     {
         public void Start();
-        void Get(in uint key, NodeDto? successor, Node node);
     }
 }

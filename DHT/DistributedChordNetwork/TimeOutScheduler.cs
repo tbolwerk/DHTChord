@@ -1,5 +1,5 @@
 using System;
-namespace DHT
+namespace DHT.DistributedChordNetwork
 {
     public class TimeOutScheduler : ITimeOutScheduler
     {

@@ -2,7 +2,12 @@
   "profiles": {
     "DHT": {
       "commandName": "Project",
-      "commandLineArgs": "1 localhost 8001 2 localhost 8000"
+      "commandLineArgs": "127.0.0.1 9001 127.0.0.1 9000"
+    },
+    "DHT2": {
+      "commandName": "Project",
+      "commandLineArgs": "127.0.0.1 9000",
+   
     }
   }
 }

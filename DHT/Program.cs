@@ -1,15 +1,12 @@
 using System;
 using System.IO;
-using System.Linq;
-using System.Net;
-using System.Net.NetworkInformation;
-using System.Numerics;
 using System.Threading.Tasks;
 using DHT.ConsistentHash;
+using DHT.DistributedChordNetwork;
+using DHT.DistributedChordNetwork.Networking;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Logging.Configuration;
 using Serilog;
 
 namespace DHT
@@ -38,8 +35,16 @@ namespace DHT
                 .AddTransient(typeof(IDhtActions), typeof(DhtActions))
                 .AddTransient<IHash, Sha1Hash>()
                 .AddTransient<IGenerateKey, KeyGenerator>()
+                // .AddTransient<IRelaySocket,MessageSocket>()
+                .AddSingleton<ISchedule,Scheduler>()
+                .AddSingleton<ITimeOutTimerFactory,TimeOutTimerFactory>()
+                .AddTransient(typeof(ITimeOutScheduler),typeof(TimeOutScheduler))
+                .AddTransient(typeof(IDhtActions),typeof(DhtActions))
+                .AddTransient<IHash,Sha1Hash>()
+                .AddTransient<IGenerateKey,KeyGenerator>()
                 .AddSingleton(typeof(IFingerTable), typeof(FingerTable))
                 .AddSingleton(typeof(INetworkAdapter), typeof(NetworkAdapter))
+                // .AddSingleton(typeof(IDhtRelayServiceAdapter), typeof(DhtRelayServiceAdapter)) // enable integration with server
                 .AddSingleton(typeof(IDhtRelayServiceAdapter), typeof(DhtRelayNetMqAdapter))
                 .AddSingleton<IStabilize, NodeStabilizing>()
                 .AddSingleton<ICheckPredecessor, NodeCheckingPredecessor>()
@@ -50,6 +55,7 @@ namespace DHT
                 .BuildServiceProvider();
 
 
+            
             // Run our host
             var dht = serviceProvider.GetService<IDistributedHashtable>();
             Task.Run(()=>dht.Run(args));

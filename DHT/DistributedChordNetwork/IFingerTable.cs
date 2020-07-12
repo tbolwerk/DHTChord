@@ -1,6 +1,7 @@
-using System.Threading.Tasks;
+using DHT.DistributedChordNetwork.Networking;
+using RelayService.DataAccessService.RoutingDataAccess.DHT.DistributedChordNetwork;
 
-namespace DHT
+namespace DHT.DistributedChordNetwork
 {
     public interface IFingerTable
     {
@@ -10,7 +11,7 @@ namespace DHT
         public NodeDto ClosestPrecedingNode(uint id);
         public void FixFingers(uint id, NodeDto connectionNode, Node destinationNode,
             IDhtRelayServiceAdapter relayServiceAdapter);
-
+        public void FixFingers();
         public bool Include(uint id);
 
         void AddEntries(NodeDto successor, uint id);

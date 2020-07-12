@@ -1,15 +1,17 @@
 using System;
 using System.Timers;
+using DHT.DistributedChordNetwork.EventArgs;
+using DHT.DistributedChordNetwork.Networking;
 using Microsoft.Extensions.Options;
 
-namespace DHT
+namespace DHT.DistributedChordNetwork
 {
     public class NodeCheckingPredecessor : ICheckPredecessor
     {
         private readonly IDhtActions _dhtActions;
         private readonly ITimeOutScheduler _timeOutScheduler;
         private readonly ISchedule _scheduler;
-        private string ORIGIN_PREDECESSOR = "predecessor";
+        private const string OriginPredecessor = "predecessor";
         public Node? Node { get; set; }
 
         public NodeCheckingPredecessor(IDhtActions dhtActions, INetworkAdapter networkAdapter,
@@ -24,22 +26,22 @@ namespace DHT
 
             double timeOut = TimeSpan.FromSeconds(dhtSettings.TimeToLiveInSeconds).TotalMilliseconds;
 
-            _timeOutScheduler.AddTimeOutTimer(ORIGIN_PREDECESSOR, dhtSettings.MaxRetryAttempts, timeOut,
+            _timeOutScheduler.AddTimeOutTimer(OriginPredecessor, dhtSettings.MaxRetryAttempts, timeOut,
                 CheckPredecessor, TimeOutCheckPredecessorHandler);
-
+            
             scheduler.Enqueue(
                 new Timer(TimeSpan.FromSeconds(dhtSettings.CheckPredecessorCallInSeconds).TotalMilliseconds),
                 CheckPredecessor);
         }
 
-        private void CheckPredecessorResponseHandler(object? sender, EventArgs e)
+        private void CheckPredecessorResponseHandler(object? sender, System.EventArgs e)
         {
             CheckPredecessorResponseEventArgs eventArgs = (CheckPredecessorResponseEventArgs)e;
             Node.Predecessor = eventArgs.Predecessor;
             Console.WriteLine("Check predecessor response handler : " + Node);
         }
 
-        private void CheckPredecessorHandler(object? sender, EventArgs e)
+        private void CheckPredecessorHandler(object? sender, System.EventArgs e)
         {
             CheckPredecessorEventArgs eventArgs = (CheckPredecessorEventArgs)e;
             NodeDto destinationNode = eventArgs.DestinationNode;
@@ -48,8 +50,13 @@ namespace DHT
 
         public void CheckPredecessor()
         {
-            if (Node.Predecessor == null) return;
-            _timeOutScheduler.StartTimer(ORIGIN_PREDECESSOR);
+            if (Node.Predecessor == null)
+            {
+                _timeOutScheduler.StopTimer(OriginPredecessor);
+                return;
+            }
+
+            _timeOutScheduler.StartTimer(OriginPredecessor);
             Console.WriteLine("Im called CheckPredecessor");
             _dhtActions.CheckPredecessor(Node.Predecessor, Node.Id, Node);
         }

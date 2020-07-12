@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace DHT
+namespace DHT.DistributedChordNetwork.Networking
 {
     public interface INetworkAdapter
     {
@@ -19,10 +19,8 @@ namespace DHT
         public event EventHandler GetReponseHandler;
         public event EventHandler PutHandler;
         public event EventHandler PutReponseHandler;
-        public event EventHandler StabilizeReplicasHandler;
-        public event EventHandler StabilizeReplicasResponseHandler;
-        public event EventHandler StabilizeReplicasLeaveHandler;
-
+        public event EventHandler RemoveDataFromExpiredReplicasHandler;
+        public event EventHandler RemoveDataFromExpiredReplicasResponseHandler;
 
         public void Send();
         void Receive(string responseMessage);

@@ -1,11 +1,11 @@
 using System;
-using System.Net.NetworkInformation;
-using System.Threading.Tasks;
 using System.Timers;
-using DHT.ConsistentHash;
+using DHT.DistributedChordNetwork.EventArgs;
+using DHT.DistributedChordNetwork.Networking;
 using Microsoft.Extensions.Options;
+using RelayService.DataAccessService.RoutingDataAccess.DHT.DistributedChordNetwork;
 
-namespace DHT
+namespace DHT.DistributedChordNetwork
 {
     /// <summary>
     /// Deprecated
@@ -61,7 +61,7 @@ namespace DHT
             DhtSettings dhtSettings = options.Value;
 
             double timeOut = TimeSpan.FromSeconds(dhtSettings.TimeToLiveInSeconds).TotalMilliseconds;
-            _timeOutScheduler.AddTimeOutTimer(ORIGIN_SUCCESSOR, dhtSettings.MaxRetryAttempts + 1, timeOut, Stabilize,
+            _timeOutScheduler.AddTimeOutTimer(ORIGIN_SUCCESSOR, dhtSettings.MaxRetryAttempts, timeOut, Stabilize,
                 OnTimeOutStabilizeHandler);
             _timeOutScheduler.AddTimeOutTimer(ORIGIN_PREDECESSOR, dhtSettings.MaxRetryAttempts, timeOut,
                 CheckPredecessor, TimeOutCheckPredecessorHandler);
@@ -86,21 +86,21 @@ namespace DHT
             }
         }
 
-        private void CheckPredecessorResponseHandler(object? sender, EventArgs e)
+        private void CheckPredecessorResponseHandler(object? sender, System.EventArgs e)
         {
             CheckPredecessorResponseEventArgs eventArgs = (CheckPredecessorResponseEventArgs)e;
             Predecessor = eventArgs.Predecessor;
             Console.WriteLine("Check predecessor response handler : " + this);
         }
 
-        private void CheckPredecessorHandler(object? sender, EventArgs e)
+        private void CheckPredecessorHandler(object? sender, System.EventArgs e)
         {
             CheckPredecessorEventArgs eventArgs = (CheckPredecessorEventArgs)e;
             NodeDto destinationNode = eventArgs.DestinationNode;
             _dhtActions.CheckPredecessorResponse(destinationNode, Id, this);
         }
 
-        private void StabilizeResponseHandler(object? sender, EventArgs e)
+        private void StabilizeResponseHandler(object? sender, System.EventArgs e)
         {
             Console.WriteLine("Stabilize response handler " + this);
             StabilizeResponseEventArgs eventArgs = (StabilizeResponseEventArgs)e;
@@ -114,7 +114,7 @@ namespace DHT
             }
         }
 
-        private void StabilizeHandler(object? sender, EventArgs e)
+        private void StabilizeHandler(object? sender, System.EventArgs e)
         {
             StabilizeEventArgs eventArgs = (StabilizeEventArgs)e;
             Console.WriteLine("Stabilize handler is called by " + eventArgs.DestinationNode);
@@ -148,7 +148,7 @@ namespace DHT
             this.Predecessor = null;
         }
 
-        private void FoundSuccessorHandler(object? sender, EventArgs e)
+        private void FoundSuccessorHandler(object? sender, System.EventArgs e)
         {
             //TODO: create own handler for fix fingers
             FoundSuccessorEventArgs eventArgs = (FoundSuccessorEventArgs)e;
@@ -190,7 +190,7 @@ namespace DHT
             this.Predecessor = null;
         }
 
-        private void FindSuccessorHandler(object? sender, EventArgs e)
+        private void FindSuccessorHandler(object? sender, System.EventArgs e)
         {
             FindSuccessorEventArgs eventArgs = (FindSuccessorEventArgs)e;
             FindSuccessor(eventArgs.Key, Successor, eventArgs.DestinationNode);
@@ -205,7 +205,7 @@ namespace DHT
                 (self.Id > possiblePredecessor.Id && currentPredecessor.Id < possiblePredecessor.Id);
         }
 
-        private void NotifyHandler(object? sender, EventArgs e)
+        private void NotifyHandler(object? sender, System.EventArgs e)
         {
             NotifyEventArgs eventArgs = (NotifyEventArgs)e;
             Console.WriteLine($"Node thinks it might be our {Id} predecessor {eventArgs.NodeDto.Id}");

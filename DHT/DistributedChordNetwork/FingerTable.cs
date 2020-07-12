@@ -1,13 +1,11 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Timers;
-using DHT.Formatting;
-using Microsoft.Extensions.Configuration;
+using DHT.DistributedChordNetwork.Networking;
 using Microsoft.Extensions.Options;
+using RelayService.DataAccessService.RoutingDataAccess.DHT.DistributedChordNetwork;
 
-namespace DHT
+namespace DHT.DistributedChordNetwork
 {
     public class FingerTable : IFingerTable
     {
@@ -19,11 +17,9 @@ namespace DHT
 
         public FingerTable(IOptions<DhtSettings> options, ISchedule scheduler)
         {
-            var maxNumNodes = options.Value.MaxNumberOfNodes;
-            _numberOfFingerTableEntries = (uint)Math.Ceiling(Math.Log(maxNumNodes - 1) / Math.Log(2));
-            _numDHT = (uint)Math.Pow(2, _numberOfFingerTableEntries);
+            _numDHT = options.Value.MaxNumberOfNodes;
+            _numberOfFingerTableEntries = (uint)Math.Ceiling(Math.Log(_numDHT - 1) / Math.Log(2));
             FingerTableEntries = new FingerTableEntry[_numberOfFingerTableEntries];
-
             scheduler.Enqueue(new Timer(TimeSpan.FromSeconds(options.Value.FixFingersCallInSeconds).TotalMilliseconds),
                 FixFingers);
         }
@@ -33,7 +29,7 @@ namespace DHT
             for (int i = 1; i < FingerTableEntries.Length; i++)
             {
                 var next = FingerTableEntries[i].Start;
-                // Console.WriteLine("fix fingers called next = " + next);
+                Console.WriteLine("fix fingers called next = " + next);
                 Node?.FindSuccessor(next, FingerTableEntries[i - 1].Successor, Node);
             }
         }
@@ -64,9 +60,9 @@ namespace DHT
         /// <returns>"void"</returns>
         public void CreateFingerTable(uint id)
         {
-            if (id < 0 || id > _numDHT)
+            if (id > _numDHT-1)
             {
-                throw new ArgumentOutOfRangeException(nameof(id), $"ID index out of range: {id}");
+                throw new ArgumentOutOfRangeException(nameof(id), $"ID index out of range: {id}, max is {_numDHT-1}.");
             }
 
             for (uint i = 0; i < _numberOfFingerTableEntries; i++)
@@ -89,14 +85,14 @@ namespace DHT
         /// <returns>"void"</returns>
         public NodeDto ClosestPrecedingNode(uint id)
         {
-            if (id < 0 || id > _numDHT)
+            if (id > _numDHT-1)
             {
-                throw new ArgumentOutOfRangeException(nameof(id), $"ID index out of range: {id}");
+                throw new ArgumentOutOfRangeException(nameof(id), $"ID index out of range: {id}, max is {_numDHT-1}.");
             }
 
             if (FingerTableEntriesHasBeenInitialized())
             {
-                for (uint i = _numberOfFingerTableEntries - 1; i >= 0; i--)
+                for (uint i = _numberOfFingerTableEntries - 1; i > 0; i--)
                 {
                     if (id >= FingerTableEntries[i].IntervalBegin && id < FingerTableEntries[i].IntervalEnd &&
                         FingerTableEntries[i].Successor != null)
@@ -108,7 +104,7 @@ namespace DHT
                 return FingerTableEntries[_numberOfFingerTableEntries - 1].Successor;
             }
 
-            // If fingertable entries are NOT initialized, return null 
+            // If fingertable entries are NOT initialized, return null
             return null;
         }
 

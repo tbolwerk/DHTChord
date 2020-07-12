@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Timers;
 using Microsoft.Extensions.Options;
-using Serilog;
 
-namespace DHT
+namespace DHT.DistributedChordNetwork
 {
     public class TimeOutTimer
     {
@@ -20,6 +19,7 @@ namespace DHT
         public TimeOutTimer()
         {
         }
+
         public TimeOutTimer(IOptions<DhtSettings> options)
         {
             _timeOutInSeconds = options.Value.TimeToLiveInSeconds;
@@ -27,6 +27,7 @@ namespace DHT
             _retry = 0;
             _timer = new Timer(_timeOutInSeconds);
         }
+
         public TimeOutTimer(object origin, in double timeOutInSeconds, in int maxAttempts)
         {
             Origin = origin;
@@ -42,19 +43,18 @@ namespace DHT
 
         private void OnTimeElapsed(object sender, ElapsedEventArgs e, object origin)
         {
-            if (_retry < _maxAttempts)
+            if (_retry < _maxAttempts && origin == Origin)
             {
                 _retry += 1;
                 OnRetryHandler(origin);
                 Stop();
                 Start();
             }
-            else
+            else if(origin == Origin)
             {
                 OnTimeOutHandler(origin);
             }
         }
-
 
         public void Start()
         {
@@ -66,8 +66,10 @@ namespace DHT
 
         public void Stop()
         {
-            _timer.Interval += _timeOutInSeconds;
-            _timer.Stop();
+            if (_timer.Enabled)
+            {
+                _timer.Stop();
+            }
         }
 
         protected virtual void OnTimeOutHandler(object origin)
@@ -82,36 +84,58 @@ namespace DHT
         {
             Console.WriteLine("Retry handler");
             TimeOutEventArgs eventArgs = new TimeOutEventArgs {Origin = origin};
-            RetryHandler?.Invoke(this, EventArgs.Empty);
+            RetryHandler?.Invoke(this, eventArgs);
         }
     }
 
     public class TimeOutTimerFactory : ITimeOutTimerFactory
     {
         private readonly List<TimeOutTimer> _timers;
+
         public TimeOutTimerFactory()
         {
             _timers = new List<TimeOutTimer>();
-        } 
-      
+        }
+
         public TimeOutTimer? Get(object origin)
         {
             return _timers.FirstOrDefault(timeOutTimer => timeOutTimer.Origin.Equals(origin));
         }
 
-        public void Create(object origin, in double timeOutInSeconds, in int maxAttempts, Action onRetry, Action onTimeOut)
+        public void Create(object origin, in double timeOutInSeconds, in int maxAttempts, Action onRetry,
+            Action onTimeOut)
         {
             TimeOutTimer? timer = null;
             if (_timers.Count > 0)
             {
-                timer = _timers.FirstOrDefault(timeOutTimer => timeOutTimer.Origin.Equals(origin));
+                timer = Get(origin);
             }
 
             if (timer == null)
             {
-                timer  = new TimeOutTimer(origin, timeOutInSeconds, maxAttempts);
-                timer.RetryHandler += (sender, args) => onRetry();
-                timer.TimeOutHandler += (sender, args) => onTimeOut();
+                timer = new TimeOutTimer(origin, timeOutInSeconds, maxAttempts);
+                timer.RetryHandler +=  (sender, args) =>
+                {
+                    if (args.GetType() == typeof(TimeOutEventArgs))
+                    {
+                        TimeOutEventArgs timeOutEventArgs = (TimeOutEventArgs)args;
+                        if (timeOutEventArgs.Origin == timer.Origin)
+                        {
+                            onRetry();
+                        }
+                    }
+                };
+                timer.TimeOutHandler += (sender, args) =>
+                {
+                    if (args.GetType() == typeof(TimeOutEventArgs))
+                    {
+                        TimeOutEventArgs timeOutEventArgs = (TimeOutEventArgs)args;
+                        if (timeOutEventArgs.Origin == timer.Origin)
+                        {
+                            onTimeOut();
+                        }
+                    }
+                };
                 _timers.Add(timer);
             }
         }
@@ -123,7 +147,7 @@ namespace DHT
         void Create(object origin, in double timeOutInSeconds, in int maxAttempts, Action onRetry, Action onTimeOut);
     }
 
-    public class TimeOutEventArgs : EventArgs
+    public class TimeOutEventArgs : System.EventArgs
     {
         public object Origin { get; set; }
     }

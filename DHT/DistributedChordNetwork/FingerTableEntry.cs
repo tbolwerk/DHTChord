@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using DHT.DistributedChordNetwork;
 
-namespace DHT
+namespace RelayService.DataAccessService.RoutingDataAccess.DHT.DistributedChordNetwork
 {
     public class FingerTableEntry
     {

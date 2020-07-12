@@ -1,4 +1,4 @@
-namespace DHT
+namespace DHT.DistributedChordNetwork
 {
     public enum DhtCommand
     {
@@ -13,8 +13,7 @@ namespace DHT
         GET_RESPONSE,
         PUT,
         PUT_RESPONSE,
-        STABILIZE_REPLICAS_JOIN,
-        STABILIZE_REPLICAS_JOIN_RESPONSE,
-        STABILIZE_REPLICAS_LEAVE
+        REMOVE_DATA_FROM_EXPIRED_REPLICAS,
+        REMOVE_DATA_FROM_EXPIRED_REPLICAS_RESPONSE
     }
 }

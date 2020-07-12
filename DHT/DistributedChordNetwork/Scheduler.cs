@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using System.Timers;
 using Microsoft.Extensions.Options;
 
-namespace DHT
+namespace DHT.DistributedChordNetwork
 {
     public class Scheduler : ISchedule
     {

@@ -1,8 +1,7 @@
 using System;
-using System.Threading.Tasks;
 using System.Timers;
 
-namespace DHT
+namespace DHT.DistributedChordNetwork
 {
     public class SchedulerTask
     {

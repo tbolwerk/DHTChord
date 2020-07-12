@@ -1,10 +1,11 @@
 using System;
 using System.Diagnostics;
-using System.Threading.Tasks;
-using System.Timers;
-using Microsoft.Extensions.Configuration;
+using System.Linq;
+using System.Threading;
+using DHT.DistributedChordNetwork;
+using DHT.DistributedChordNetwork.EventArgs;
+using DHT.DistributedChordNetwork.Networking;
 using Microsoft.Extensions.Options;
-using NetMQ;
 using Serilog;
 
 namespace DHT
@@ -28,7 +29,7 @@ namespace DHT
         }
 
 
-        public void Join(uint id, string ipAddress, int port)
+        private void Join(uint id, string ipAddress, int port)
         {
             var bootstrap = new NodeDto {Id = id, IpAddress = ipAddress, Port = port};
             _node.Join(bootstrap);
@@ -51,6 +52,8 @@ namespace DHT
             };
             while (!isCalled && stopwatch.Elapsed < TimeSpan.FromSeconds(10))
             {
+                //Performance sleep
+                Thread.Sleep(100);
             }
 
             return value;
@@ -62,31 +65,37 @@ namespace DHT
             _node.Put(hashedKey, value);
         }
 
-        public void Create()
+        private void Create()
         {
             _node.Create();
         }
 
         public void Run(string[] args)
         {
-            var selfKey = _generateKey.Generate(string.Concat(args[1], ":", int.Parse(args[2])));
+
+            var ip = args[0];
+            int port = int.Parse(args[1]);
+            var address = string.Concat(ip, ":", port);
+            var selfKey = _generateKey.Generate(address);
 
             _fingerTable.CreateFingerTable((uint)selfKey);
-            _relayServiceAdapter.ConnectionUrl = $"{args[1]}:{args[2]}";
-            NodeDto self = new NodeDto {Id = (uint)int.Parse(args[0]), IpAddress = args[1], Port = int.Parse(args[2])};
+            _relayServiceAdapter.ConnectionUrl = address;
+            NodeDto self = new NodeDto {Id = (uint)selfKey, IpAddress = ip, Port = port};
 
             _node.Id = (uint)selfKey;
             Console.WriteLine($"my key is {selfKey}");
             Log.Logger.Information($"my key is {selfKey}");
             _node.IpAddress = self.IpAddress;
             _node.Port = self.Port;
-            if (args.Length > 3)
+
+            if (!_options.Value.BootstrapUrls.Contains(address))
             {
-                var otherKey = (uint)_generateKey.Generate(string.Concat(args[4], ":", int.Parse(args[5])));
-                Join(otherKey, args[4], int.Parse(args[5]));
+                var otherAddress = _options.Value.BootstrapUrls.FirstOrDefault();
+                var otherKey = (uint)_generateKey.Generate(otherAddress);
+                Join(otherKey, otherAddress.Split(":")[0], Convert.ToInt32(otherAddress.Split(":")[1]));
             }
             else Create();
-
+            
             _node.Start();
         }
     }

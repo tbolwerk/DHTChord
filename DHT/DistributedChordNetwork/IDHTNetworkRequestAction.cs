@@ -1,11 +1,9 @@
-using System.Collections.Generic;
-
-namespace DHT
+namespace DHT.DistributedChordNetwork
 {
-    public interface IDHTNetworkRequestAction
+    public interface IDhtNetworkRequestAction
     {
         public void ForwardRequest(NodeDto connectingNode, DhtProtocolCommandDto request);
-        public void Notify(NodeDto connectingNode, uint key, NodeDto successorNode);
+        public void Notify(NodeDto connectingNode, uint key, NodeDto destinationNode);
 
         public void FindSuccessor(NodeDto connectingNode, uint key, NodeDto destinationNode);
 
@@ -13,12 +11,11 @@ namespace DHT
 
         public void Stabilize(NodeDto connectingNode, uint key, NodeDto destinationNode);
 
-        
-        public void Put(NodeDto connectingNode, NodeDto destinationNode, uint key, string value, int currentNumberOfReplicas);
-        public void StabilizeReplicasJoin(NodeDto connectingNode, NodeDto destinationNode, uint key);
+        void Get(in uint key, NodeDto? connectingNode, Node destinationNode);
 
-        public void StabilizeReplicasLeave(NodeDto connectingNode, NodeDto destinationNode, uint key,
-            KeyValuePair<uint, string>[] dictionary, int currentNumberOfReplicas);
+        public void Put(NodeDto connectingNode, NodeDto destinationNode, uint key, string value, int currentNumberOfReplicas, uint keyToAdd);
 
+        public void RemoveDataFromExpiredReplicas(NodeDto connectingNode, NodeDto destinationNode, uint key,
+            uint keyToFind, int currentNumberOfReplicas);
     }
 }

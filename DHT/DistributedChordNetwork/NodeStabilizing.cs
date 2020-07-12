@@ -1,15 +1,19 @@
 using System;
+using System.Linq;
 using System.Timers;
+using DHT.DistributedChordNetwork.EventArgs;
+using DHT.DistributedChordNetwork.Networking;
 using Microsoft.Extensions.Options;
+using RelayService.DataAccessService.RoutingDataAccess.DHT.DistributedChordNetwork;
 
-namespace DHT
+namespace DHT.DistributedChordNetwork
 {
     public class NodeStabilizing : IStabilize
     {
         private readonly IOptions<DhtSettings> _options;
         private readonly IDhtActions _dhtActions;
         private readonly ITimeOutScheduler _timeOutScheduler;
-        private string ORIGIN_SUCCESSOR = "successor";
+        private const string OriginSuccessor = "successor";
 
         public Node? Node { get; set; }
 
@@ -26,14 +30,14 @@ namespace DHT
             var dhtSettings = _options.Value;
 
             double timeOut = TimeSpan.FromSeconds(dhtSettings.TimeToLiveInSeconds).TotalMilliseconds;
-            _timeOutScheduler.AddTimeOutTimer(ORIGIN_SUCCESSOR, dhtSettings.MaxRetryAttempts + 1, timeOut, Stabilize,
+            _timeOutScheduler.AddTimeOutTimer(OriginSuccessor, dhtSettings.MaxRetryAttempts + 1, timeOut, Stabilize,
                 OnTimeOutStabilizeHandler);
 
             scheduler.Enqueue(new Timer(TimeSpan.FromSeconds(dhtSettings.StabilizeCallInSeconds).TotalMilliseconds),
                 Stabilize);
         }
 
-        private void StabilizeHandler(object? sender, EventArgs e)
+        private void StabilizeHandler(object? sender, System.EventArgs e)
         {
             StabilizeEventArgs eventArgs = (StabilizeEventArgs)e;
             // Console.WriteLine("Stabilize handler is called by " + eventArgs.DestinationNode);
@@ -65,7 +69,7 @@ namespace DHT
             if (Node.Successor.Id.Equals(Node.Id)) return;
 
             _dhtActions.Stabilize(Node.Successor, Node.Id, Node);
-            _timeOutScheduler.StartTimer(ORIGIN_SUCCESSOR);
+            _timeOutScheduler.StartTimer(OriginSuccessor);
             // Console.WriteLine($"Stabilize {Node}");
         }
 
@@ -74,6 +78,10 @@ namespace DHT
             // Console.WriteLine($"Stabilize timeout {Node}");
             NodeDto nextClosestSuccessor = null;
             //TODO: fix connecting node, should be closest successor node from finger table!
+            Node.Successor = Node.BootStrapNode;
+            _dhtActions.Notify(Node.Successor, Node.Id, Node);
+
+            return;
             if (Node.BootStrapNode.Id.Equals(Node.Id))
             {
                 if (nextClosestSuccessor == null || nextClosestSuccessor.Id == Node.Id)
@@ -103,24 +111,54 @@ namespace DHT
             _dhtActions.Notify(Node.Successor, Node.Id, Node);
         }
 
-        private void StabilizeResponseHandler(object? sender, EventArgs e)
+        private void StabilizeResponseHandler(object? sender, System.EventArgs e)
         {
             // Console.WriteLine("Stabilize response handler " + Node);
             StabilizeResponseEventArgs eventArgs = (StabilizeResponseEventArgs)e;
             var predecessorOfSuccessor = eventArgs.PredecessorOfSuccessor;
-            Node.Successor = Node.Successor;
+            _timeOutScheduler.StopTimer(OriginSuccessor);
             if (predecessorOfSuccessor.Id != Node.Id)
             {
                 // Console.WriteLine("predecessorOfSuccessor =  " + predecessorOfSuccessor);
                 Node.Successor = predecessorOfSuccessor;
                 _dhtActions.Notify(Node.Successor, Node.Id, Node);
             }
+            else
+            {
+                if (Node.Successor != null && Node.Predecessor != null)
+                {
+                    StabilizeReplicaData();
+                    RemoveDataFromExpiredReplicas();
+                }
+            }
+        }
+
+        private void RemoveDataFromExpiredReplicas()
+        {
+            //TODO: filter dictionary on replica entries only
+            
+            foreach (var KeyValuePair in Node.Hashtable)
+            {
+                _dhtActions.RemoveDataFromExpiredReplicas(Node.Successor, Node, KeyValuePair.Key, KeyValuePair.Key, 0);
+            }
+        }
+
+        private void StabilizeReplicaData()
+            {
+                if (Node.Hashtable.Count() > 0)
+                {
+                    foreach (var KeyValuePair in Node.Hashtable)
+                    {
+                        _dhtActions.Put(Node.Successor, Node, KeyValuePair.Key, KeyValuePair.Value, 0,
+                            KeyValuePair.Key);
+                    }
+                }
+            }
+        }
+
+        public interface IStabilize
+        {
+            public Node? Node { set; }
+            public void Stabilize();
         }
     }
-
-    public interface IStabilize
-    {
-        public Node? Node { set; }
-        public void Stabilize();
-    }
-}

@@ -1,23 +1,20 @@
-using System;
-using System.Collections.Generic;
+using DHT.DistributedChordNetwork.Networking;
 
-namespace DHT
+namespace DHT.DistributedChordNetwork
 {
     public class DhtActions : IDhtActions
     {
-        private readonly INetworkAdapter _networkAdapter;
         private readonly IDhtRelayServiceAdapter _relayServiceAdapter;
 
-        public DhtActions(INetworkAdapter networkAdapter, IDhtRelayServiceAdapter relayServiceAdapter)
+        public DhtActions(IDhtRelayServiceAdapter relayServiceAdapter)
         {
-            _networkAdapter = networkAdapter;
             _relayServiceAdapter = relayServiceAdapter;
         }
 
-        public void Notify(NodeDto connectingNode, uint key, NodeDto successorNode)
+        public void Notify(NodeDto connectingNode, uint key, NodeDto destinationNode)
         {
             var protocolCommandDto =
-                new DhtProtocolCommandDto {NodeDto = successorNode, Key = key, Command = DhtCommand.NOTIFY};
+                new DhtProtocolCommandDto {NodeDto = destinationNode, Key = key, Command = DhtCommand.NOTIFY};
             EnqueueRpcCall(connectingNode, protocolCommandDto);
         }
 
@@ -54,16 +51,14 @@ namespace DHT
             EnqueueRpcCall(destinationNode, protocolCommandDto);
         }
 
-      
 
-        public void ForwardRequest(NodeDto connectingNode,DhtProtocolCommandDto protocolCommandDto)
+        public void ForwardRequest(NodeDto connectingNode, DhtProtocolCommandDto request)
         {
-            EnqueueRpcCall(connectingNode,protocolCommandDto);
+            EnqueueRpcCall(connectingNode, request);
         }
 
         public void Put(NodeDto connectingNode, NodeDto destinationNode, uint key, string value,
-            int currentNumberOfReplicas
-             )
+            int currentNumberOfReplicas, uint keyToAdd)
         {
             var protocolCommandDto = new DhtProtocolCommandDto
             {
@@ -71,43 +66,18 @@ namespace DHT
                 NodeDto = destinationNode,
                 Key = key,
                 Value = value,
-                CurrentNumberOfReplicas = currentNumberOfReplicas + 1,
-            };
-            
-            EnqueueRpcCall(connectingNode, protocolCommandDto);
-        }
-
-        public void StabilizeReplicasJoin(NodeDto connectingNode, NodeDto destinationNode, uint key)
-        {
-            DhtProtocolCommandDto protocolCommandDto =
-                new DhtProtocolCommandDto {Command = DhtCommand.STABILIZE_REPLICAS_JOIN, NodeDto = destinationNode, Key = key};
-
-            EnqueueRpcCall(connectingNode, protocolCommandDto); 
-        }
-
-        public void StabilizeReplicasLeave(NodeDto connectingNode, NodeDto destinationNode, uint key, KeyValuePair<uint, string>[] dictionary, int currentNumberOfReplicas)
-        {
-            var protocolCommandDto = new DhtProtocolCommandDto
-            {
-                Command = DhtCommand.STABILIZE_REPLICAS_LEAVE,
-                NodeDto = destinationNode,
-                Key = key,
-                Dictionary =  dictionary,
-                CurrentNumberOfReplicas = currentNumberOfReplicas+1
+                KeyToAdd = keyToAdd,
+                CurrentNumberOfReplicas = currentNumberOfReplicas,
             };
 
             EnqueueRpcCall(connectingNode, protocolCommandDto);
-            
         }
 
         public void PutResponse(NodeDto connectingNode, NodeDto destinationNode, uint key, string value)
         {
             var protocolCommandDto = new DhtProtocolCommandDto
             {
-                Command = DhtCommand.PUT_RESPONSE,
-                NodeDto = connectingNode,
-                Key = key,
-                Value = value,
+                Command = DhtCommand.PUT_RESPONSE, NodeDto = connectingNode, Key = key, Value = value,
             };
 
             EnqueueRpcCall(destinationNode, protocolCommandDto);
@@ -124,26 +94,43 @@ namespace DHT
             EnqueueRpcCall(destinationNode, protocolCommandDto);
         }
 
-        public void StabilizeReplicasJoinResponse(NodeDto connectingNode, uint key, IEnumerable<KeyValuePair<uint, string>> dictionary)
-        {
-            DhtProtocolCommandDto protocolCommandDto = new DhtProtocolCommandDto
-            {
-                Dictionary = dictionary, Key = key, Command = DhtCommand.STABILIZE_REPLICAS_JOIN_RESPONSE
-            };
-
-            EnqueueRpcCall(connectingNode, protocolCommandDto);
-        }
-        
         public void Start()
         {
             _relayServiceAdapter.Run();
         }
 
-        public void Get(in uint key, NodeDto? successor, Node destinationNode)
+        public void Get(in uint key, NodeDto? connectingNode, Node destinationNode)
         {
             var protocolCommandDto =
                 new DhtProtocolCommandDto {Command = DhtCommand.GET, Key = key, NodeDto = destinationNode};
-            EnqueueRpcCall(successor, protocolCommandDto);
+            EnqueueRpcCall(connectingNode, protocolCommandDto);
+        }
+
+        public void RemoveDataFromExpiredReplicas(NodeDto connectingNode, NodeDto destinationNode, uint key,
+            uint keyToFind, int currentNumberOfReplicas)
+        {
+            var protocolCommandDto =
+                new DhtProtocolCommandDto
+                {
+                    Command = DhtCommand.REMOVE_DATA_FROM_EXPIRED_REPLICAS,
+                    Key = key,
+                    NodeDto = destinationNode,
+                    KeyToAdd = keyToFind,
+                    CurrentNumberOfReplicas = currentNumberOfReplicas
+                };
+
+            EnqueueRpcCall(connectingNode, protocolCommandDto);
+        }
+
+        public void RemoveDataFromExpiredReplicasReponse(NodeDto connectingNode, uint keyToRemove)
+        {
+            var protocolCommandDto =
+                new DhtProtocolCommandDto
+                {
+                    Command = DhtCommand.REMOVE_DATA_FROM_EXPIRED_REPLICAS_RESPONSE, Key = keyToRemove
+                };
+
+            EnqueueRpcCall(connectingNode, protocolCommandDto);
         }
 
         public void StabilizeResponse(NodeDto destinationNode, uint key, NodeDto myPredecessor)
@@ -162,8 +149,7 @@ namespace DHT
 
         private void EnqueueRpcCall(NodeDto connectingNode, DhtProtocolCommandDto protocolCommandDto)
         {
-            void Action() => _relayServiceAdapter.SendRpcCommand(connectingNode, protocolCommandDto);
-            _networkAdapter.RpcCalls.Enqueue(Action);
+            _relayServiceAdapter.SendRpcCommand(connectingNode, protocolCommandDto);
         }
     }
 }

@@ -1,17 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Text.Json;
-using System.Threading;
 using System.Threading.Tasks;
-using DHT.Formatting;
-using Microsoft.Extensions.Options;
 using NetMQ;
 using NetMQ.Sockets;
 using Serilog;
 
-namespace DHT
+namespace DHT.DistributedChordNetwork.Networking
 {
     //https://github.com/StatTag/JupyterKernelManager/issues/7
     //To many instances started at the same time can cause it to shut down

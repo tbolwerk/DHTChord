@@ -1,7 +1,6 @@
 using System.Linq;
 using System.Numerics;
 using System.Security.Cryptography;
-using System.Text;
 
 namespace DHT.ConsistentHash
 {

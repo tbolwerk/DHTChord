@@ -1,10 +1,12 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
+using DHT.DistributedChordNetwork.EventArgs;
+using DHT.DistributedChordNetwork.Networking;
 using Microsoft.Extensions.Options;
+using RelayService.DataAccessService.RoutingDataAccess.DHT.DistributedChordNetwork;
 
-namespace DHT
+namespace DHT.DistributedChordNetwork
 {
     public class Node : NodeDto
     {
@@ -15,13 +17,14 @@ namespace DHT
         private readonly ITimeOutScheduler _timeOutScheduler;
         private readonly ISchedule _scheduler;
 
-        const string ORIGIN_SUCCESSOR = "successor";
-        const string ORIGIN_PREDECESSOR = "predecessor";
+        private const string OriginSuccessor = "successor";
+        private const string OriginPredecessor = "predecessor";
 
         private NodeDto _successor;
         private NodeDto _predecessor;
 
-        private readonly Dictionary<uint, string> Dictionary = new Dictionary<uint, string>(); // Key: Public key, Value: IP address
+        public readonly Dictionary<uint, string>
+            Hashtable = new Dictionary<uint, string>(); // Key: Public key, Value: IP address
 
         public override NodeDto? Successor
         {
@@ -29,7 +32,7 @@ namespace DHT
             set
             {
                 _successor = value;
-                _timeOutScheduler.StopTimer(ORIGIN_SUCCESSOR);
+                _timeOutScheduler.StopTimer(OriginSuccessor);
             }
         }
 
@@ -39,7 +42,7 @@ namespace DHT
             set
             {
                 _predecessor = value;
-                _timeOutScheduler.StopTimer(ORIGIN_PREDECESSOR);
+                _timeOutScheduler.StopTimer(OriginPredecessor);
             }
         }
 
@@ -56,41 +59,85 @@ namespace DHT
             networkAdapter.NotifyHandler += NotifyHandler;
             networkAdapter.FindSuccessorHandler += FindSuccessorHandler;
             networkAdapter.FoundSuccessorHandler += FoundSuccessorHandler;
-            networkAdapter.StabilizeReplicasResponseHandler += StabilizeReplicasJoinResponseHandler;
-            networkAdapter.StabilizeReplicasHandler += StabilizeReplicasJoinHandler;
-            networkAdapter.StabilizeReplicasLeaveHandler += StabilizeReplicasLeaveHandler;
             networkAdapter.GetHandler += GetHandler;
             networkAdapter.GetReponseHandler += GetResponseHandler;
-
             networkAdapter.PutHandler += PutHandler;
+            networkAdapter.RemoveDataFromExpiredReplicasHandler += RemoveDataFromExpiredReplicasHandler;
+            networkAdapter.RemoveDataFromExpiredReplicasResponseHandler += RemoveDataFromExpiredReplicasResponseHandler;
+
+
             checkPredecessor.Node = this;
             stabilize.Node = this;
             fingerTable.Node = this;
         }
 
         public event EventHandler GetResponseEventHandler;
-        private void GetResponseHandler(object? sender, EventArgs e)
+
+
+        private void RemoveDataFromExpiredReplicasResponseHandler(object? sender, System.EventArgs e)
         {
-            EventHandler handler = GetResponseEventHandler;
-            handler?.Invoke(sender,e);
+            GetHandlerEventArgs eventArgs = (GetHandlerEventArgs)e;
+
+            if (Hashtable.ContainsKey(eventArgs.DhtProtocolCommandDto.Key))
+            {
+                Hashtable.Remove(eventArgs.DhtProtocolCommandDto.Key);
+            }
         }
 
-        private void PutHandler(object? sender, EventArgs e)
+        private void RemoveDataFromExpiredReplicasHandler(object? sender, System.EventArgs e)
         {
-            PutHandlerEventArgs eventArgs = (PutHandlerEventArgs)e;
-            var protocolDto = eventArgs.ProtocolCommandDto;
-            if (IAmTheSuccessorOf(protocolDto.Key))
+            GetHandlerEventArgs eventArgs = (GetHandlerEventArgs)e;
+            var protocolDto = eventArgs.DhtProtocolCommandDto;
+
+
+            if (protocolDto.CurrentNumberOfReplicas <= _options.Value.Replicas)
             {
-                Put(protocolDto.Key,protocolDto.Value,Successor,protocolDto.NodeDto,protocolDto.CurrentNumberOfReplicas);
+                if ((IAmTheSuccessorOf(protocolDto.Key) || protocolDto.Key == this.Id))
+                {
+                    if (this.Id == protocolDto.NodeDto.Id || Successor == null)
+                    {
+                        return;
+                    }
+
+                    protocolDto.CurrentNumberOfReplicas += 1;
+                    protocolDto.Key = Successor.Id;
+                }
+
+                _dhtActions.ForwardRequest(Successor, protocolDto);
             }
             else
             {
-                _dhtActions.ForwardRequest(Successor, protocolDto);
+                _dhtActions.RemoveDataFromExpiredReplicasReponse(protocolDto.NodeDto, protocolDto.KeyToAdd);
+            }
+        }
+
+        private void GetResponseHandler(object? sender, System.EventArgs e)
+        {
+            EventHandler handler = GetResponseEventHandler;
+            handler?.Invoke(sender, e);
+        }
+
+        private void PutHandler(object? sender, System.EventArgs e)
+        {
+            PutHandlerEventArgs eventArgs = (PutHandlerEventArgs)e;
+            var protocolDto = eventArgs.ProtocolCommandDto;
+            if (Successor != null)
+            {
+                if ((IAmTheSuccessorOf(protocolDto.Key) || protocolDto.Key == this.Id))
+                {
+                    protocolDto.CurrentNumberOfReplicas += 1;
+                    Put(Successor.Id, protocolDto.Value, Successor, protocolDto.NodeDto,
+                        protocolDto.CurrentNumberOfReplicas, protocolDto.KeyToAdd);
+                }
+                else
+                {
+                    _dhtActions.ForwardRequest(Successor, protocolDto);
+                }
             }
         }
 
 
-        private void GetHandler(object? sender, EventArgs e)
+        private void GetHandler(object? sender, System.EventArgs e)
         {
             GetHandlerEventArgs eventArgs = (GetHandlerEventArgs)e;
             var protocolDto = eventArgs.DhtProtocolCommandDto;
@@ -105,71 +152,17 @@ namespace DHT
             }
         }
 
-
-        private void StabilizeReplicasJoinHandler(object? sender, EventArgs e)
-        {
-            StabilizeReplicasJoinEventArgs stabilizeReplicasJoinEventArgs = (StabilizeReplicasJoinEventArgs)e;
-
-            IEnumerable<KeyValuePair<uint, string>> dictionary = new List<KeyValuePair<uint, string>>();
-
-            dictionary = Dictionary.Where(x => x.Key <= stabilizeReplicasJoinEventArgs.Key).ToArray();
-
-            // TODO: remove after response
-            // foreach (var keyValuePair in dictionary)
-            // {
-            //     if (Dictionary.ContainsKey(keyValuePair.Key))
-            //     {
-            //         Dictionary.Remove(keyValuePair.Key);
-            //     }
-            // }
-
-            _dhtActions.StabilizeReplicasJoinResponse(stabilizeReplicasJoinEventArgs.DestinationNode,
-                stabilizeReplicasJoinEventArgs.Key, dictionary);
-        }
-
-        private void StabilizeReplicasJoinResponseHandler(object? sender, EventArgs e)
-        {
-            StabilizeReplicasJoinResponseEventArgs stabilizeReplicasJoinResponseEventArgs =
-                (StabilizeReplicasJoinResponseEventArgs)e;
-
-            foreach (var keyValuePair in stabilizeReplicasJoinResponseEventArgs.Dictionary)
-            {
-                Console.WriteLine($"Key: {keyValuePair.Key} Value {keyValuePair.Value} added to {Id}");
-                if (!Dictionary.ContainsKey(keyValuePair.Key))
-                {
-                    Dictionary[keyValuePair.Key] = keyValuePair.Value;
-                }
-            }
-        }
-
-        private void StabilizeReplicasLeaveHandler(object? sender, EventArgs e)
-        {
-            StabilizeReplicasLeaveEventArgs stabilizeReplicasLeaveEventArgs = (StabilizeReplicasLeaveEventArgs)e;
-
-            foreach (var keyValuePair in stabilizeReplicasLeaveEventArgs.Dictionary)
-            {
-                Dictionary[keyValuePair.Key] = keyValuePair.Value;
-            }
-
-            if (stabilizeReplicasLeaveEventArgs.CurrentNumberOfReplicas < 1)
-            {
-                _dhtActions.StabilizeReplicasLeave(Successor, stabilizeReplicasLeaveEventArgs.DestinationNode, Id,
-                    stabilizeReplicasLeaveEventArgs.Dictionary.ToArray(),
-                    stabilizeReplicasLeaveEventArgs.CurrentNumberOfReplicas);
-            }
-        }
-
-
-        private void FoundSuccessorHandler(object? sender, EventArgs e)
+        private void FoundSuccessorHandler(object? sender, System.EventArgs e)
         {
             //TODO: create own handler for fix fingers
             FoundSuccessorEventArgs eventArgs = (FoundSuccessorEventArgs)e;
-            // Console.WriteLine($"this is my successor found key {eventArgs.Key}");
+            if(eventArgs == null) throw new Exception("found successor event is null");
+            Console.WriteLine($"this is successor id {eventArgs?.SuccessorNode?.Id} found for key {eventArgs?.Key}");
 
-            if (eventArgs.Key == Id) //Found successor for this node
+            if (eventArgs?.Key == Id) //Found successor for this node
             {
                 Successor = eventArgs.SuccessorNode;
-                // Console.WriteLine("Successor found:" + Successor?.Id);
+                Console.WriteLine("Successor found:" + Successor?.Id);
                 _dhtActions.Notify(Successor, Id, this);
                 _fingerTable.FingerTableEntries[0].Successor = eventArgs.SuccessorNode;
                 _fingerTable.AddEntries(eventArgs.SuccessorNode, eventArgs.Key);
@@ -202,7 +195,7 @@ namespace DHT
             this.Predecessor = null;
         }
 
-        private void FindSuccessorHandler(object? sender, EventArgs e)
+        private void FindSuccessorHandler(object? sender, System.EventArgs e)
         {
             FindSuccessorEventArgs eventArgs = (FindSuccessorEventArgs)e;
             FindSuccessor(eventArgs.Key, Successor, eventArgs.DestinationNode);
@@ -218,7 +211,7 @@ namespace DHT
                 (self.Id > possiblePredecessor.Id && currentPredecessor.Id < possiblePredecessor.Id);
         }
 
-        private void NotifyHandler(object? sender, EventArgs e)
+        private void NotifyHandler(object? sender, System.EventArgs e)
         {
             NotifyEventArgs eventArgs = (NotifyEventArgs)e;
             Console.WriteLine($"Node thinks it might be our {Id} predecessor {eventArgs.NodeDto.Id}");
@@ -261,7 +254,7 @@ namespace DHT
         public void Put(uint key, string value)
         {
             // var closest = _fingerTable.ClosestPrecedingNode(key);
-            Put(key,value,Successor,this,0);
+            Put(key, value, Successor, this, 0, key);
         }
 
         private bool IsIdInBetween(uint id, uint left, uint right)
@@ -282,6 +275,7 @@ namespace DHT
         /// <param name="node"></param>
         public void FindSuccessor(uint id, NodeDto connectingNode, NodeDto destinationNode)
         {
+            Console.WriteLine($"Searching id {id} for {destinationNode} currently looking in {connectingNode}");
             // Am I the Successor? 
             if (IAmTheSuccessorOf(id))
             {
@@ -292,7 +286,7 @@ namespace DHT
             else if (IsMySuccessorTheSuccessorOf(id))
             {
                 //send found request back
-                _dhtActions.FoundSuccessor(destinationNode, id, connectingNode);
+                _dhtActions.FoundSuccessor(destinationNode, id, Successor);
             }
             else
             {
@@ -316,16 +310,18 @@ namespace DHT
         }
 
         private void Put(uint key, string value, NodeDto connectingNode, NodeDto destinationNode,
-            int currentNumberOfReplicas)
+            int currentNumberOfReplicas, uint keyToAdd)
         {
-            
             // If currentNumberOfReplicas < 2, store value at Node (connectingNode)
-            if (currentNumberOfReplicas < _options.Value.Replicas) // TODO: add to config file
+            if (currentNumberOfReplicas <= _options.Value.Replicas + 1)
             {
                 // Add value to dictionary
-                Dictionary[key] = value;
+                if (currentNumberOfReplicas > 0)
+                {
+                    Hashtable[keyToAdd] = value;
+                }
 
-                _dhtActions.Put(connectingNode, destinationNode, key, value, currentNumberOfReplicas);
+                _dhtActions.Put(connectingNode, destinationNode, key, value, currentNumberOfReplicas, keyToAdd);
                 Console.WriteLine(this);
             }
             // else forward to destinationNode
@@ -338,22 +334,32 @@ namespace DHT
         private string GetValueByKey(uint id)
         {
             string value = null;
-            Dictionary.TryGetValue(id, out value);
-                // value not found
+            Hashtable.TryGetValue(id, out value);
+            // value not found
             return value;
         }
 
         public void Start()
         {
-            _scheduler.Run();
             _dhtActions.Start();
+            _scheduler.Run();
         }
 
+        public string DictionaryString()
+        {
+            string dictionaryString = null;
+            foreach (var pair in Hashtable)
+            {
+                dictionaryString += $"Key: {pair.Key}, Value: {pair.Value}\n";
+            }
+
+            return dictionaryString;
+        }
 
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            foreach (var keyValuePair in Dictionary)
+            foreach (var keyValuePair in Hashtable)
             {
                 sb.Append("[");
                 sb.Append($"(Key:{keyValuePair.Key} \t Value:{keyValuePair.Value})\n");
@@ -361,7 +367,8 @@ namespace DHT
             }
 
             return
-                $" SuccessorId {_successor?.Id} || MyId {Id} || PredecessorId {_predecessor?.Id} \n MY VALUES ARE: \n{sb.ToString()}";
+                $" SuccessorId {_successor?.Id} || MyId {Id} || PredecessorId {_predecessor?.Id} \n MY VALUES ARE: \n{sb.ToString()} \n " +
+                $"Dictionary: {DictionaryString()}";
             // // return base.ToString();
             // return base.ToString() + " FingerTable: \n " + _fingerTable.ToString();
         }
