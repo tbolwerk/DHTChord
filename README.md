@@ -1,10 +1,23 @@
 # DistributedHashtableChord
-Distributed hash table implementation with chord as overlay network bases on the wikipedia about chord
+Distributed hash table implementation with chord as overlay network bases on the wikipedia about chord.
+https://en.wikipedia.org/wiki/Chord_(peer-to-peer)
+
+Make sure port 9000 --> 9007 are available before running, or change it in appsettings.
+
+# RUN Without docker
+## prereqesite
+* Use a bash kind of terminal
 
 Open terminal
 > cd DHT
 >
-> cd ./run.sh
+> sudo ./run.sh
+
+# RUN with docker
+## prereqesite
+* Docker
+* Docker compose
+> docker-compose up --build
 
 Open new terminal
 > dotnet run 6 localhost 9006 0 localhost 9000
