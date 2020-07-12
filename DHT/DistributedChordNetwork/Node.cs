@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using DHT.DistributedChordNetwork.EventArgs;
 using DHT.DistributedChordNetwork.Networking;
 using Microsoft.Extensions.Options;
-using RelayService.DataAccessService.RoutingDataAccess.DHT.DistributedChordNetwork;
 
 namespace DHT.DistributedChordNetwork
 {
@@ -76,7 +76,7 @@ namespace DHT.DistributedChordNetwork
 
         private void RemoveDataFromExpiredReplicasResponseHandler(object? sender, System.EventArgs e)
         {
-            GetHandlerEventArgs eventArgs = (GetHandlerEventArgs)e;
+            GetHandlerEventArgs eventArgs = (GetHandlerEventArgs) e;
 
             if (Hashtable.ContainsKey(eventArgs.DhtProtocolCommandDto.Key))
             {
@@ -86,7 +86,7 @@ namespace DHT.DistributedChordNetwork
 
         private void RemoveDataFromExpiredReplicasHandler(object? sender, System.EventArgs e)
         {
-            GetHandlerEventArgs eventArgs = (GetHandlerEventArgs)e;
+            GetHandlerEventArgs eventArgs = (GetHandlerEventArgs) e;
             var protocolDto = eventArgs.DhtProtocolCommandDto;
 
 
@@ -119,7 +119,7 @@ namespace DHT.DistributedChordNetwork
 
         private void PutHandler(object? sender, System.EventArgs e)
         {
-            PutHandlerEventArgs eventArgs = (PutHandlerEventArgs)e;
+            PutHandlerEventArgs eventArgs = (PutHandlerEventArgs) e;
             var protocolDto = eventArgs.ProtocolCommandDto;
             if (Successor != null)
             {
@@ -139,7 +139,7 @@ namespace DHT.DistributedChordNetwork
 
         private void GetHandler(object? sender, System.EventArgs e)
         {
-            GetHandlerEventArgs eventArgs = (GetHandlerEventArgs)e;
+            GetHandlerEventArgs eventArgs = (GetHandlerEventArgs) e;
             var protocolDto = eventArgs.DhtProtocolCommandDto;
             string value = GetValueByKey(protocolDto.Key);
             if (IAmTheSuccessorOf(protocolDto.Key))
@@ -155,8 +155,8 @@ namespace DHT.DistributedChordNetwork
         private void FoundSuccessorHandler(object? sender, System.EventArgs e)
         {
             //TODO: create own handler for fix fingers
-            FoundSuccessorEventArgs eventArgs = (FoundSuccessorEventArgs)e;
-            if(eventArgs == null) throw new Exception("found successor event is null");
+            FoundSuccessorEventArgs eventArgs = (FoundSuccessorEventArgs) e;
+            if (eventArgs == null) throw new Exception("found successor event is null");
             Console.WriteLine($"this is successor id {eventArgs?.SuccessorNode?.Id} found for key {eventArgs?.Key}");
 
             if (eventArgs?.Key == Id) //Found successor for this node
@@ -197,7 +197,7 @@ namespace DHT.DistributedChordNetwork
 
         private void FindSuccessorHandler(object? sender, System.EventArgs e)
         {
-            FindSuccessorEventArgs eventArgs = (FindSuccessorEventArgs)e;
+            FindSuccessorEventArgs eventArgs = (FindSuccessorEventArgs) e;
             FindSuccessor(eventArgs.Key, Successor, eventArgs.DestinationNode);
         }
 
@@ -213,7 +213,7 @@ namespace DHT.DistributedChordNetwork
 
         private void NotifyHandler(object? sender, System.EventArgs e)
         {
-            NotifyEventArgs eventArgs = (NotifyEventArgs)e;
+            NotifyEventArgs eventArgs = (NotifyEventArgs) e;
             Console.WriteLine($"Node thinks it might be our {Id} predecessor {eventArgs.NodeDto.Id}");
             Console.WriteLine(this);
             if (IsThisNodeMyPredecessor(eventArgs.NodeDto, Predecessor, this) && eventArgs.NodeDto != Successor &&
@@ -235,7 +235,10 @@ namespace DHT.DistributedChordNetwork
             }
         }
 
-        public bool IsBootStrapNode { get => BootStrapNode.Id.Equals(Id); }
+        public bool IsBootStrapNode
+        {
+            get => BootStrapNode.Id.Equals(Id);
+        }
 
 
         public void Join(NodeDto node)
@@ -341,7 +344,7 @@ namespace DHT.DistributedChordNetwork
 
         public void Start()
         {
-            _dhtActions.Start();
+            Task.Run(() => _dhtActions.Start());
             _scheduler.Run();
         }
 

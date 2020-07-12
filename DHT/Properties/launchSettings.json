@@ -2,11 +2,11 @@
   "profiles": {
     "DHT": {
       "commandName": "Project",
-      "commandLineArgs": "127.0.0.1 9001 127.0.0.1 9000"
+      "commandLineArgs": "127.0.0.1 9001"
     },
     "DHT2": {
       "commandName": "Project",
-      "commandLineArgs": "127.0.0.1 9000",
+      "commandLineArgs": "127.0.0.1 9000"
    
     }
   }

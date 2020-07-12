@@ -16,12 +16,10 @@ namespace DHT.DistributedChordNetwork.Networking
         private readonly INetworkAdapter _networkAdapter;
         public string? ConnectionUrl { get; set; }
 
-        public List<RequestSocket> _clients;
 
         public DhtRelayNetMqAdapter(INetworkAdapter networkAdapter)
         {
             _networkAdapter = networkAdapter;
-            _clients = new List<RequestSocket>();
         }
         
         public void SendRpcCommand(NodeDto connectingNode, DhtProtocolCommandDto protocolCommandDto)
@@ -30,19 +28,22 @@ namespace DHT.DistributedChordNetwork.Networking
             Client(connectingNode,protocolCommandDto);
         }
 
+        public Queue<Action> RpcCalls => _networkAdapter.RpcCalls;
+
 
         public void Client(NodeDto connectingNode,
             DhtProtocolCommandDto protocolCommandDto)
         {
-            var address = $"tcp://{connectingNode.IpAddress}:{connectingNode.Port}";
+            var cleanAddress = connectingNode.IpAddress.Replace("127.0.0.1", "localhost");   
+            var address = $"tcp://{cleanAddress}:{connectingNode.Port}";
             RequestSocket client = null;
-            client = _clients.FirstOrDefault(socket => socket.Options.LastEndpoint.Equals(address));
-            if (client == null)
-            {
-                client = new RequestSocket();
-                _clients.Add(client);
-            }
-
+            // client = _clients.FirstOrDefault(socket => socket.Options.LastEndpoint.Equals(address));
+            // if (client == null)
+            // {
+            //     client = new RequestSocket();
+            //     _clients.Add(client);
+            // }
+            client = new RequestSocket();
             try
             {
                 client.Connect(address);
@@ -63,9 +64,9 @@ namespace DHT.DistributedChordNetwork.Networking
             }
             finally
             {
-                _clients.Remove(client);
-                client.Disconnect(address);
-                client.Dispose();
+                // _clients.Remove(client);
+                // client.Disconnect(address);
+                // client.Dispose();
             }
         }
 
@@ -75,9 +76,11 @@ namespace DHT.DistributedChordNetwork.Networking
         public Task<DhtProtocolCommandDto> ServerAsync()
         {
             using var server = new ResponseSocket();
-            server.Bind($"tcp://{ConnectionUrl}");
+            var url =ConnectionUrl.Replace("127.0.0.1", "*");
+            server.Bind($"tcp://{url}");
             while (true)
             {
+                Task.Delay(TimeSpan.FromSeconds(1));
                 _networkAdapter.Send();
                 if (server.TryReceiveFrameString(out string responseMessage))
                 {

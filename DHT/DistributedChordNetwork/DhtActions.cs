@@ -149,7 +149,9 @@ namespace DHT.DistributedChordNetwork
 
         private void EnqueueRpcCall(NodeDto connectingNode, DhtProtocolCommandDto protocolCommandDto)
         {
-            _relayServiceAdapter.SendRpcCommand(connectingNode, protocolCommandDto);
+            // _relayServiceAdapter.SendRpcCommand(connectingNode, protocolCommandDto);
+            _relayServiceAdapter.RpcCalls.Enqueue(() =>
+                _relayServiceAdapter.SendRpcCommand(connectingNode, protocolCommandDto));
         }
     }
 }
