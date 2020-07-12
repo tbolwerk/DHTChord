@@ -3,9 +3,18 @@ services:
   node1:
     build: DHT
     entrypoint: ["dotnet", "DHT.dll","${PUBLIC_IP}","9000","node1"]
+    ports:
+      - "9000:9000"
+    network_mode: "host"
   node2:
     build: DHT
     entrypoint: ["dotnet", "DHT.dll","${PUBLIC_IP}","9001","node2"]
+    ports:
+      - "9001:9001"
+    network_mode: "host"
   node3:
     build: DHT
     entrypoint: ["dotnet", "DHT.dll","${PUBLIC_IP}","9002","node3"]
+    ports:
+      - "9002:9002"
+    network_mode: "host"
