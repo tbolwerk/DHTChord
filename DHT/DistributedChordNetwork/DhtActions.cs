@@ -1,3 +1,4 @@
+using System;
 using DHT.DistributedChordNetwork.Networking;
 
 namespace DHT.DistributedChordNetwork
@@ -24,6 +25,7 @@ namespace DHT.DistributedChordNetwork
             {
                 Command = DhtCommand.FIND_SUCCESSOR, Key = key, NodeDto = destinationNode
             };
+            Console.WriteLine(protocolCommandDto);
             EnqueueRpcCall(connectingNode, protocolCommandDto);
         }
 
@@ -149,9 +151,9 @@ namespace DHT.DistributedChordNetwork
 
         private void EnqueueRpcCall(NodeDto connectingNode, DhtProtocolCommandDto protocolCommandDto)
         {
-            // _relayServiceAdapter.SendRpcCommand(connectingNode, protocolCommandDto);
-            _relayServiceAdapter.RpcCalls.Enqueue(() =>
-                _relayServiceAdapter.SendRpcCommand(connectingNode, protocolCommandDto));
-        }
+            _relayServiceAdapter.SendRpcCommand(connectingNode, protocolCommandDto);
+            // _relayServiceAdapter.RpcCalls.Enqueue(() =>
+                // _relayServiceAdapter.SendRpcCommand(connectingNode, protocolCommandDto));
+        } 
     }
 }

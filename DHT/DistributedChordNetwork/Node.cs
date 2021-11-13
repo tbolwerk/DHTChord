@@ -69,6 +69,8 @@ namespace DHT.DistributedChordNetwork
             checkPredecessor.Node = this;
             stabilize.Node = this;
             fingerTable.Node = this;
+            
+            // Create();
         }
 
         public event EventHandler GetResponseEventHandler;

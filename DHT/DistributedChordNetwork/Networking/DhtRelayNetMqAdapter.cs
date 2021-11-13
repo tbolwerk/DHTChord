@@ -21,11 +21,11 @@ namespace DHT.DistributedChordNetwork.Networking
         {
             _networkAdapter = networkAdapter;
         }
-        
+
         public void SendRpcCommand(NodeDto connectingNode, DhtProtocolCommandDto protocolCommandDto)
         {
             if (connectingNode == null) return;
-            Client(connectingNode,protocolCommandDto);
+            Client(connectingNode, protocolCommandDto);
         }
 
         public Queue<Action> RpcCalls => _networkAdapter.RpcCalls;
@@ -34,7 +34,7 @@ namespace DHT.DistributedChordNetwork.Networking
         public void Client(NodeDto connectingNode,
             DhtProtocolCommandDto protocolCommandDto)
         {
-            var cleanAddress = connectingNode.IpAddress.Replace("127.0.0.1", "localhost");   
+            var cleanAddress = connectingNode.IpAddress.Replace("127.0.0.1", "localhost");
             var address = $"tcp://{cleanAddress}:{connectingNode.Port}";
             RequestSocket client = null;
             // client = _clients.FirstOrDefault(socket => socket.Options.LastEndpoint.Equals(address));
@@ -52,14 +52,14 @@ namespace DHT.DistributedChordNetwork.Networking
             }
             catch (NetMQException e)
             {
-                Log.Logger.Error(e,e.Message);
+                Log.Logger.Error(e, e.Message);
                 Console.WriteLine(e.ErrorCode);
                 Console.WriteLine(e.StackTrace);
                 Console.WriteLine(e.Message);
             }
             catch (Exception exception)
             {
-                Log.Logger.Error(exception,exception.Message);
+                Log.Logger.Error(exception, exception.Message);
                 Console.WriteLine(exception.Message);
             }
             finally
@@ -71,31 +71,23 @@ namespace DHT.DistributedChordNetwork.Networking
         }
 
 
-    
-
-        public Task<DhtProtocolCommandDto> ServerAsync()
+        public void ServerAsync()
         {
             using var server = new ResponseSocket();
-            var url =ConnectionUrl.Replace("127.0.0.1", "*");
+            var url = ConnectionUrl.Replace("127.0.0.1", "*");
             server.Bind($"tcp://{url}");
-            while (true)
+
+            while (server.TryReceiveFrameString(timeout: TimeSpan.FromMinutes(5), out string responseMessage))
             {
-                Task.Delay(TimeSpan.FromSeconds(1));
-                _networkAdapter.Send();
-                if (server.TryReceiveFrameString(out string responseMessage))
-                {
-                    _networkAdapter.Receive(responseMessage);
-                    server.TrySignalOK();
-                }
+                _networkAdapter.Receive(responseMessage);
+                server.TrySignalOK();
             }
         }
-
-
         public void Run()
         {
             NetMQConfig.MaxSockets = 1024;
             using NetMQRuntime runtime = new NetMQRuntime();
-            runtime.Run(ServerAsync());
+            runtime.Run(Task.Run(ServerAsync));
         }
     }
 }

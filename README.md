@@ -32,20 +32,20 @@ Open up a terminal for our bootstrap node.
 
 ```
 cd DHT
-dotnet run localhost 9000
+dotnet run 127.0.0.1 9000
 ```
 then start up our second node
 
 ```
 cd DHT
-dotnet run localhost 9001 0 localhost 9000
+dotnet run 127.0.0.1 9001 0 127.0.0.1 9000
 ```
 
 and even a third
 
 ```
 cd DHT
-dotnet run localhost 9002 0 localhost 9000
+dotnet run 127.0.0.1 9002 0 127.0.0.1 9000
 ```
 try the following commands by typing:
 
@@ -65,7 +65,7 @@ In order to test our value is getting distrubted properly use the follwing comma
 You should get your value, now try this with a new node starting and close the node new terminal.
 
 ```
-dotnet run localhost 9003 0 localhost 9000
+dotnet run 127.0.0.1 9003 0 127.0.0.1 9000
 /get
 uniqueKey
 ```
