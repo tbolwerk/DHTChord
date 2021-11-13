@@ -4,6 +4,7 @@ using System.Timers;
 using DHT.DistributedChordNetwork.Networking;
 using Microsoft.Extensions.Options;
 using RelayService.DataAccessService.RoutingDataAccess.DHT.DistributedChordNetwork;
+using Serilog;
 
 namespace DHT.DistributedChordNetwork
 {
@@ -29,7 +30,7 @@ namespace DHT.DistributedChordNetwork
             for (int i = 1; i < FingerTableEntries.Length; i++)
             {
                 var next = FingerTableEntries[i].Start;
-                Console.WriteLine("fix fingers called next = " + next);
+                Log.Debug("fix fingers called next = " + next);
                 Node?.FindSuccessor(next, FingerTableEntries[i - 1].Successor, Node);
             }
         }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Timers;
 using Microsoft.Extensions.Options;
+using Serilog;
 
 namespace DHT.DistributedChordNetwork
 {
@@ -74,7 +75,7 @@ namespace DHT.DistributedChordNetwork
 
         protected virtual void OnTimeOutHandler(object origin)
         {
-            Console.WriteLine("Timeout handler");
+            Log.Debug("Timeout handler");
             _retry = 0;
             TimeOutEventArgs eventArgs = new TimeOutEventArgs {Origin = origin};
             TimeOutHandler?.Invoke(this, eventArgs);
@@ -82,7 +83,7 @@ namespace DHT.DistributedChordNetwork
 
         protected virtual void OnRetryHandler(object origin)
         {
-            Console.WriteLine("Retry handler");
+            Log.Debug("Retry handler");
             TimeOutEventArgs eventArgs = new TimeOutEventArgs {Origin = origin};
             RetryHandler?.Invoke(this, eventArgs);
         }

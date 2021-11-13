@@ -17,5 +17,6 @@ namespace DHT
             [JsonProperty("keySpace")] public uint KeySpace { get; set; }
             [JsonProperty("bootstrapUrls")] public List<string?> BootstrapUrls { get; set; }
             [JsonProperty("replicas")] public int Replicas { get; set; }
+            
     }
 }

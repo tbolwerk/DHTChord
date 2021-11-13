@@ -53,14 +53,14 @@ namespace DHT.DistributedChordNetwork.Networking
             catch (NetMQException e)
             {
                 Log.Logger.Error(e, e.Message);
-                Console.WriteLine(e.ErrorCode);
-                Console.WriteLine(e.StackTrace);
-                Console.WriteLine(e.Message);
+                Log.Debug(e.ErrorCode.ToString());
+                Log.Debug(e.StackTrace);
+                Log.Debug(e.Message);
             }
             catch (Exception exception)
             {
                 Log.Logger.Error(exception, exception.Message);
-                Console.WriteLine(exception.Message);
+                Log.Debug(exception.Message);
             }
             finally
             {

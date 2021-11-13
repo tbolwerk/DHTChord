@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using DHT.DistributedChordNetwork.EventArgs;
 using DHT.DistributedChordNetwork.Networking;
 using Microsoft.Extensions.Options;
+using Serilog;
 
 namespace DHT.DistributedChordNetwork
 {
@@ -69,8 +70,6 @@ namespace DHT.DistributedChordNetwork
             checkPredecessor.Node = this;
             stabilize.Node = this;
             fingerTable.Node = this;
-            
-            // Create();
         }
 
         public event EventHandler GetResponseEventHandler;
@@ -159,12 +158,12 @@ namespace DHT.DistributedChordNetwork
             //TODO: create own handler for fix fingers
             FoundSuccessorEventArgs eventArgs = (FoundSuccessorEventArgs) e;
             if (eventArgs == null) throw new Exception("found successor event is null");
-            Console.WriteLine($"this is successor id {eventArgs?.SuccessorNode?.Id} found for key {eventArgs?.Key}");
+            Log.Debug($"this is successor id {eventArgs?.SuccessorNode?.Id} found for key {eventArgs?.Key}");
 
             if (eventArgs?.Key == Id) //Found successor for this node
             {
                 Successor = eventArgs.SuccessorNode;
-                Console.WriteLine("Successor found:" + Successor?.Id);
+                Log.Debug("Successor found:" + Successor?.Id);
                 _dhtActions.Notify(Successor, Id, this);
                 _fingerTable.FingerTableEntries[0].Successor = eventArgs.SuccessorNode;
                 _fingerTable.AddEntries(eventArgs.SuccessorNode, eventArgs.Key);
@@ -216,13 +215,13 @@ namespace DHT.DistributedChordNetwork
         private void NotifyHandler(object? sender, System.EventArgs e)
         {
             NotifyEventArgs eventArgs = (NotifyEventArgs) e;
-            Console.WriteLine($"Node thinks it might be our {Id} predecessor {eventArgs.NodeDto.Id}");
-            Console.WriteLine(this);
+            Log.Debug($"Node thinks it might be our {Id} predecessor {eventArgs.NodeDto.Id}");
+            Log.Debug(this.ToString());
             if (IsThisNodeMyPredecessor(eventArgs.NodeDto, Predecessor, this) && eventArgs.NodeDto != Successor &&
                 this.Id != eventArgs.NodeDto.Id) // Not exactly sure if this works
             {
                 Predecessor = eventArgs.NodeDto;
-                Console.WriteLine("And it is " + Predecessor.Id);
+                Log.Debug("And it is " + Predecessor.Id);
             }
 
             // This can only happen with the bootstrap node
@@ -231,7 +230,7 @@ namespace DHT.DistributedChordNetwork
                 Successor = eventArgs.NodeDto;
                 Predecessor = eventArgs.NodeDto;
                 _dhtActions.Notify(Successor, Id, this);
-                Console.WriteLine("I am a bootstrap node " + Id + "  \n My successor node is " + Successor.Id +
+                Log.Debug("I am a bootstrap node " + Id + "  \n My successor node is " + Successor.Id +
                                   " \n and my predecessor node is " + Predecessor.Id);
                 BootStrapNode = this;
             }
@@ -280,7 +279,7 @@ namespace DHT.DistributedChordNetwork
         /// <param name="node"></param>
         public void FindSuccessor(uint id, NodeDto connectingNode, NodeDto destinationNode)
         {
-            Console.WriteLine($"Searching id {id} for {destinationNode} currently looking in {connectingNode}");
+            Log.Debug($"Searching id {id} for {destinationNode} currently looking in {connectingNode}");
             // Am I the Successor? 
             if (IAmTheSuccessorOf(id))
             {
@@ -327,7 +326,7 @@ namespace DHT.DistributedChordNetwork
                 }
 
                 _dhtActions.Put(connectingNode, destinationNode, key, value, currentNumberOfReplicas, keyToAdd);
-                Console.WriteLine(this);
+                Log.Debug(this.ToString());
             }
             // else forward to destinationNode
             else

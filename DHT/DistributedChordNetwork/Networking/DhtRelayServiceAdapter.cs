@@ -61,7 +61,7 @@
 //             }
 //             catch (Exception e)
 //             {
-//                 Console.WriteLine(e.Message);
+//                 Log.Debug(e.Message);
 //             }
 //         }
 //
@@ -86,7 +86,7 @@
 //             catch (Exception e)
 //             {
 //                 Log.Logger.Error(e, e.Message);
-//                 Console.WriteLine(e.Message);
+//                 Log.Debug(e.Message);
 //             }
 //         }
 //

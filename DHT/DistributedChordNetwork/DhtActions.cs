@@ -1,5 +1,6 @@
 using System;
 using DHT.DistributedChordNetwork.Networking;
+using Serilog;
 
 namespace DHT.DistributedChordNetwork
 {
@@ -25,7 +26,7 @@ namespace DHT.DistributedChordNetwork
             {
                 Command = DhtCommand.FIND_SUCCESSOR, Key = key, NodeDto = destinationNode
             };
-            Console.WriteLine(protocolCommandDto);
+            Log.Debug(protocolCommandDto.ToString());
             EnqueueRpcCall(connectingNode, protocolCommandDto);
         }
 

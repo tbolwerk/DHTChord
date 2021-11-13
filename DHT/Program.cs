@@ -72,7 +72,7 @@ namespace DHT
                         {
                             Console.WriteLine("Put specify key:");
                             var key = Console.ReadLine();     
-                            Console.WriteLine($"Key: {key} and Value:{dht.Get(key)}");
+                            Console.WriteLine($"I found: {dht.Get(key)} for key:{key}");
                         }
 
                         if (input.Split("/")[1].Contains("put"))
@@ -82,7 +82,7 @@ namespace DHT
                             Console.WriteLine("Put specify value:");
                             var value = Console.ReadLine();
                             dht.Put(key,value);
-                            Console.WriteLine($"Key: {key} and Value:{input}");
+                            Console.WriteLine($"+ Key: {key} and Value:{value}");
                         }
                         else
                         {

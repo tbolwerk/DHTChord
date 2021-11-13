@@ -40,7 +40,7 @@ namespace DHT.DistributedChordNetwork
         private void StabilizeHandler(object? sender, System.EventArgs e)
         {
             StabilizeEventArgs eventArgs = (StabilizeEventArgs)e;
-            // Console.WriteLine("Stabilize handler is called by " + eventArgs.DestinationNode);
+            // Log.Debug("Stabilize handler is called by " + eventArgs.DestinationNode);
 
             var stabilizingNode = eventArgs.DestinationNode;
             if (Node.Predecessor == null) Node.Predecessor = stabilizingNode;
@@ -51,9 +51,9 @@ namespace DHT.DistributedChordNetwork
                 Node.Predecessor = stabilizingNode;
             }
 
-            // Console.WriteLine("My predecessor is : " + Node.Predecessor);
+            // Log.Debug("My predecessor is : " + Node.Predecessor);
             _dhtActions.StabilizeResponse(eventArgs.DestinationNode, Node.Predecessor.Id, Node.Predecessor);
-            // Console.WriteLine("My predecessor is send to : " + eventArgs.DestinationNode);
+            // Log.Debug("My predecessor is send to : " + eventArgs.DestinationNode);
         }
 
         public void Stabilize()
@@ -70,12 +70,12 @@ namespace DHT.DistributedChordNetwork
 
             _dhtActions.Stabilize(Node.Successor, Node.Id, Node);
             _timeOutScheduler.StartTimer(OriginSuccessor);
-            // Console.WriteLine($"Stabilize {Node}");
+            // Log.Debug($"Stabilize {Node}");
         }
 
         private void OnTimeOutStabilizeHandler()
         {
-            // Console.WriteLine($"Stabilize timeout {Node}");
+            // Log.Debug($"Stabilize timeout {Node}");
             NodeDto nextClosestSuccessor = null;
             //TODO: fix connecting node, should be closest successor node from finger table!
             Node.Successor = Node.BootStrapNode;
@@ -107,19 +107,19 @@ namespace DHT.DistributedChordNetwork
                 }
             }
 
-            // Console.WriteLine($"Stabilize timeout successor is {Node.Successor}");
+            // Log.Debug($"Stabilize timeout successor is {Node.Successor}");
             _dhtActions.Notify(Node.Successor, Node.Id, Node);
         }
 
         private void StabilizeResponseHandler(object? sender, System.EventArgs e)
         {
-            // Console.WriteLine("Stabilize response handler " + Node);
+            // Log.Debug("Stabilize response handler " + Node);
             StabilizeResponseEventArgs eventArgs = (StabilizeResponseEventArgs)e;
             var predecessorOfSuccessor = eventArgs.PredecessorOfSuccessor;
             _timeOutScheduler.StopTimer(OriginSuccessor);
             if (predecessorOfSuccessor.Id != Node.Id)
             {
-                // Console.WriteLine("predecessorOfSuccessor =  " + predecessorOfSuccessor);
+                // Log.Debug("predecessorOfSuccessor =  " + predecessorOfSuccessor);
                 Node.Successor = predecessorOfSuccessor;
                 _dhtActions.Notify(Node.Successor, Node.Id, Node);
             }

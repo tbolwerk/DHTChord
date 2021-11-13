@@ -3,6 +3,7 @@ using System.Timers;
 using DHT.DistributedChordNetwork.EventArgs;
 using DHT.DistributedChordNetwork.Networking;
 using Microsoft.Extensions.Options;
+using Serilog;
 
 namespace DHT.DistributedChordNetwork
 {
@@ -38,7 +39,7 @@ namespace DHT.DistributedChordNetwork
         {
             CheckPredecessorResponseEventArgs eventArgs = (CheckPredecessorResponseEventArgs)e;
             Node.Predecessor = eventArgs.Predecessor;
-            Console.WriteLine("Check predecessor response handler : " + Node);
+            Log.Debug("Check predecessor response handler : " + Node);
         }
 
         private void CheckPredecessorHandler(object? sender, System.EventArgs e)
@@ -57,13 +58,13 @@ namespace DHT.DistributedChordNetwork
             }
 
             _timeOutScheduler.StartTimer(OriginPredecessor);
-            Console.WriteLine("Im called CheckPredecessor");
+            Log.Debug("Im called CheckPredecessor");
             _dhtActions.CheckPredecessor(Node.Predecessor, Node.Id, Node);
         }
 
         private void TimeOutCheckPredecessorHandler()
         {
-            Console.WriteLine("No response from predecessor, so its dead we reset it to null");
+            Log.Debug("No response from predecessor, so its dead we reset it to null");
             Node.Predecessor = null;
         }
     }

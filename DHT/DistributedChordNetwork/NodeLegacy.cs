@@ -4,6 +4,7 @@ using DHT.DistributedChordNetwork.EventArgs;
 using DHT.DistributedChordNetwork.Networking;
 using Microsoft.Extensions.Options;
 using RelayService.DataAccessService.RoutingDataAccess.DHT.DistributedChordNetwork;
+using Serilog;
 
 namespace DHT.DistributedChordNetwork
 {
@@ -81,7 +82,7 @@ namespace DHT.DistributedChordNetwork
             for (int i = 1; i < _fingerTable.FingerTableEntries.Length; i++)
             {
                 var next = _fingerTable.FingerTableEntries[i].Start;
-                Console.WriteLine("fix fingers called next = " + next);
+                Log.Debug("fix fingers called next = " + next);
                 FindSuccessor(next, _fingerTable.FingerTableEntries[i - 1].Successor, this);
             }
         }
@@ -90,7 +91,7 @@ namespace DHT.DistributedChordNetwork
         {
             CheckPredecessorResponseEventArgs eventArgs = (CheckPredecessorResponseEventArgs)e;
             Predecessor = eventArgs.Predecessor;
-            Console.WriteLine("Check predecessor response handler : " + this);
+            Log.Debug("Check predecessor response handler : " + this);
         }
 
         private void CheckPredecessorHandler(object? sender, System.EventArgs e)
@@ -102,13 +103,13 @@ namespace DHT.DistributedChordNetwork
 
         private void StabilizeResponseHandler(object? sender, System.EventArgs e)
         {
-            Console.WriteLine("Stabilize response handler " + this);
+            Log.Debug("Stabilize response handler " + this);
             StabilizeResponseEventArgs eventArgs = (StabilizeResponseEventArgs)e;
             var predecessorOfSuccessor = eventArgs.PredecessorOfSuccessor;
             Successor = Successor;
             if (predecessorOfSuccessor.Id != this.Id)
             {
-                Console.WriteLine("predecessorOfSuccessor =  " + predecessorOfSuccessor);
+                Log.Debug("predecessorOfSuccessor =  " + predecessorOfSuccessor);
                 Successor = predecessorOfSuccessor;
                 _dhtActions.Notify(Successor, Id, this);
             }
@@ -117,7 +118,7 @@ namespace DHT.DistributedChordNetwork
         private void StabilizeHandler(object? sender, System.EventArgs e)
         {
             StabilizeEventArgs eventArgs = (StabilizeEventArgs)e;
-            Console.WriteLine("Stabilize handler is called by " + eventArgs.DestinationNode);
+            Log.Debug("Stabilize handler is called by " + eventArgs.DestinationNode);
 
             var stabilizingNode = eventArgs.DestinationNode;
             if (Predecessor == null) Predecessor = stabilizingNode;
@@ -128,9 +129,9 @@ namespace DHT.DistributedChordNetwork
                 Predecessor = stabilizingNode;
             }
 
-            Console.WriteLine("My predecessor is : " + Predecessor);
+            Log.Debug("My predecessor is : " + Predecessor);
             _dhtActions.StabilizeResponse(eventArgs.DestinationNode, Predecessor.Id, _predecessor);
-            Console.WriteLine("My predecessor is send to : " + eventArgs.DestinationNode);
+            Log.Debug("My predecessor is send to : " + eventArgs.DestinationNode);
         }
 
 
@@ -138,13 +139,13 @@ namespace DHT.DistributedChordNetwork
         {
             if (Predecessor == null) return;
             _timeOutScheduler.StartTimer(ORIGIN_PREDECESSOR);
-            Console.WriteLine("Im called CheckPredecessor");
+            Log.Debug("Im called CheckPredecessor");
             _dhtActions.CheckPredecessor(Predecessor, Id, this);
         }
 
         private void TimeOutCheckPredecessorHandler()
         {
-            Console.WriteLine("No response from predecessor, so its dead we reset it to null");
+            Log.Debug("No response from predecessor, so its dead we reset it to null");
             this.Predecessor = null;
         }
 
@@ -152,12 +153,12 @@ namespace DHT.DistributedChordNetwork
         {
             //TODO: create own handler for fix fingers
             FoundSuccessorEventArgs eventArgs = (FoundSuccessorEventArgs)e;
-            Console.WriteLine($"this is successor id {eventArgs?.SuccessorNode?.Id} found for key {eventArgs.Key}");
+            Log.Debug($"this is successor id {eventArgs?.SuccessorNode?.Id} found for key {eventArgs.Key}");
 
             if (eventArgs.Key == Id) //Found successor for this node
             {
                 Successor = eventArgs.SuccessorNode;
-                Console.WriteLine("Successor found:" + Successor?.Id);
+                Log.Debug("Successor found:" + Successor?.Id);
                 _dhtActions.Notify(Successor, Id, this);
                 _fingerTable.FingerTableEntries[0].Successor = eventArgs.SuccessorNode;
                 _fingerTable.AddEntries(eventArgs.SuccessorNode, eventArgs.Key);
@@ -208,13 +209,13 @@ namespace DHT.DistributedChordNetwork
         private void NotifyHandler(object? sender, System.EventArgs e)
         {
             NotifyEventArgs eventArgs = (NotifyEventArgs)e;
-            Console.WriteLine($"Node thinks it might be our {Id} predecessor {eventArgs.NodeDto.Id}");
-            Console.WriteLine(this);
+            Log.Debug($"Node thinks it might be our {Id} predecessor {eventArgs.NodeDto.Id}");
+            Log.Debug(this.ToString());
             if (IsThisNodeMyPredecessor(eventArgs.NodeDto, Predecessor, this) && eventArgs.NodeDto != Successor &&
                 this.Id != eventArgs.NodeDto.Id) // Not exactly sure if this works
             {
                 Predecessor = eventArgs.NodeDto;
-                Console.WriteLine("And it is " + Predecessor.Id);
+                Log.Debug("And it is " + Predecessor.Id);
             }
 
             // This can only happen with the bootstrap node
@@ -223,7 +224,7 @@ namespace DHT.DistributedChordNetwork
                 Successor = eventArgs.NodeDto;
                 Predecessor = eventArgs.NodeDto;
                 _dhtActions.Notify(Successor, Id, this);
-                Console.WriteLine("I am a bootstrap node " + Id + "  \n My successor node is " + Successor.Id +
+                Log.Debug("I am a bootstrap node " + Id + "  \n My successor node is " + Successor.Id +
                                   " \n and my predecessor node is " + Predecessor.Id);
                 BootStrapNode = this;
             }
@@ -245,12 +246,12 @@ namespace DHT.DistributedChordNetwork
 
             _dhtActions.Stabilize(Successor, Id, this);
             _timeOutScheduler.StartTimer(ORIGIN_SUCCESSOR);
-            Console.WriteLine($"Stabilize {this}");
+            Log.Debug($"Stabilize {this}");
         }
 
         private void OnTimeOutStabilizeHandler()
         {
-            Console.WriteLine($"Stabilize timeout {this}");
+            Log.Debug($"Stabilize timeout {this}");
             NodeDto nextClosestSuccessor = null;
             //TODO: fix connecting node, should be closest successor node from finger table!
             if (IsBootStrapNode)
@@ -278,7 +279,7 @@ namespace DHT.DistributedChordNetwork
                 }
             }
 
-            Console.WriteLine($"Stabilize timeout successor is {Successor}");
+            Log.Debug($"Stabilize timeout successor is {Successor}");
             _dhtActions.Notify(Successor, Id, this);
         }
 

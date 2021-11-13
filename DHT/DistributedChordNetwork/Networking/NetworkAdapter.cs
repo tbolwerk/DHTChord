@@ -34,15 +34,15 @@ namespace DHT.DistributedChordNetwork.Networking
             {
                 try
                 {
-                    Console.WriteLine(action.Target);
+                    Log.Debug(action.Target?.ToString());
                     action.Invoke();
                 }
                 catch (Exception e)
                 {
                     Log.Logger.Error(e, ToString());
-                    Console.WriteLine(e.Message);
-                    Console.WriteLine(e.StackTrace);
-                    Console.WriteLine(e.InnerException?.Message);
+                    Log.Debug(e.Message);
+                    Log.Debug(e.StackTrace);
+                    Log.Debug(e.InnerException?.Message);
                 }
             }
         }
@@ -50,7 +50,7 @@ namespace DHT.DistributedChordNetwork.Networking
         public void Receive(string responseMessage)
         {
             var dhtProtocolCommandDto = JsonSerializer.Deserialize<DhtProtocolCommandDto>(responseMessage);
-            Console.WriteLine(dhtProtocolCommandDto);
+            Log.Debug(dhtProtocolCommandDto.ToString());
             switch (dhtProtocolCommandDto.Command)
             {
                 case DhtCommand.NOTIFY:

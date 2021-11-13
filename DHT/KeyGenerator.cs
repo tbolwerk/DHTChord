@@ -4,6 +4,7 @@ using System.Numerics;
 using System.Text;
 using DHT.ConsistentHash;
 using Microsoft.Extensions.Options;
+using Serilog;
 
 namespace DHT
 {
@@ -32,7 +33,7 @@ namespace DHT
 
         public BigInteger Generate(string input)
         {
-            Console.WriteLine(input);
+            Log.Debug(input);
             if (bootstrappingNodes.Exists(x=>x.Equals(input)))
             {
                 return 0;

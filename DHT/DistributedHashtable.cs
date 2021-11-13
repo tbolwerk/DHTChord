@@ -38,7 +38,7 @@ namespace DHT
         public string Get(string key)
         {
             uint hashedKey = (uint)_generateKey.Generate(key);
-            Console.WriteLine(hashedKey);
+            Log.Debug(hashedKey.ToString());
             _node.Get(hashedKey);
             bool isCalled = false;
             string value = null;
@@ -55,7 +55,7 @@ namespace DHT
                 //Performance sleep
                 Thread.Sleep(100);
             }
-
+            
             return value;
         }
 
@@ -83,7 +83,7 @@ namespace DHT
             NodeDto self = new NodeDto {Id = (uint)selfKey, IpAddress = ip, Port = port};
 
             _node.Id = (uint)selfKey;
-            Console.WriteLine($"my key is {selfKey}");
+            Log.Debug($"my key is {selfKey}");
             Log.Logger.Information($"my key is {selfKey}");
             _node.IpAddress = self.IpAddress;
             _node.Port = self.Port;
