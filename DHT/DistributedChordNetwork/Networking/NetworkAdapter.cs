@@ -34,7 +34,6 @@ namespace DHT.DistributedChordNetwork.Networking
             {
                 try
                 {
-                    Log.Debug(action.Target?.ToString());
                     action.Invoke();
                 }
                 catch (Exception e)

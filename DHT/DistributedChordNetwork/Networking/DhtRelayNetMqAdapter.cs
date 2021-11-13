@@ -43,9 +43,10 @@ namespace DHT.DistributedChordNetwork.Networking
             //     client = new RequestSocket();
             //     _clients.Add(client);
             // }
-            client = new RequestSocket();
+            
             try
             {
+                client = new RequestSocket();
                 client.Connect(address);
                 client.TrySendFrame(protocolCommandDto.ToString());
                 client.TryReceiveSignal(out bool signal);
@@ -65,8 +66,8 @@ namespace DHT.DistributedChordNetwork.Networking
             finally
             {
                 // _clients.Remove(client);
-                // client.Disconnect(address);
-                // client.Dispose();
+                client.Disconnect(address);
+                client.Dispose();
             }
         }
 
