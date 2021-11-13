@@ -66,8 +66,8 @@ namespace DHT.DistributedChordNetwork.Networking
             finally
             {
                 // _clients.Remove(client);
-                client.Disconnect(address);
-                client.Dispose();
+                client?.Disconnect(address);
+                client?.Dispose();
             }
         }
 
