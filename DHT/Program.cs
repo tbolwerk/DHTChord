@@ -46,6 +46,7 @@ namespace DHT
                 .AddSingleton(typeof(INetworkAdapter), typeof(NetworkAdapter))
                 // .AddSingleton(typeof(IDhtRelayServiceAdapter), typeof(DhtRelayServiceAdapter)) // enable integration with server
                 .AddSingleton(typeof(IDhtRelayServiceAdapter), typeof(DhtRelayNetMqAdapter))
+                // .AddSingleton(typeof(IDhtRelayServiceAdapter), typeof(DhtRelayAdapter))
                 .AddSingleton<IStabilize, NodeStabilizing>()
                 .AddSingleton<ICheckPredecessor, NodeCheckingPredecessor>()
                 .AddSingleton(typeof(Node), typeof(Node))
@@ -60,9 +61,10 @@ namespace DHT
             var dht = serviceProvider.GetService<IDistributedHashtable>();
             Task.Run(()=>dht.Run(args));
             uint i = 0;
+            Console.WriteLine("Enter command: \n * put \n * get");
+
             while (true)
             {
-
                 var input = Console.ReadLine();
                 if (input != null)
                 {
@@ -73,9 +75,8 @@ namespace DHT
                             Console.WriteLine("Put specify key:");
                             var key = Console.ReadLine();     
                             Console.WriteLine($"I found: {dht.Get(key)} for key:{key}");
-                        }
-
-                        if (input.Split("/")[1].Contains("put"))
+                        } 
+                        else if (input.Split("/")[1].Contains("put"))
                         {
                             Console.WriteLine("Put specify key:");
                             var key = Console.ReadLine();     
@@ -87,11 +88,8 @@ namespace DHT
                         else
                         {
                             Console.WriteLine("Enter command: \n * put \n * get");
-
                         }
                     }
-                    
-                  
                 }
             }
         }
