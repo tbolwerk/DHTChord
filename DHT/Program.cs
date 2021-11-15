@@ -17,7 +17,8 @@ namespace DHT
         {
             // Setup the container
             Log.Logger = new LoggerConfiguration()
-                .WriteTo.File($"{Directory.GetCurrentDirectory()}/DHT{args[0]}.log")
+                .WriteTo.File($"{Directory.GetCurrentDirectory()}/DHT-{args[0]}-{args[1]}.log")
+                .MinimumLevel.Debug()
                 .CreateLogger();
 
             var serviceProvider = new ServiceCollection()

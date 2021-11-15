@@ -84,7 +84,8 @@ namespace DHT
 
             _node.Id = (uint)selfKey;
             Log.Debug($"my key is {selfKey}");
-            Log.Logger.Information($"my key is {selfKey}");
+            // Log.Logger.Information($"my key is {selfKey}");
+            Log.Information($"my key is {selfKey}");
             _node.IpAddress = self.IpAddress;
             _node.Port = self.Port;
 
